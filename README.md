@@ -13,3 +13,4 @@ Miklós Martin és Dani Benedek vizsgaremeke.
 
 - Autók külön táblába majd azok autónkénk lesz külön vezetve hogy mire van szüksége az autónak
 - állandó szervíz tábla hogy könyen lehessen lekérni
+- CRM diagramm database rajz/ábrát csináljunk
