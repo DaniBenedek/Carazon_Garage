@@ -6,6 +6,15 @@ Ez a projekt generált a következő által: [Angular CLI](https://github.com/an
 
 A weblap elindításához a következő lépéseket kell elvégezni:
 
+
+```bash
+cd mappaneve
+```
+
+```bash
+npm install
+```
+
 ```bash
 npx ng serve
 ```
