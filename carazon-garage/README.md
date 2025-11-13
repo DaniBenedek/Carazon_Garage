@@ -1,59 +1,67 @@
 # CarazonGarage
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.8.
+Ez a projekt generált a következő által: [Angular CLI](https://github.com/angular/angular-cli) verzió 20.3.8.
 
-## Development server
+## Fejlesztői szerver
 
-To start a local development server, run:
+A weblap elindításához a következő lépéseket kell elvégezni:
 
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
 
 ```bash
-ng generate component component-name
+cd mappaneve
 ```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
 
 ```bash
-ng generate --help
+npm install
 ```
 
-## Building
+```bash
+npx ng serve
+```
+
+Ahogy a szerver elindult, nyisd meg a böngészőt és írd be: `http://localhost:4200/`. Az applikáció az összes módosítást frissíti.
+
+## Forráskód generálás
+
+Új komponens létrehozásához.
+
+```bash
+npx ng generate component component-név
+```
+
+A teljes listához (olyanokhoz mint `components`, `directives`, or `pipes`), futtasd:
+
+```bash
+npx ng generate --help
+```
+
+## Építés
 
 To build the project run:
 
 ```bash
-ng build
+npx ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Ez lefuttatja az applikációt és menti a fájlokat a `dist/` Könyvtárba. Alapértelmezetten, A kiadásra készült példány gyorsabb és kisebb méretű.
 
-## Running unit tests
+## Rész tesztek futtatása
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+A karma tesztrész futtatásához : [Karma](https://karma-runner.github.io) használd a következő programot:
 
 ```bash
-ng test
+npx ng test
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+## Kliens-től kliens-ig tesztek
+A kliens tesztekhez futtasd:
 
 ```bash
-ng e2e
+npx ng e2e
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Az Angular Cli alapból nincsen felszerelve kliens-től kliens -ig tesztekkel ezeket a projektvezető választja
 
-## Additional Resources
+## Hozzátartozó források
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+További információkért és parancsokért látogass el az [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) oldalra.
