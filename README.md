@@ -12,6 +12,7 @@ Miklós Martin és Dani Benedek vizsgaremeke.
 - Keretrendszer Angular 20.3.10
 - stílus : tailwindcss
 - backedn : php
+- adatbázis : Mysql
 - figma : https://www.figma.com/files/team/1295105816093599322/recents-and-sharing?fuid=1295105811775755405
 
 # Kedd 11.11 Határidővel a következők kellenek:
