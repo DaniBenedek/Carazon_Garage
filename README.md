@@ -2,8 +2,8 @@
 Miklós Martin és Dani Benedek vizsgaremeke.
 
 # útmutató az indításhoz: 
-- html fájl-hoz : a carazon-garage/readme.md
-- c# wpf-hez pedig visual studio és indítás gomb
+- html : a carazon-garage/readme.md
+- c# wpf : carazonGarage/readme.md
 
 # cél :
 - Modern szervíz létrehozása 
