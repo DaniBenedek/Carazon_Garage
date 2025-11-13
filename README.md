@@ -1,6 +1,11 @@
 # Carazon_Garage
 Miklós Martin és Dani Benedek vizsgaremeke.
 
+# Összetevők
+- Keretrendszer Angular 20.3.10
+- stílus : tailwindcss
+- figma : https://www.figma.com/files/team/1295105816093599322/recents-and-sharing?fuid=1295105811775755405
+
 # Kedd 11.11 Határidővel a következők kellenek:
 
 - Projekt név - Carazon_Garage✅
