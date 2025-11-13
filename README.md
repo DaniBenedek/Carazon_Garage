@@ -1,6 +1,13 @@
 # Carazon_Garage
 Miklós Martin és Dani Benedek vizsgaremeke.
 
+# útmutató az indításhoz: 
+- html fájl-hoz : a carazon-garage/readme.md
+- c# wpf-hez pedig visual studio és indítás gomb
+
+# cél :
+- Modern szervíz létrehozása 
+
 # Összetevők
 - Keretrendszer Angular 20.3.10
 - stílus : tailwindcss
