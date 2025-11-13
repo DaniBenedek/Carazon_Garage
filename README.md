@@ -7,6 +7,15 @@ Miklós Martin és Dani Benedek vizsgaremeke.
 
 # cél :
 - Modern szervíz létrehozása 
+# ADATBÁZIS TÁBLÁK:
+ appointments(id,user_id,vehicle_id,service_id,date,note,created_at,price)
+ cart(id,user_id,date)
+ cart_items(id,cart_id,product_id,quantity)
+ country(id,name)
+ products(id,name,price,storage_quantity,type)
+ service(id,name,time)
+ user(id,name,password,email,phone_number,role)
+ vehicle(id,vehicle_make,vehicle_model,user_id,license_plate,coutry_id,color,traffic_permit_date,technical_exam_date)
 
 # Összetevők
 - Keretrendszer Angular 20.3.10
