@@ -23,7 +23,7 @@ namespace carazonGarage
     /// </summary>
     public partial class MainWindow : Window
     {
-        MySql.Data.MySqlClient.MySqlConnection connection = new MySql.Data.MySqlClient.MySqlConnection("server=localhost;database=hidak;uid=root");
+        MySql.Data.MySqlClient.MySqlConnection connection = new MySql.Data.MySqlClient.MySqlConnection("server=localhost;database=carazongarage;uid=root");
         MySql.Data.MySqlClient.MySqlCommand command;
         public MainWindow()
         {
@@ -41,7 +41,7 @@ namespace carazonGarage
         {
             try
             {
-                MySql.Data.MySqlClient.MySqlDataAdapter adapter = new MySql.Data.MySqlClient.MySqlDataAdapter("SELECT * FROM fuggohidak", connection);
+                MySql.Data.MySqlClient.MySqlDataAdapter adapter = new MySql.Data.MySqlClient.MySqlDataAdapter("SELECT * FROM vehicle", connection);
                 openConnection();
                 DataSet ds = new DataSet();
                 adapter.Fill(ds);
@@ -106,6 +106,7 @@ namespace carazonGarage
 
         private void Datagrid_Szerviz_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
 
         }
     }
