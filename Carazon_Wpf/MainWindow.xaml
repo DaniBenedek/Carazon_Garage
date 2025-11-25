@@ -11,7 +11,14 @@
             <RowDefinition Height="53*"/>
             <RowDefinition Height="381*"/>
         </Grid.RowDefinitions>
-        <DataGrid d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,255,0,10" Grid.Row="1"/>
+        <DataGrid Name="Datagrid_Szerviz" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="165,106,18,21" Grid.Row="1" SelectionChanged="Datagrid_Szerviz_SelectionChanged"/>
+        <Button Content="Dashboard" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="43" Width="93"/>
+        <Button Content="Tasks" HorizontalAlignment="Left" Margin="119,10,0,0" VerticalAlignment="Top" Height="43" Width="92"/>
+        <Button Content="Employes" HorizontalAlignment="Left" Margin="229,10,0,0" VerticalAlignment="Top" Height="43" Width="93"/>
+        <Button Content="Products" HorizontalAlignment="Left" Margin="340,10,0,0" VerticalAlignment="Top" Height="43" Width="93"/>
+        <Button Content="customers" HorizontalAlignment="Left" Margin="460,10,0,0" VerticalAlignment="Top" Height="43" Width="92"/>
+        <Button Content="Sales" HorizontalAlignment="Left" Margin="577,10,0,0" VerticalAlignment="Top" Height="43" Width="92"/>
+        <Button Content="Opportunities" HorizontalAlignment="Left" Margin="690,10,0,0" VerticalAlignment="Top" Height="43" Width="92"/>
 
     </Grid>
 </Window>
