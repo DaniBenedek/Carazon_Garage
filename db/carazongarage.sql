@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Nov 13. 08:18
+-- Létrehozás ideje: 2025. Nov 25. 07:52
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -28,29 +28,30 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `appointments` (
-  `id` int(10) NOT NULL,
-  `user_id` int(10) NOT NULL,
-  `vehicle_id` int(10) NOT NULL,
-  `service_id` int(10) NOT NULL,
+  `id` int(5) NOT NULL,
+  `user_id` int(5) NOT NULL,
+  `vehicle_id` int(5) NOT NULL,
+  `service_id` int(5) NOT NULL,
   `date` date NOT NULL,
-  `note` varchar(500) DEFAULT NULL,
-  `created_at` date NOT NULL DEFAULT current_timestamp(),
-  `price` int(10) DEFAULT NULL
+  `status` varchar(50) DEFAULT NULL,
+  `note` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `price` decimal(10,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- A tábla adatainak kiíratása `appointments`
 --
 
-INSERT INTO `appointments` (`id`, `user_id`, `vehicle_id`, `service_id`, `date`, `note`, `created_at`, `price`) VALUES
-(1, 1, 1, 1, '2025-11-20', 'Olajcsere esedékes', '2025-11-11', 15000),
-(2, 1, 2, 2, '2025-11-25', 'Fékbetét csere szükséges', '2025-11-11', 45000),
-(3, 2, 3, 3, '2025-12-01', 'Műszaki vizsga', '2025-11-11', 30000),
-(4, 4, 4, 4, '2025-12-05', 'Kerékcsere téli gumikra', '2025-11-11', 20000),
-(5, 5, 5, 5, '2025-12-10', 'Klíma tisztítás', '2025-11-11', 15000),
-(6, 6, 6, 6, '2025-12-15', 'Diagnosztika szükséges', '2025-11-11', 25000),
-(7, 7, 7, 7, '2025-12-20', 'Akkumulátor csere', '2025-11-11', 30000),
-(8, 8, 8, 8, '2025-12-22', 'Futómű beállítás', '2025-11-11', 35000);
+INSERT INTO `appointments` (`id`, `user_id`, `vehicle_id`, `service_id`, `date`, `status`, `note`, `created_at`, `price`) VALUES
+(1, 1, 1, 1, '2025-11-20', 'booked', 'Olajcsere esedékes', '2025-11-11 11:08:25', 15000.00),
+(2, 1, 2, 2, '2025-11-25', 'pending', 'Fékbetét csere szükséges', '2025-11-11 11:08:25', 45000.00),
+(3, 2, 3, 3, '2025-12-01', 'confirmed', 'Műszaki vizsga', '2025-11-11 11:08:25', 30000.00),
+(4, 4, 4, 4, '2025-12-05', 'booked', 'Kerékcsere téli gumikra', '2025-11-11 11:14:40', 20000.00),
+(5, 5, 5, 5, '2025-12-10', 'confirmed', 'Klíma tisztítás', '2025-11-11 11:14:40', 15000.00),
+(6, 6, 6, 6, '2025-12-15', 'pending', 'Diagnosztika szükséges', '2025-11-11 11:14:40', 25000.00),
+(7, 7, 7, 7, '2025-12-20', 'booked', 'Akkumulátor csere', '2025-11-11 11:14:40', 30000.00),
+(8, 8, 8, 8, '2025-12-22', 'confirmed', 'Futómű beállítás', '2025-11-11 11:14:40', 35000.00);
 
 -- --------------------------------------------------------
 
@@ -59,8 +60,8 @@ INSERT INTO `appointments` (`id`, `user_id`, `vehicle_id`, `service_id`, `date`,
 --
 
 CREATE TABLE `cart` (
-  `id` int(10) NOT NULL,
-  `user_id` int(10) NOT NULL,
+  `id` int(5) NOT NULL,
+  `user_id` int(5) NOT NULL,
   `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -85,9 +86,9 @@ INSERT INTO `cart` (`id`, `user_id`, `date`) VALUES
 --
 
 CREATE TABLE `cart_items` (
-  `id` int(10) NOT NULL,
-  `cart_id` int(10) NOT NULL,
-  `product_id` int(10) NOT NULL,
+  `id` int(5) NOT NULL,
+  `cart_id` int(5) NOT NULL,
+  `product_id` int(5) NOT NULL,
   `quantity` int(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -137,10 +138,10 @@ INSERT INTO `country` (`id`, `name`) VALUES
 --
 
 CREATE TABLE `products` (
-  `id` int(10) NOT NULL,
+  `id` int(5) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `price` int(10) NOT NULL,
-  `storage_quantity` int(10) DEFAULT 0,
+  `price` decimal(10,2) NOT NULL,
+  `storage_quantity` int(4) DEFAULT 0,
   `type` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -149,14 +150,14 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `price`, `storage_quantity`, `type`) VALUES
-(1, 'Motorolaj 5W-30', 12000, 50, 'oil'),
-(2, 'Fékbetét szett', 25000, 20, 'brake'),
-(3, 'Szélvédőmosó folyadék', 2000, 100, 'fluid'),
-(4, 'Téli gumi szett', 120000, 10, 'tyre'),
-(5, 'Autó akkumulátor 60Ah', 45000, 15, 'battery'),
-(6, 'Klímatisztító spray', 5000, 40, 'cleaning'),
-(7, 'Futómű alkatrész szett', 80000, 5, 'suspension'),
-(8, 'OBD diagnosztikai eszköz', 30000, 8, 'tool');
+(1, 'Motorolaj 5W-30', 12000.00, 50, 'oil'),
+(2, 'Fékbetét szett', 25000.00, 20, 'brake'),
+(3, 'Szélvédőmosó folyadék', 2000.00, 100, 'fluid'),
+(4, 'Téli gumi szett', 120000.00, 10, 'tyre'),
+(5, 'Autó akkumulátor 60Ah', 45000.00, 15, 'battery'),
+(6, 'Klímatisztító spray', 5000.00, 40, 'cleaning'),
+(7, 'Futómű alkatrész szett', 80000.00, 5, 'suspension'),
+(8, 'OBD diagnosztikai eszköz', 30000.00, 8, 'tool');
 
 -- --------------------------------------------------------
 
@@ -165,7 +166,7 @@ INSERT INTO `products` (`id`, `name`, `price`, `storage_quantity`, `type`) VALUE
 --
 
 CREATE TABLE `service` (
-  `id` int(10) NOT NULL,
+  `id` int(5) NOT NULL,
   `name` varchar(100) NOT NULL,
   `time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -191,9 +192,9 @@ INSERT INTO `service` (`id`, `name`, `time`) VALUES
 --
 
 CREATE TABLE `user` (
-  `id` int(10) NOT NULL,
+  `id` int(5) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `password` varchar(200) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `email` varchar(150) NOT NULL,
   `phone_number` varchar(20) DEFAULT NULL,
   `role` varchar(50) DEFAULT NULL
@@ -220,15 +221,15 @@ INSERT INTO `user` (`id`, `name`, `password`, `email`, `phone_number`, `role`) V
 --
 
 CREATE TABLE `vehicle` (
-  `id` int(10) NOT NULL,
+  `id` int(5) NOT NULL,
   `vehicle_make` varchar(100) DEFAULT NULL,
   `vehicle_model` varchar(100) DEFAULT NULL,
-  `user_id` int(10) NOT NULL,
+  `user_id` int(5) NOT NULL,
   `license_plate` varchar(20) NOT NULL,
   `country_id` int(5) NOT NULL,
   `color` varchar(50) DEFAULT NULL,
-  `traffic_permit_date` date DEFAULT NULL,
-  `technical_exam_date` date DEFAULT NULL
+  `traffic_permit_date` datetime DEFAULT NULL,
+  `technical_exam_date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -236,14 +237,14 @@ CREATE TABLE `vehicle` (
 --
 
 INSERT INTO `vehicle` (`id`, `vehicle_make`, `vehicle_model`, `user_id`, `license_plate`, `country_id`, `color`, `traffic_permit_date`, `technical_exam_date`) VALUES
-(1, 'Toyota', 'Corolla', 1, 'ABC-123', 1, 'piros', '2020-05-10', '2022-05-10'),
-(2, 'BMW', '320d', 1, 'XYZ-999', 1, 'fekete', '2021-03-15', '2023-03-15'),
-(3, 'Audi', 'A4', 2, 'DE-4567', 2, 'kék', '2019-07-01', '2021-07-01'),
-(4, 'Ford', 'Focus', 4, 'FOC-444', 3, 'szürke', '2022-01-10', '2024-01-10'),
-(5, 'Mercedes', 'C200', 5, 'MER-555', 4, 'fehér', '2021-06-20', '2023-06-20'),
-(6, 'Volkswagen', 'Golf', 6, 'GOL-666', 5, 'zöld', '2020-09-15', '2022-09-15'),
-(7, 'Opel', 'Astra', 7, 'AST-777', 2, 'sárga', '2019-11-01', '2021-11-01'),
-(8, 'Skoda', 'Octavia', 8, 'OCT-888', 1, 'kék', '2023-02-05', '2025-02-05');
+(1, 'Toyota', 'Corolla', 1, 'ABC-123', 1, 'piros', '2020-05-10 00:00:00', '2022-05-10 00:00:00'),
+(2, 'BMW', '320d', 1, 'XYZ-999', 1, 'fekete', '2021-03-15 00:00:00', '2023-03-15 00:00:00'),
+(3, 'Audi', 'A4', 2, 'DE-4567', 2, 'kék', '2019-07-01 00:00:00', '2021-07-01 00:00:00'),
+(4, 'Ford', 'Focus', 4, 'FOC-444', 3, 'szürke', '2022-01-10 00:00:00', '2024-01-10 00:00:00'),
+(5, 'Mercedes', 'C200', 5, 'MER-555', 4, 'fehér', '2021-06-20 00:00:00', '2023-06-20 00:00:00'),
+(6, 'Volkswagen', 'Golf', 6, 'GOL-666', 5, 'zöld', '2020-09-15 00:00:00', '2022-09-15 00:00:00'),
+(7, 'Opel', 'Astra', 7, 'AST-777', 2, 'sárga', '2019-11-01 00:00:00', '2021-11-01 00:00:00'),
+(8, 'Skoda', 'Octavia', 8, 'OCT-888', 1, 'kék', '2023-02-05 00:00:00', '2025-02-05 00:00:00');
 
 --
 -- Indexek a kiírt táblákhoz
@@ -304,7 +305,6 @@ ALTER TABLE `user`
 ALTER TABLE `vehicle`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `license_plate` (`license_plate`),
-  ADD UNIQUE KEY `license_plate_2` (`license_plate`),
   ADD KEY `user_id` (`user_id`),
   ADD KEY `country_id` (`country_id`);
 
@@ -316,19 +316,19 @@ ALTER TABLE `vehicle`
 -- AUTO_INCREMENT a táblához `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT a táblához `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT a táblához `cart_items`
 --
 ALTER TABLE `cart_items`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT a táblához `country`
@@ -340,25 +340,25 @@ ALTER TABLE `country`
 -- AUTO_INCREMENT a táblához `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT a táblához `service`
 --
 ALTER TABLE `service`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT a táblához `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT a táblához `vehicle`
 --
 ALTER TABLE `vehicle`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Megkötések a kiírt táblákhoz
