@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { Carrer } from './pages/carrer/carrer';
 import { History } from './pages/history/history';
 import { Home } from './pages/home/home';
-import { Login } from './pages/login/login';
+import { Login } from './components/login/login';
 import { Projects } from './pages/projects/projects';
 import { Szerviz } from './pages/szerviz/szerviz';
 
