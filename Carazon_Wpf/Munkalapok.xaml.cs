@@ -13,19 +13,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace carazonGarage
 {
+
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Munkalapok.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Munkalapok : Window
     {
         MySql.Data.MySqlClient.MySqlConnection connection = new MySql.Data.MySqlClient.MySqlConnection("server=localhost;database=carazongarage;uid=root");
         MySql.Data.MySqlClient.MySqlCommand command;
-        public MainWindow()
+        public Munkalapok()
         {
             InitializeComponent();
             AdatbazisIndit();
@@ -41,11 +41,11 @@ namespace carazonGarage
         {
             try
             {
-                MySql.Data.MySqlClient.MySqlDataAdapter adapter = new MySql.Data.MySqlClient.MySqlDataAdapter("SELECT * FROM vehicle", connection);
+                MySql.Data.MySqlClient.MySqlDataAdapter adapter = new MySql.Data.MySqlClient.MySqlDataAdapter("SELECT * FROM appointments", connection);
                 openConnection();
                 DataSet ds = new DataSet();
                 adapter.Fill(ds);
-                Datagrid_Szerviz.ItemsSource = ds.Tables[0].DefaultView;
+                Datagrid_Munkalapok.ItemsSource = ds.Tables[0].DefaultView;
                 closeConnection();
             }
             catch (Exception hiba)
@@ -87,41 +87,9 @@ namespace carazonGarage
             }
         }
 
-        private void Datagrid_Szerviz_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void Ugyfelek_Click(object sender, RoutedEventArgs e)
-        {
-            ugyfelek mainWindow = new ugyfelek();
-            this.Hide();
-            mainWindow.Show();
-        }
-
-        private void Munkalapok_Click(object sender, RoutedEventArgs e)
-        {
-            Munkalapok mainWindow = new Munkalapok();
-            this.Hide();
-            mainWindow.Show();
-        }
-
-        private void Alkatreszek_Click(object sender, RoutedEventArgs e)
-        {
-            Alkatreszek mainWindow = new Alkatreszek();
-            this.Hide();
-            mainWindow.Show();
-        }
-
-        private void Kilepes_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
-        private void Alkatreszek_Bejelentkezes(object sender, RoutedEventArgs e)
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
     }
 }
-

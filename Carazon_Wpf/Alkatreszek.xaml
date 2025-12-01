@@ -1,0 +1,113 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:av="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="av" x:Class="carazonGarage.Alkatreszek"
+        Title="Alkatrészek (Parts Inventory)"
+        Width="1000" Height="700"
+        Background="#121417">
+
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" 
+                    Margin="0,0,0,12">
+            <TextBlock Text="Alkatrészek" 
+                       FontSize="22" 
+                       FontWeight="Bold" 
+                       Foreground="#EAECEF" 
+                       Margin="0,0,12,0"/>
+
+            <Border Background="#1A1D21" 
+                    CornerRadius="16" 
+                    Padding="6" 
+                    Margin="12,0,0,0">
+                <DockPanel>
+                    <TextBlock Text="🔍" 
+                               Foreground="#A9B1BB" 
+                               Margin="0,0,8,0"/>
+                    <TextBox Width="280" 
+                             Background="Transparent" 
+                             BorderThickness="0" 
+                             Foreground="#EAECEF"
+                             CaretBrush="#3BA9FF" 
+                             Text=""/>
+                </DockPanel>
+            </Border>
+
+            <ComboBox Width="180" 
+                      Margin="8,0,0,0" 
+                      Foreground="#EAECEF" 
+                      Background="#1A1D21">
+                <ComboBoxItem Content="Összes"/>
+                <ComboBoxItem Content="Motor"/>
+                <ComboBoxItem Content="Fék"/>
+                <ComboBoxItem Content="Futómű"/>
+            </ComboBox>
+
+            <Button Content="Új alkatrész" 
+                    Margin="12,0,0,0" 
+                    Background="#3BA9FF" 
+                    Foreground="White"/>
+            <Button Content="Rendelés" 
+                    Margin="8,0,0,0" 
+                    Background="#3BA9FF" 
+                    Foreground="White"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Background="#1A1D21" 
+                    CornerRadius="8" 
+                    Padding="8" 
+                    Grid.Column="0" 
+                    Margin="0,0,12,0">
+                <DataGrid av:ItemsSource="{av:SampleData ItemCount=5}" 
+                          SelectionChanged="DataGrid_SelectionChanged"
+                          Name="Datagrid_Alkatreszek"/>
+            </Border>
+
+            <Border Background="#1A1D21" 
+                    CornerRadius="8" 
+                    Padding="16" 
+                    Grid.Column="1">
+                <StackPanel>
+                    <TextBlock Text="Részletek" 
+                               FontSize="16" 
+                               FontWeight="SemiBold" 
+                               Foreground="#EAECEF" 
+                               Margin="0,0,0,8"/>
+                    <TextBlock Text="Név: Olajszűrő" 
+                               FontSize="18" 
+                               FontWeight="Bold" 
+                               Foreground="#EAECEF"/>
+                    <TextBlock Text="Cikkszám: 
+                               OIL-123" Foreground="#A9B1BB" 
+                               Margin="0,4,0,0"/>
+                    <TextBlock Text="Kategória: Motor" 
+                               Foreground="#A9B1BB"/>
+                    <Separator Margin="0,8,0,8" 
+                               Background="#2A2F36"/>
+                    <TextBlock Text="Leírás" 
+                               FontWeight="SemiBold" 
+                               Foreground="#EAECEF"/>
+                    <TextBlock Text="Mannol apm 2730." 
+                               TextWrapping="Wrap" 
+                               Foreground="#A9B1BB"/>
+                    <Separator Margin="0,8,0,8" 
+                               Background="#2A2F36"/>
+                    <TextBlock Text="Egységár: 4 500 Ft" 
+                               Foreground="#A9B1BB"/>
+                    <TextBlock Text="Készlet: 25 db" 
+                               Foreground="#A9B1BB"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

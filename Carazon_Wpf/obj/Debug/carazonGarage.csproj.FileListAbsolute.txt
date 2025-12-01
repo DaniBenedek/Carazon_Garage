@@ -44,7 +44,6 @@ C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\MainWindow.g.cs
 C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\ugyfelek.g.cs
 C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\App.g.cs
 C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\carazonGarage_MarkupCompile.cache
-C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\carazonGarage_MarkupCompile.lref
 C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\MainWindow.baml
 C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\ugyfelek.baml
 C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\carazonGarage.g.resources
@@ -55,3 +54,7 @@ C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\carazonG.9E6F17D4.Up2Date
 C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\carazonGarage.exe
 C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\carazonGarage.pdb
 C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\carazonGarage.exe.config
+C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\Munkalapok.g.cs
+C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\Munkalapok.baml
+C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\Alkatreszek.g.cs
+C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\Alkatreszek.baml

@@ -1,12 +1,102 @@
 ﻿<Window x:Class="carazonGarage.ugyfelek"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:carazonGarage"
-        mc:Ignorable="d"
-        Title="ugyfelek" Height="450" Width="800">
-    <Grid>
-        
+        Title="Ügyfelek"
+        Width="1000" Height="700"
+        Background="#121417">
+
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" 
+                    Margin="0,0,0,16">
+            <TextBlock Text="Ügyfelek" 
+                       FontSize="26" 
+                       FontWeight="Bold" 
+                       Foreground="#EAECEF"/>
+            <Border Background="#1A1D21" 
+                    CornerRadius="16" 
+                    Padding="6" 
+                    Margin="24,0,0,0">
+                <DockPanel>
+                    <TextBlock Text="🔍" 
+                               Foreground="#A9B1BB" 
+                               Margin="0,0,8,0"/>
+                    <TextBox Width="280" 
+                             Background="Transparent" 
+                             BorderThickness="0" 
+                             Foreground="#EAECEF"
+                             CaretBrush="#3BA9FF" 
+                             Text=""/>
+                </DockPanel>
+            </Border>
+            <Button Content="Új ügyfél" 
+                    Margin="24,0,0,0" 
+                    Background="#3BA9FF" 
+                    Foreground="White"/>
+            
+            <Button Content="Kilépés" 
+                    Margin="24,0,0,0" 
+                    Background="Red" 
+                    Foreground="White" Click="Button_Click"/>
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1">
+            <WrapPanel Orientation="Horizontal" 
+                       ItemWidth="220" 
+                       ItemHeight="160">
+                
+                <Border Background="#1A1D21" 
+                        CornerRadius="12" 
+                        Padding="12" 
+                        Margin="8"
+                        Width="220" 
+                        Height="160">
+                    <StackPanel>
+                        <TextBlock Text="Kovács Béla" 
+                                   FontSize="16" 
+                                   FontWeight="Bold" 
+                                   Foreground="#EAECEF"/>
+                        <TextBlock Text="📞 +36 30 123 4567" 
+                                   Foreground="#A9B1BB" 
+                                   Margin="0,4,0,0"/>
+                        <TextBlock Text="🚗 ABC-123 • Opel Astra" 
+                                   Foreground="#A9B1BB" 
+                                   Margin="0,2,0,0"/>
+                        <Separator Margin="0,8,0,8" 
+                                   Background="#2A2F36"/>
+                        <TextBlock Text="Státusz: Aktív" 
+                                   Foreground="#3BD37F"/>
+                    </StackPanel>
+                </Border>
+
+                <Border Background="#1A1D21" 
+                        CornerRadius="12" 
+                        Padding="12" 
+                        Margin="8"
+                        Width="220" 
+                        Height="160">
+                    <StackPanel>
+                        <TextBlock Text="Nagy Anna" 
+                                   FontSize="16" 
+                                   FontWeight="Bold" 
+                                   Foreground="#EAECEF"/>
+                        <TextBlock Text="📞 +36 20 987 6543" 
+                                   Foreground="#A9B1BB" 
+                                   Margin="0,4,0,0"/>
+                        <TextBlock Text="🚗 XYZ-789 • Ford Focus" 
+                                   Foreground="#A9B1BB" 
+                                   Margin="0,2,0,0"/>
+                        <Separator Margin="0,8,0,8" 
+                                   Background="#2A2F36"/>
+                        <TextBlock Text="Státusz: Kész" 
+                                   Foreground="#3BA9FF"/>
+                    </StackPanel>
+                </Border>
+            </WrapPanel>
+        </ScrollViewer>
     </Grid>
 </Window>
