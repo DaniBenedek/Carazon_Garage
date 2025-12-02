@@ -37,7 +37,7 @@
             <Button Content="Megnyitás" 
                     Margin="8,0,0,0" 
                     Background="#3BA9FF" 
-                    Foreground="White"/>
+                    Foreground="White" Click="Button_Click"/>
         </StackPanel>
 
         <Grid Grid.Row="1">
@@ -52,7 +52,7 @@
                     Grid.Column="0" 
                     Margin="0,0,12,0">
                 <DataGrid av:ItemsSource="{av:SampleData ItemCount=5}"
-                          Name="Datagrid_Munkalapok"/>
+                          Name="Datagrid_Munkalapok" SelectionChanged="Datagrid_Munkalapok_SelectionChanged"/>
             </Border>
 
             <Border Background="#1A1D21" 

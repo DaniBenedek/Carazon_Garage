@@ -91,5 +91,19 @@ namespace carazonGarage
         {
 
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Datagrid_Munkalapok_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataRowView dataRow = (DataRowView)Datagrid_Munkalapok.SelectedItem;
+            TexBlock_Cim.Text = dataRow["cim"].ToString();
+            TexBlock_Status.Text = dataRow["status"].ToString();
+            TexBlock_UgyfelNev.Text = dataRow["ugyfelnev"].ToString();
+            TexBlock_Hatarido.Text = dataRow["hatarido"].ToString();
+        }
     }
 }
