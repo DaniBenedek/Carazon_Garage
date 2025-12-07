@@ -128,7 +128,7 @@
                 Grid.Column="1" 
                 Padding="16" 
                 Background="#121417">
-            <DataGrid Name="Datagrid_Szerviz" av:ItemsSource="{av:SampleData ItemCount=5}"/>
+            <DataGrid Name="Datagrid_Szerviz" av:ItemsSource="{av:SampleData ItemCount=5}" SelectionChanged="Datagrid_Szerviz_SelectionChanged_1"/>
         </Border>
     </Grid>
 </Window>

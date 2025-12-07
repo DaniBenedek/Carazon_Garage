@@ -119,13 +119,23 @@
     <Compile Include="Alkatreszek.xaml.cs">
       <DependentUpon>Alkatreszek.xaml</DependentUpon>
     </Compile>
+    <Compile Include="login.xaml.cs">
+      <DependentUpon>login.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Munkalapok.xaml.cs">
       <DependentUpon>Munkalapok.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MunkalapReszletek.xaml.cs">
+      <DependentUpon>MunkalapReszletek.xaml</DependentUpon>
     </Compile>
     <Compile Include="ugyfelek.xaml.cs">
       <DependentUpon>ugyfelek.xaml</DependentUpon>
     </Compile>
     <Page Include="Alkatreszek.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -142,6 +152,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Munkalapok.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MunkalapReszletek.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

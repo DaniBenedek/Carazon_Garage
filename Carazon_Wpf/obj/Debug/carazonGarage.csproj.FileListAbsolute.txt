@@ -53,8 +53,11 @@ C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\carazonGarage.csproj.CoreCo
 C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\carazonG.9E6F17D4.Up2Date
 C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\carazonGarage.exe
 C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\carazonGarage.pdb
-C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\carazonGarage.exe.config
 C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\Munkalapok.g.cs
 C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\Munkalapok.baml
 C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\Alkatreszek.g.cs
 C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\Alkatreszek.baml
+C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\MunkalapReszletek.baml
+C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\MunkalapReszletek.g.cs
+C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\login.baml
+C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\login.g.cs

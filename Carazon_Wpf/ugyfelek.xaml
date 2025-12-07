@@ -36,7 +36,8 @@
             <Button Content="Új ügyfél" 
                     Margin="24,0,0,0" 
                     Background="#3BA9FF" 
-                    Foreground="White"/>
+                    Foreground="White"
+                    Click="Uj_UgyfelClick"/>
             
             <Button Content="Kilépés" 
                     Margin="24,0,0,0" 

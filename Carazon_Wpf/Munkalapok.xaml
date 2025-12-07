@@ -18,26 +18,23 @@
                        Foreground="#EAECEF" 
                        Margin="0,0,12,0"/>
 
-            <ComboBox Width="180" 
-                      Margin="8,0,0,0" 
-                      Foreground="#EAECEF" 
-                      Background="#1A1D21">
-                <ComboBoxItem Content="Összes"/>
-                <ComboBoxItem Content="Folyamatban"/>
-                <ComboBoxItem Content="Kész"/>
-            </ComboBox>
+            
             <DatePicker Margin="8,0,0,0" 
                         Foreground="#EAECEF" 
-                        Background="#1A1D21"/>
+                        Background="#1A1D21"
+                        Name="Datepicker_Szures"
+                        SelectedDateChanged="DatePicker_Szures_SelectedDateChanged"/>
 
-            <Button Content="Új munkalap" 
+            <Button Content="Frissítés" 
                     Margin="12,0,0,0" 
                     Background="#3BA9FF" 
-                    Foreground="White"/>
+                    Foreground="White"
+                    Name="Datepicker_Reset" Click="Datepicker_Reset_Click"/>
             <Button Content="Megnyitás" 
                     Margin="8,0,0,0" 
                     Background="#3BA9FF" 
-                    Foreground="White" Click="Button_Click"/>
+                    Foreground="White"
+                    Click="Megnyitas_Click"/>
         </StackPanel>
 
         <Grid Grid.Row="1">
@@ -60,40 +57,40 @@
                     Padding="16" 
                     Grid.Column="1">
                 <StackPanel>
-                    <TextBlock Text="Status" 
+                    <TextBlock Text="Status : Kész" 
                                FontSize="16" 
                                FontWeight="SemiBold" 
                                Foreground="#EAECEF" 
                                Margin="0,0,0,8"
-                               Name="TexBlock_Status"/>
-                    <TextBlock Text="Cím: Példa munkalap" 
+                               Name="Textblock_Keszvane"/>
+                    <TextBlock Text="Cím:" 
                                FontSize="18" 
                                FontWeight="Bold" 
                                Foreground="#EAECEF"
                                Name="TexBlock_Cim"/>
-                    <TextBlock Text="Ügyfél: Kovács Béla" 
+                    <TextBlock Text="Ügyfél: " 
                                Foreground="#A9B1BB" 
                                Margin="0,4,0,0"
                                Name="TexBlock_UgyfelNev"/>
-                    <TextBlock Text="Rendszám: ABC-123" 
+                    <TextBlock Text="Rendszám:" 
                                Foreground="#A9B1BB"
-                               Name="Rendszam"/>
+                               Name="Textblocl_Rendszam"/>
                     <Separator Margin="0,8,0,8" 
                                Background="#2A2F36"/>
                     <TextBlock Text="Leírás" 
                                FontWeight="SemiBold" 
                                Foreground="#EAECEF"
                                Name="Leiras"/>
-                    <TextBlock Text="Fékbetét csere és olajcsere." 
+                    <TextBlock Text="" 
                                TextWrapping="Wrap" 
                                Foreground="#A9B1BB"
                                Name="Leiras_Content"/>
                     <Separator Margin="0,8,0,8" 
                                Background="#2A2F36"/>
-                    <TextBlock Text="Státusz: Folyamatban" 
+                    <TextBlock Text="Státusz:" 
                                Foreground="#A9B1BB"
                                Name="Textblock_Status"/>
-                    <TextBlock Text="Határidő: 2025.12.05" 
+                    <TextBlock Text="Határidő:" 
                                Foreground="#A9B1BB" 
                                Margin="0,2,0,0"
                                Name="TexBlock_Hatarido"/>

@@ -122,6 +122,11 @@ namespace carazonGarage
         {
 
         }
+
+        private void Datagrid_Szerviz_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
 
