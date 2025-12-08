@@ -1,5 +1,6 @@
-import { Component, OnInit, AfterViewInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy, HostListener, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HeroService } from '../../services/hero';
 
 @Component({
   selector: 'app-home',
@@ -11,43 +12,50 @@ import { CommonModule } from '@angular/common';
 export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   currentLanguage = 'EN';
   showLanguageOptions = false;
-  
+
+  private heroService = inject(HeroService);
+
+  // Hero text from database
+  heroTitle = 'Carazon Garage';
+  heroSubtitle = 'Your Subtitle Here';
+  heroDescription = 'Your description here';
+
   // Data for showcase cards
   showcaseCards = [
     {
-      title: 'Ornamental Relief Panel',
-      description: 'Intricate baroque-inspired design carved from aged walnut',
-      image: 'https://images.pexels.com/photos/5974283/pexels-photo-5974283.jpeg?auto=compress&cs=tinysrgb&w=1500',
+      title: 'Gurulgatunk és dolgozgatunk',
+      description: 'Leírás persze',
+      image: 'https://placehold.co/600x400',
       size: 'large'
     },
     {
       title: 'Contemporary Sculpture',
-      description: 'Minimalist form meets traditional craftsmanship',
-      image: 'https://images.pexels.com/photos/4491910/pexels-photo-4491910.jpeg?auto=compress&cs=tinysrgb&w=1500',
+      description: 'Leírás persze',
+      image: 'https://placehold.co/600x400',
       size: 'medium'
     },
     {
       title: 'Architectural Element',
-      description: 'Custom carved trim for heritage restoration',
-      image: 'https://images.pexels.com/photos/5711226/pexels-photo-5711226.jpeg?auto=compress&cs=tinysrgb&w=1500',
+      description: 'Leírás persze',
+      image: 'https://placehold.co/600x400',
       size: 'small'
     },
     {
       title: 'Functional Art Pieces',
-      description: 'Where utility meets artistic expression',
-      image: 'https://images.pexels.com/photos/29644979/pexels-photo-29644979.jpeg?auto=compress&cs=tinysrgb&w=1500',
+      description: 'Leírás persze',
+      image: 'https://placehold.co/600x400',
       size: 'medium'
     },
     {
       title: 'Decorative Details',
-      description: 'Hand-carved embellishments',
-      image: 'https://images.pexels.com/photos/5974277/pexels-photo-5974277.jpeg?auto=compress&cs=tinysrgb&w=1500',
+      description: 'Leírás persze',
+      image: 'https://placehold.co/600x400',
       size: 'small'
     },
     {
       title: 'Custom Commissions',
       description: 'Personalized designs brought to life through masterful execution',
-      image: 'https://images.pexels.com/photos/4888651/pexels-photo-4888651.jpeg?auto=compress&cs=tinysrgb&w=1500',
+      image: 'https://placehold.co/600x400',
       size: 'large'
     }
   ];
@@ -55,28 +63,28 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   // Data for testimonials
   testimonials = [
     {
-      quote: 'The carved panel Danijel created for our dining room is nothing short of breathtaking.',
-      author: 'Margaret Thompson',
+      quote: 'Gyorsak, pontosak.',
+      author: 'Ódry Attila',
       role: 'Interior Designer, London',
-      avatar: 'https://images.pexels.com/photos/634511/pexels-photo-634511.jpeg?auto=compress&cs=tinysrgb&w=1500'
+      avatar: 'https://placehold.co/600x400'
     },
     {
-      quote: 'Working with Danijel was an absolute pleasure. His professionalism and dedication to the craft are evident in every stroke.',
-      author: 'Viktor Kovács',
+      quote: 'Ügyesek a srácok.',
+      author: 'Vidéki Gyula Milán',
       role: 'Art Collector, Budapest',
-      avatar: 'https://images.pexels.com/photos/4491910/pexels-photo-4491910.jpeg?auto=compress&cs=tinysrgb&w=1500'
+      avatar: 'https://placehold.co/600x400'
     },
     {
-      quote: 'Exceptional quality and timeless beauty. The commissioned piece perfectly captures our vision.',
+      quote: 'Exceptional quality and timeless beauty.',
       author: 'Anna Szabó',
       role: 'Homeowner, Vienna',
-      avatar: 'https://images.pexels.com/photos/6790101/pexels-photo-6790101.jpeg?auto=compress&cs=tinysrgb&w=1500'
+      avatar: 'https://placehold.co/600x400'
     },
     {
-      quote: 'We commissioned Danijel for our heritage restoration project. His ability to replicate historical carving styles is remarkable.',
+      quote: 'Remarkable work and professional service.',
       author: 'James Mitchell',
       role: 'Architectural Conservator',
-      avatar: 'https://images.pexels.com/photos/4491868/pexels-photo-4491868.jpeg?auto=compress&cs=tinysrgb&w=1500'
+      avatar: 'https://placehold.co/600x400'
     }
   ];
 
@@ -84,28 +92,28 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   timelineItems = [
     {
       title: 'The Beginning',
-      description: 'What started as a fascination with wood grain and texture evolved into a lifelong pursuit.',
+      description: 'Leírás persze',
       year: '1995',
       icon: 'calendar',
       side: 'left'
     },
     {
       title: 'Mastery Through Practice',
-      description: 'Years of relentless dedication refined raw talent into expertise.',
+      description: 'Leírás persze',
       year: '2005',
       icon: 'award',
       side: 'right'
     },
     {
       title: 'Philosophy of Craft',
-      description: 'True craftsmanship honors the material. Every piece of wood has a story waiting to be revealed.',
+      description: 'Leírás persze',
       year: '2015',
       icon: 'heart',
       side: 'left'
     },
     {
       title: 'Today and Tomorrow',
-      description: 'From heritage restoration to contemporary design, each commission is approached with passion.',
+      description: 'Leírás persze',
       year: 'Present',
       icon: 'star',
       side: 'right'
@@ -114,11 +122,31 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // Scroll position for parallax
   scrollY = 0;
-  
+
   constructor() {}
 
   ngOnInit(): void {
-    // Initialize any component data
+    this.fetchData();
+  }
+
+  fetchData(): void {
+    this.heroService.getHeroData().subscribe(
+      (data) => {
+        console.log('Data fetched:', data);
+        if (data && data.heroTitle) {
+          this.heroTitle = data.heroTitle;
+        }
+        if (data && data.heroSubtitle) {
+          this.heroSubtitle = data.heroSubtitle;
+        }
+        if (data && data.heroDescription) {
+          this.heroDescription = data.heroDescription;
+        }
+      },
+      (error: any) => {
+        console.error('Error fetching data:', error);
+      }
+    );
   }
 
   ngAfterViewInit(): void {
@@ -129,27 +157,25 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // Clean up any event listeners
     window.removeEventListener('scroll', this.onScroll.bind(this));
   }
 
   @HostListener('window:scroll', [])
   onScroll(): void {
     this.scrollY = window.scrollY;
-    
-    // Update parallax effect
+
     const heroVideo = document.querySelector('.hero-video') as HTMLElement;
     const heroOverlay = document.querySelector('.hero-overlay') as HTMLElement;
     const heroSection = document.querySelector('.hero-section') as HTMLElement;
-    
+
     if (heroVideo && heroOverlay && heroSection) {
       const heroHeight = heroSection.offsetHeight;
       const scrolled = this.scrollY;
-      
+
       if (scrolled < heroHeight) {
         const translateY = scrolled * 0.5;
         const opacity = Math.max(0.6, 1 - (scrolled / heroHeight) * 0.7);
-        
+
         heroVideo.style.transform = `translateY(${translateY}px)`;
         heroOverlay.style.opacity = opacity.toString();
       }
@@ -163,11 +189,13 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   private initIntersectionObserver(): void {
     const observerOptions = {
       threshold: 0.15,
-      rootMargin: '0px 0px -100px 0px',
+      rootMargin: '0px 0px -100px 0px'
     };
 
-    const fadeElements = document.querySelectorAll('.testimonials-card, .about-timeline-item, .showcase-card');
-    
+    const fadeElements = document.querySelectorAll(
+      '.testimonials-card, .about-timeline-item, .showcase-card'
+    );
+
     const fadeObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
@@ -192,38 +220,35 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   // Card hover effects
-  onCardHover(event: MouseEvent, card: any): void {
+  onCardHover(event: MouseEvent): void {
     const cardElement = event.currentTarget as HTMLElement;
     cardElement.style.transform = 'translateY(-8px)';
   }
 
-  onCardLeave(event: MouseEvent, card: any): void {
+  onCardLeave(event: MouseEvent): void {
     const cardElement = event.currentTarget as HTMLElement;
     cardElement.style.transform = 'translateY(0)';
   }
 
   // Action methods
   explorePortfolio(): void {
-    // Navigate to portfolio or show modal
     console.log('Explore Portfolio clicked');
   }
 
   commissionPiece(): void {
-    // Navigate to contact or show form
     console.log('Commission Piece clicked');
   }
 
   viewDetails(card: any): void {
-    // Show details for specific card
     console.log('View details for:', card.title);
   }
 
+  // Utility methods
   getCardSizeClass(size: string): string {
-    switch(size) {
+    switch (size) {
       case 'large':
         return 'md:col-span-2 lg:col-span-2';
       case 'medium':
-        return 'md:col-span-1 lg:col-span-1';
       case 'small':
         return 'md:col-span-1 lg:col-span-1';
       default:
@@ -232,7 +257,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   getIconPath(icon: string): string {
-    switch(icon) {
+    switch (icon) {
       case 'calendar':
         return 'M8 2v4m8-4v4M3 10h18M3 10v8a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-8M3 10l1-6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2l1 6';
       case 'award':

@@ -64,7 +64,7 @@ describe('HomeComponent', () => {
     const cardElement = fixture.debugElement.query(By.css('.showcase-card:first-child'));
     cardElement.triggerEventHandler('mouseenter', event);
     
-    expect(component.onCardHover).toHaveBeenCalledWith(event, card);
+    expect(component.onCardHover).toHaveBeenCalledWith(event,);
   });
 
   it('should generate correct card size classes', () => {
