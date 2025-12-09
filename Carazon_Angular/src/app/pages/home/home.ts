@@ -17,8 +17,8 @@ export class HomeComponent {
 
   // Hero text from database
   heroTitle = 'Carazon Garage';
-  heroSubtitle = '';
-  heroDescription = '';
+  heroSubtitle = 'Ahonnan a jo otletek szarmaznak';
+  heroDescription = 'Foglalj most';
 
   commissionPiece() {};
   explorePortfolio() {};
