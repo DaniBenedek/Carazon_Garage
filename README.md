@@ -23,6 +23,8 @@ Miklós Martin és Dani Benedek vizsgaremeke.
 - backedn : php
 - adatbázis : Mysql
 - figma : https://www.figma.com/files/team/1295105816093599322/recents-and-sharing?fuid=1295105811775755405
+- github : https://github.com/DaniBenedek/Carazon_Garage
+- trello : https://trello.com/b/GBRdKbUQ/carazongarage
 
 # Kedd 11.11 Határidővel a következők kellenek:
 
