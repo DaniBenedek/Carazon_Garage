@@ -14,8 +14,4 @@ export interface HeroData {
 export class HeroService {
   private httpClient = inject(HttpClient);
   private apiUrl = 'http://localhost/Carazon_Garage/api/getData.php';
-
-  getHeroData(): Observable<HeroData> {
-    return this.httpClient.get<HeroData>(this.apiUrl);
-  }
 }
