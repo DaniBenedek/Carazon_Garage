@@ -22,11 +22,4 @@ npx ng serve
 Ahogy a szerver elindult, nyisd meg a böngészőt és írd be: `http://localhost:4200/`. Az applikáció az összes módosítást frissíti.
 ```
 
-## Építés
-A projekt építéséhez:
-
-```bash
-npx ng build
-```
-
 
