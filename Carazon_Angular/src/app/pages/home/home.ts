@@ -20,6 +20,10 @@ export class HomeComponent {
   heroSubtitle = 'Ahonnan a jo otletek szarmaznak';
   heroDescription = 'Foglalj most';
 
-  commissionPiece() {};
-  explorePortfolio() {};
+  commissionPiece() {
+    console.log('Idopontot foglalok')
+  };
+  explorePortfolio() {
+    console.log('Munkaink megtekintese')
+  };
 }
