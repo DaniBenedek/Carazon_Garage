@@ -241,8 +241,8 @@
           <div 
             [class]="'showcase-card showcase-card-' + card.size + ' ' + getCardSizeClass(card.size) + 
                      ' relative overflow-hidden rounded-2xl group cursor-pointer'"
-            (mouseenter)="onCardHover($event, card)"
-            (mouseleave)="onCardLeave($event, card)"
+            (mouseenter)="onCardHover($event)"
+            (mouseleave)="onCardLeave($event)"
             (click)="viewDetails(card)"
             [style.animation-delay]="i * 0.1 + 's'">
             <img 
