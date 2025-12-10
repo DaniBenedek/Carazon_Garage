@@ -1,98 +1,51 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
 import { Projects } from './projects';
 
-import { By } from '@angular/platform-browser';
-
 describe('Projects', () => {
-  let component: Projects;
-  let fixture: ComponentFixture<Projects>;
+	let component: Projects;
+	let fixture: ComponentFixture<Projects>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [Projects]
-    })
-    .compileComponents();
+	beforeEach(async () => {
+		await TestBed.configureTestingModule({
+			imports: [Projects]
+		}).compileComponents();
 
-    fixture = TestBed.createComponent(Projects);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+		fixture = TestBed.createComponent(Projects);
+		component = fixture.componentInstance;
+		fixture.detectChanges();
+	});
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+	it('should create the component', () => {
+		expect(component).toBeTruthy();
+	});
 
-  it('should have a title in hero section', () => {
-    const titleElement = fixture.debugElement.query(By.css('.hero-left h1'));
-    expect(titleElement.nativeElement.textContent).toContain("Danijel's Carving Art");
-  });
+	it('should render the hero title', () => {
+		const title = fixture.debugElement.query(By.css('.projects-hero h1'));
+		expect(title).toBeTruthy();
+		expect(title.nativeElement.textContent).toContain('Our Projects');
+	});
 
-  it('should toggle language when language button is clicked', () => {
-    const initialLanguage = component.currentLanguage;
-    const languageButton = fixture.debugElement.query(By.css('.hero-language-toggle'));
-    
-    languageButton.triggerEventHandler('click', null);
-    fixture.detectChanges();
-    
-    expect(component.currentLanguage).not.toBe(initialLanguage);
-  });
+	it('should initialize filteredProjects with projects', () => {
+		expect(component.filteredProjects.length).toBeGreaterThan(0);
+		expect(component.filteredProjects.length).toBe(component.projects.length);
+	});
 
-  it('should display showcase cards', () => {
-    fixture.detectChanges();
-    const showcaseCards = fixture.debugElement.queryAll(By.css('.showcase-card'));
-    expect(showcaseCards.length).toBeGreaterThan(0);
-  });
+	it('should filter projects by category', () => {
+		component.filterByCategory('Sculpture');
+		expect(component.selectedCategory).toBe('Sculpture');
+		expect(component.filteredProjects.every(p => p.category === 'Sculpture')).toBeTrue();
+	});
 
-  it('should call explorePortfolio when portfolio button is clicked', () => {
-    spyOn(component, 'explorePortfolio');
-    const portfolioButton = fixture.debugElement.query(By.css('.hero-actions button:first-child'));
-    
-    portfolioButton.triggerEventHandler('click', null);
-    
-    expect(component.explorePortfolio).toHaveBeenCalled();
-  });
+	it('should call viewProjectDetails when a project card is clicked', () => {
+		spyOn(component, 'viewProjectDetails');
 
-  it('should have testimonials data', () => {
-    expect(component.testimonials.length).toBeGreaterThan(0);
-    expect(component.testimonials[0].quote).toBeTruthy();
-    expect(component.testimonials[0].author).toBeTruthy();
-  });
+		const firstCard = fixture.debugElement.query(By.css('.project-card'));
+		expect(firstCard).toBeTruthy();
+		firstCard.triggerEventHandler('click', null);
 
-  it('should handle card hover events', () => {
-    const card = component.showcaseCards[0];
-    const event = new MouseEvent('mouseenter');
-    
-    spyOn(component, 'onCardHover');
-    const cardElement = fixture.debugElement.query(By.css('.showcase-card:first-child'));
-    cardElement.triggerEventHandler('mouseenter', event);
-    
-    expect(component.onCardHover).toHaveBeenCalledWith(event, card);
-  });
-
-  it('should generate correct card size classes', () => {
-    const largeCardClass = component.getCardSizeClass('large');
-    const mediumCardClass = component.getCardSizeClass('medium');
-    const smallCardClass = component.getCardSizeClass('small');
-    
-    expect(largeCardClass).toContain('col-span-2');
-    expect(mediumCardClass).toContain('col-span-1');
-    expect(smallCardClass).toContain('col-span-1');
-  });
-
-  it('should have timeline items', () => {
-    expect(component.timelineItems.length).toBe(4);
-    expect(component.timelineItems[0].title).toBe('The Beginning');
-    expect(component.timelineItems[1].side).toBe('right');
-  });
-
-  it('should render contact methods', () => {
-    fixture.detectChanges();
-    const contactMethods = fixture.debugElement.queryAll(By.css('.contact-method-card'));
-    expect(contactMethods.length).toBe(2);
-  });
-
-  it('should initialize with EN as default language', () => {
-    expect(component.currentLanguage).toBe('EN');
-  });
+		expect(component.viewProjectDetails).toHaveBeenCalled();
+	});
 });
+
