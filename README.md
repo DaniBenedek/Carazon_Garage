@@ -1,12 +1,9 @@
 # Carazon_Garage
 Miklós Martin és Dani Benedek vizsgaremeke.
 
-# útmutató az indításhoz: 
-- html : a carazon-garage/readme.md
-- c# wpf : carazonGarage/readme.md
-
-# cél :
+# Cél :
 - Modern szervíz létrehozása 
+
 # ADATBÁZIS TÁBLÁK:
  appointments(id,user_id,vehicle_id,service_id,date,note,created_at,price)
  cart(id,user_id,date)
@@ -27,15 +24,15 @@ Miklós Martin és Dani Benedek vizsgaremeke.
 - trello : https://trello.com/b/GBRdKbUQ/carazongarage
 
 # Kedd 11.11 Határidővel a következők kellenek:
-
 - Projekt név - Carazon_Garage✅
 - Projekt Leírás ✅
 - Képernyőtervek ✅
 - Adatbázis 2 táblát létrehozni✅
 - Github létrehozása és Tanár meghívása(Ezt a suliba) ✅
 
-# Javítani
+# Dec 19.-re kész kell lennie
 
-- Autók külön táblába majd azok autónkénk lesz külön vezetve hogy mire van szüksége az autónak
-- állandó szervíz tábla hogy könyen lehessen lekérni
-- CRM diagramm database rajz/ábrát csináljunk
+- Wpf Telepítővel eggyüt és látványterven módosítani
+- Navbar-on belül a dropdown menü kijavítása(hamburger)
+- A carrier,history,home,projects,register,service oldal megdizájnolása és megcsinálása
+- Javascript használása
