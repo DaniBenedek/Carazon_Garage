@@ -26,6 +26,8 @@ export class Projects implements OnInit {
   FocimLeiras = "Néhány referenciamunkánk";
   Otlet = "Van egy otleted?";
   OtletLeiras = "Mi segitunk megvalositani";
+  AlsoFoglalasGomb = "Megrendelés indítása";
+  Kontakt = "Kapcsolatfelvétel";
 
   projects: Project[] = [
     {

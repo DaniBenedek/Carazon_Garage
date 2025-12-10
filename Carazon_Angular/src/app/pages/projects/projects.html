@@ -46,7 +46,8 @@
             <span class="font-bold text-gray-900">
               {{ filteredProjects.length }}
             </span>
-            {{ selectedCategory === 'All' ? 'projects' : selectedCategory.toLowerCase() + ' projects' }}
+            {{ selectedCategory === 'All' ? 'projects' : 
+               selectedCategory.toLowerCase() + ' projects' }}
           </p>
         </div>
 
@@ -69,13 +70,18 @@
                           transition-transform duration-700">
 
               <!-- Overlay on Hover -->
-              <div class="project-overlay absolute inset-0 bg-gradient-to-t 
-                         from-black/90 via-black/50 to-transparent 
-                         opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <button class="px-6 py-3 bg-amber-600 hover:bg-amber-700 text-white 
-                           font-medium rounded-lg transition-all duration-300
-                           transform scale-90 group-hover:scale-100 opacity-0 group-hover:opacity-100">
+              <div class="project-overlay absolute 
+                          inset-0 bg-gradient-to-t 
+                          from-black/90 via-black/50 to-transparent 
+                          opacity-0 group-hover:opacity-100 
+                          transition-opacity duration-300">
+                <div class="absolute inset-0 flex 
+                            items-center justify-center">
+                  <button class="px-6 py-3 bg-amber-600 
+                                 hover:bg-amber-700 text-white 
+                                 font-medium rounded-lg transition-all duration-300
+                                 transform scale-90 group-hover:scale-100 
+                                 opacity-0 group-hover:opacity-100">
                     View Details
                   </button>
                 </div>
@@ -185,17 +191,17 @@
             <path d="M3 7.6v12.8A1.6 1.6 0 0 0 4.6 22h9.8"></path>
           </svg>
           <h3 class="text-2xl font-bold text-gray-900 mb-2">
-            No projects found
+            Nincsennek projektek ebben a kategóriában
           </h3>
           <p class="text-gray-600 mb-6">
-            Try selecting a different category
+            Próbálj egy másik kategóriát választani.
           </p>
           <button (click)="filterByCategory('All')" 
                   class="px-6 py-3 bg-amber-600 hover:bg-amber-700 
                          text-white font-medium rounded-lg 
                          transition-all duration-300 
                          transform hover:scale-105">
-            Show All Projects
+            Összes projekt megtekintése
           </button>
         </div>
       </div>
@@ -213,14 +219,18 @@
           {{ OtletLeiras }}
         </p>
         <div class="flex flex-wrap justify-center gap-4">
-          <button class="px-8 py-4 bg-amber-600 hover:bg-amber-700 text-white text-lg font-medium 
-                   rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95 
-                   shadow-lg hover:shadow-xl">
-            Start a Commission
+          <button class="px-8 py-4 bg-amber-600 hover:bg-amber-700 
+                         text-white text-lg font-medium 
+                         rounded-lg transition-all duration-300 
+                         transform hover:scale-105 active:scale-95 
+                         shadow-lg hover:shadow-xl">
+            {{ AlsoFoglalasGomb}}
           </button>
-          <button class="px-8 py-4 border-2 border-white text-white hover:bg-white/10 text-lg font-medium 
-                   rounded-lg transition-all duration-300 transform hover:scale-105 active:scale-95">
-            Contact Us
+          <button class="px-8 py-4 border-2 border-white 
+                         text-white hover:bg-white/10 text-lg font-medium 
+                         rounded-lg transition-all duration-300 
+                         transform hover:scale-105 active:scale-95">
+            {{ Kontakt}}
           </button>
         </div>
       </div>
