@@ -1,6 +1,35 @@
 # Carazon_Garage
 Miklós Martin és Dani Benedek vizsgaremeke.
 
+# Linkek : 
+- figma : https://www.figma.com/files/team/1295105816093599322/recents-and-sharing?fuid=1295105811775755405
+- github : https://github.com/DaniBenedek/Carazon_Garage
+- trello : https://trello.com/b/GBRdKbUQ/carazongarage
+
+# Indítás:
+
+A weblap elindításához a következő lépéseket kell elvégezni:
+## Legelőször is indítsák el a xammp-ot
+## utána a db könyvtárból tegyék fel az adatbázist a következő lépésekkel:
+* 1. lépés adatbázis létrehozása 'carazongarage' - néven utf8mb4_general_ci kódolással
+* 2. lépés a db-könyvtárból importálják az adatbázist
+* 3. lépés weboldal indításának lépései: 
+
+## 1
+```bash
+cd Carazon_Angular/
+```
+## 2
+```bash
+# Csak első indításnál lesz szükséges
+npm install
+```
+## 3
+<!-- Ezzel indítható iskolai környezetben -->
+```bash
+npx ng serve
+```
+
 # Cél :
 - Modern szervíz létrehozása 
 
@@ -19,9 +48,6 @@ Miklós Martin és Dani Benedek vizsgaremeke.
 - stílus : tailwindcss
 - backedn : php
 - adatbázis : Mysql
-- figma : https://www.figma.com/files/team/1295105816093599322/recents-and-sharing?fuid=1295105811775755405
-- github : https://github.com/DaniBenedek/Carazon_Garage
-- trello : https://trello.com/b/GBRdKbUQ/carazongarage
 
 # Kedd 11.11 Határidővel a következők kellenek:
 - Projekt név - Carazon_Garage✅
