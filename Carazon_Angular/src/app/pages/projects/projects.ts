@@ -20,7 +20,7 @@ interface Project {
   styleUrls: ['./projects.css']
 })
 export class Projects implements OnInit {
-  categories: string[] = ['All', 'Architectural', 'Sculpture', 'Relief', 'Furniture', 'Decorative'];
+  categories: string[] = ['All', 'Autotuning', 'Kozmetika', 'Karosszéria munkák', 'Fényezés', 'Hegesztés'];
   selectedCategory: string = 'All';
   Focim = "Projekteink";
   FocimLeiras = "Néhány referenciamunkánk";
@@ -32,85 +32,87 @@ export class Projects implements OnInit {
   projects: Project[] = [
     {
       id: 1,
-      title: "Sacred Oak Cathedral Doors",
-      category: "Architectural",
+      title: "Ferrari Testarossa Restoration",
+      category: "Autotuning",
       year: "2024",
-      image: "https://images.pexels.com/photos/5711890/pexels-photo-5711890.jpeg?auto=compress&cs=tinysrgb&w=800",
-      description: "Hand-carved entrance doors featuring intricate religious iconography and traditional European motifs.",
-      materials: "Oak, Bronze accents",
-      dimensions: "3.2m × 2.1m"
+      image: "https://images.pexels.com/photos/358070/pexels-photo-358070.jpeg?auto=compress&cs=tinysrgb&w=800",
+      description: "Teljes körű restaurálás ikonikus 80-as évekbeli Ferrari Testarossa modellen, eredeti alkatrészekkel.",
+      materials: "Acél, Bőr belső",
+      dimensions: "4.5m × 1.9m"
     },
     {
       id: 2,
-      title: "Renaissance Wall Panel",
-      category: "Relief",
+      title: "BMW M3 Drift Kit",
+      category: "Kozmetika",
       year: "2024",
-      image: "https://images.pexels.com/photos/6714355/pexels-photo-6714355.jpeg?auto=compress&cs=tinysrgb&w=800",
-      description: "Classical relief panel depicting mythological scenes with meticulous attention to period-accurate detail.",
-      materials: "Walnut",
-      dimensions: "1.8m × 1.2m"
+      image: "https://images.pexels.com/photos/1149831/pexels-photo-1149831.jpeg?auto=compress&cs=tinysrgb&w=800",
+      description: "Speciális drift átalakítás BMW M3-hoz, megerősített futóművel és sport kipufogóval.",
+      materials: "Alumínium, Karbon",
+      dimensions: "4.4m × 2.0m"
     },
     {
       id: 3,
-      title: "Modern Abstract Sculpture",
-      category: "Sculpture",
+      title: "Tesla Cybertruck Concept Wrap",
+      category: "Fényezés",
       year: "2023",
-      image: "https://images.pexels.com/photos/5974280/pexels-photo-5974280.jpeg?auto=compress&cs=tinysrgb&w=800",
-      description: "Contemporary interpretation of natural forms, blending organic curves with geometric precision.",
-      materials: "Cherry wood",
-      dimensions: "1.5m height"
+      image: "https://images.pexels.com/photos/19052331/pexels-photo-19052331.jpeg",
+      description: "Futurista fóliázás Cybertruck modellen, matt fekete és neon kék kombinációval.",
+      materials: "Vinyl wrap",
+      dimensions: "5.8m × 2.1m"
     },
     {
       id: 4,
-      title: "Heritage Dining Table",
-      category: "Furniture",
+      title: "Mercedes-Benz Luxury Interior",
+      category: "Hegesztés",
       year: "2023",
-      image: "https://images.pexels.com/photos/5711877/pexels-photo-5711877.jpeg?auto=compress&cs=tinysrgb&w=800",
-      description: "Bespoke dining table with hand-carved leg details and inlaid traditional patterns.",
-      materials: "Mahogany, Maple inlay",
-      dimensions: "2.4m × 1.1m"
+      image: "https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg?auto=compress&cs=tinysrgb&w=800",
+      description: "Exkluzív belső tér átalakítás prémium bőrrel és fa betétekkel.",
+      materials: "Bőr, Diófa",
+      dimensions: "Kabintér"
     },
     {
       id: 5,
-      title: "Garden Angel Statue",
-      category: "Sculpture",
+      title: "Nissan Patrol Off-Road Build",
+      category: "Autotuning",
       year: "2023",
-      image: "https://images.pexels.com/photos/5089243/pexels-photo-5089243.jpeg?auto=compress&cs=tinysrgb&w=800",
-      description: "Life-sized guardian angel carved from a single piece of wood, weatherproofed for outdoor display.",
-      materials: "Cedar",
-      dimensions: "1.9m height"
+      image: "https://images.pexels.com/photos/2990837/pexels-photo-2990837.jpeg",
+      description: "Teljes off-road átalakítás Nissan Patrolhoz, emelt futóművel, snorkellel és terepgumikkal.",
+      materials: "Acél, Gumi",
+      dimensions: "4.8m × 2.0m"
     },
     {
       id: 6,
-      title: "Baroque Mirror Frame",
-      category: "Decorative",
+      title: "Porsche 911 GT3 Aero Kit",
+      category: "Hegesztés",
       year: "2022",
-      image: "https://images.pexels.com/photos/6492398/pexels-photo-6492398.jpeg?auto=compress&cs=tinysrgb&w=800",
-      description: "Ornate mirror frame inspired by 18th-century European design with gilded accents.",
-      materials: "Lime wood, Gold leaf",
-      dimensions: "1.2m × 0.9m"
+      image: "https://images.pexels.com/photos/358070/pexels-photo-358070.jpeg?auto=compress&cs=tinysrgb&w=800",
+      description: "Aerodinamikai tuning csomag Porsche 911 GT3-hoz, karbon szárnyakkal és diffúzorral.",
+      materials: "Karbon",
+      dimensions: "4.6m × 1.8m"
     },
     {
       id: 7,
-      title: "Celtic Cross Memorial",
-      category: "Architectural",
+      title: "Ford Mustang Shelby Tribute",
+      category: "Karosszéria munkák",
       year: "2022",
-      image: "https://images.pexels.com/photos/5711890/pexels-photo-5711890.jpeg?auto=compress&cs=tinysrgb&w=800",
-      description: "Traditional Celtic cross with intricate knotwork and symbolic engravings for cemetery installation.",
-      materials: "Oak",
-      dimensions: "2.5m height"
+      image: "https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?auto=compress&cs=tinysrgb&w=800",
+      description: "Egyedi építés Shelby GT500 stílusban, ikonikus csíkozással és V8 motorral.",
+      materials: "Acél, Alumínium",
+      dimensions: "4.7m × 2.0m"
     },
     {
       id: 8,
-      title: "Wildlife Relief Series",
-      category: "Relief",
+      title: "Motorépítés",
+      category: "Kozmetika",
       year: "2022",
-      image: "https://images.pexels.com/photos/5974280/pexels-photo-5974280.jpeg?auto=compress&cs=tinysrgb&w=800",
-      description: "Collection of three wildlife panels featuring native Hungarian fauna in their natural habitat.",
-      materials: "Beech",
-      dimensions: "0.8m × 0.6m each"
+      image: "https://images.pexels.com/photos/2027045/pexels-photo-2027045.jpeg",
+      description: "Egyedi festés sorozat motorokra, street art és klasszikus stílusban.",
+      materials: "Vas/Alumínium",
+      dimensions: "2.1m × 0.9m"
     }
   ];
+
+
 
   filteredProjects: Project[] = [];
 
