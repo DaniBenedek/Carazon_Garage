@@ -9,12 +9,14 @@ Miklós Martin és Dani Benedek vizsgaremeke.
 # Indítás:
 
 A weblap elindításához a következő lépéseket kell elvégezni:
-## 0. Git clone a xampp/htodcs mappába
-## Legelőször is indítsák el a xammp-ot
+## Legelőször is indítsák el a xammp-ot és azon belül az apache szervert valamint a mysql-t
 ## utána a db könyvtárból tegyék fel az adatbázist a következő lépésekkel:
-* 1. lépés adatbázis létrehozása 'carazongarage' - néven utf8mb4_general_ci kódolással
-* 2. lépés a db-könyvtárból importálják az adatbázist
-* 3. lépés weboldal indításának lépései: 
+* 1. Xammpon belül kattintsunk a my sql melletti admin gombra
+* 2. lépés adatbázis létrehozása 'carazongarage' - néven utf8mb4_general_ci kódolással
+* 3. lépés a db-könyvtárból importálják az adatbázist
+* 4. lépés weboldal indításának lépései: 
+
+
 
 ## 1
 ```bash
