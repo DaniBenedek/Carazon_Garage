@@ -15,15 +15,15 @@ export class HomeComponent {
 
   private heroService = inject(HeroService);
 
-  // Hero text from database
+  // Hatlamas Szoveg fooldalt
   heroTitle = 'Carazon Garage';
   heroSubtitle = 'Ahonnan a jo otletek szarmaznak';
   heroDescription = 'Foglalj most';
 
-  commissionPiece() {
+  Idopontfoglalas() {
     console.log('Idopontot foglalok')
   };
-  explorePortfolio() {
+  Munkaink() {
     console.log('Munkaink megtekintese')
   };
 }

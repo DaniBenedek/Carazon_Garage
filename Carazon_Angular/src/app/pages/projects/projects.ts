@@ -121,7 +121,7 @@ export class Projects implements OnInit {
     this.Szurtmunka = this.projects;
   }
 
-  filterByCategory(category: string): void {
+  SzuresKategoriaSzerint(category: string): void {
     this.KivalasztottElem = category;
     if (category === 'All') {
       this.Szurtmunka = this.projects;

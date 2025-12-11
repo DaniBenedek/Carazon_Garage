@@ -9,6 +9,7 @@ Miklós Martin és Dani Benedek vizsgaremeke.
 # Indítás:
 
 A weblap elindításához a következő lépéseket kell elvégezni:
+## 0. Git clone a xampp/htodcs mappába
 ## Legelőször is indítsák el a xammp-ot
 ## utána a db könyvtárból tegyék fel az adatbázist a következő lépésekkel:
 * 1. lépés adatbázis létrehozása 'carazongarage' - néven utf8mb4_general_ci kódolással
