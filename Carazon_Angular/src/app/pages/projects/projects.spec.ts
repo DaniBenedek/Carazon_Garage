@@ -27,25 +27,25 @@ describe('Projects', () => {
 		expect(title.nativeElement.textContent).toContain('Our Projects');
 	});
 
-	it('should initialize filteredProjects with projects', () => {
-		expect(component.filteredProjects.length).toBeGreaterThan(0);
-		expect(component.filteredProjects.length).toBe(component.projects.length);
+	it('should initialize Szurtmunka with projects', () => {
+		expect(component.Szurtmunka.length).toBeGreaterThan(0);
+		expect(component.Szurtmunka.length).toBe(component.projects.length);
 	});
 
 	it('should filter projects by category', () => {
 		component.filterByCategory('Sculpture');
-		expect(component.selectedCategory).toBe('Sculpture');
-		expect(component.filteredProjects.every(p => p.category === 'Sculpture')).toBeTrue();
+		expect(component.KivalasztottElem).toBe('Sculpture');
+		expect(component.Szurtmunka.every(p => p.category === 'Sculpture')).toBeTrue();
 	});
 
-	it('should call viewProjectDetails when a project card is clicked', () => {
-		spyOn(component, 'viewProjectDetails');
+	it('should call Projektreszletek when a project card is clicked', () => {
+		spyOn(component, 'Projektreszletek');
 
 		const firstCard = fixture.debugElement.query(By.css('.project-card'));
 		expect(firstCard).toBeTruthy();
 		firstCard.triggerEventHandler('click', null);
 
-		expect(component.viewProjectDetails).toHaveBeenCalled();
+		expect(component.Projektreszletek).toHaveBeenCalled();
 	});
 });
 
