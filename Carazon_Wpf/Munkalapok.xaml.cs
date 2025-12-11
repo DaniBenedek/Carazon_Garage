@@ -180,5 +180,12 @@ namespace carazonGarage
 
             AdatbazisIndit();
         }
+
+        private void Kilepes_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            this.Close();
+            mainWindow.Show();
+        }
     }
 }

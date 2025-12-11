@@ -35,6 +35,11 @@
                     Background="#3BA9FF" 
                     Foreground="White"
                     Click="Megnyitas_Click"/>
+            <Button Content="Kilépés" 
+                    Margin="24,0,0,0" 
+                    Background="Red" 
+                    Foreground="White"
+                    Click="Kilepes_Click"/>
         </StackPanel>
 
         <Grid Grid.Row="1">
@@ -94,6 +99,7 @@
                                Foreground="#A9B1BB" 
                                Margin="0,2,0,0"
                                Name="TexBlock_Hatarido"/>
+
                 </StackPanel>
             </Border>
         </Grid>
