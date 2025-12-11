@@ -91,5 +91,13 @@ namespace carazonGarage
         {
 
         }
+
+        private void Alkatreszek_kilepes(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            this.Close();
+            mainWindow.Show();
+        }
+
     }
 }
