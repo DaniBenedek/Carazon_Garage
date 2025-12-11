@@ -17,14 +17,14 @@ describe('Projects', () => {
 		fixture.detectChanges();
 	});
 
-	it('should create the component', () => {
+	it('Letre kene hozza a komponenst', () => {
 		expect(component).toBeTruthy();
 	});
 
-	it('should render the hero title', () => {
+	it('Ki kene festenie a nagy szoveget', () => {
 		const title = fixture.debugElement.query(By.css('.projects-hero h1'));
 		expect(title).toBeTruthy();
-		expect(title.nativeElement.textContent).toContain('Our Projects');
+		expect(title.nativeElement.textContent).toContain('Projekteink');
 	});
 
 	it('should initialize Szurtmunka with projects', () => {
@@ -33,7 +33,7 @@ describe('Projects', () => {
 	});
 
 	it('should filter projects by category', () => {
-		component.filterByCategory('Sculpture');
+		component.SzuresKategoriaSzerint('Sculpture');
 		expect(component.KivalasztottElem).toBe('Sculpture');
 		expect(component.Szurtmunka.every(p => p.category === 'Sculpture')).toBeTrue();
 	});
