@@ -28,6 +28,7 @@ export class Projects implements OnInit {
   OtletLeiras = "Mi segitunk megvalositani";
   AlsoFoglalasGomb = "Megrendelés indítása";
   Kontakt = "Kapcsolatfelvétel";
+  Kartya_Reszletek = "Részletek";
 
   projects: Project[] = [
     {
@@ -111,6 +112,8 @@ export class Projects implements OnInit {
       dimensions: "50-55"
     }
   ];
+
+
 
   Szurtmunka: Project[] = [];
 
