@@ -21,7 +21,7 @@ interface Project {
 })
 export class Projects implements OnInit {
   categories: string[] = ['All', 'Autotuning', 'Kozmetika', 'Karosszéria munkák', 'Fényezés', 'Hegesztés'];
-  selectedCategory: string = 'All';
+  KivalasztottElem: string = 'All';
   Focim = "Projekteink";
   FocimLeiras = "Néhány referenciamunkánk";
   Otlet = "Van egy otleted?";
@@ -32,106 +32,104 @@ export class Projects implements OnInit {
   projects: Project[] = [
     {
       id: 1,
-      title: "Ferrari Testarossa Restoration",
+      title: "Lowrider Légzsák",
       category: "Autotuning",
       year: "2024",
-      image: "https://images.pexels.com/photos/358070/pexels-photo-358070.jpeg?auto=compress&cs=tinysrgb&w=800",
-      description: "Teljes körű restaurálás ikonikus 80-as évekbeli Ferrari Testarossa modellen, eredeti alkatrészekkel.",
-      materials: "Acél, Bőr belső",
-      dimensions: "4.5m × 1.9m"
+      image: "https://images.pexels.com/photos/242125/pexels-photo-242125.jpeg",
+      description: "Pattog az autó mint a labda.",
+      materials: "Légzsák, rúgó",
+      dimensions: "4-6 óra"
     },
     {
       id: 2,
-      title: "BMW M3 Drift Kit",
+      title: "Mercedes bőrözés",
       category: "Kozmetika",
       year: "2024",
-      image: "https://images.pexels.com/photos/1149831/pexels-photo-1149831.jpeg?auto=compress&cs=tinysrgb&w=800",
-      description: "Speciális drift átalakítás BMW M3-hoz, megerősített futóművel és sport kipufogóval.",
-      materials: "Alumínium, Karbon",
-      dimensions: "4.4m × 2.0m"
+      image: "https://images.pexels.com/photos/1104768/pexels-photo-1104768.jpeg",
+      description: "Teljes kabintéri bőrözés.",
+      materials: "Bőr, cérna, alkantara",
+      dimensions: "6-8 óra"
     },
     {
       id: 3,
-      title: "Tesla Cybertruck Concept Wrap",
+      title: "Renault Clio Fényezés",
       category: "Fényezés",
       year: "2023",
-      image: "https://images.pexels.com/photos/19052331/pexels-photo-19052331.jpeg",
-      description: "Futurista fóliázás Cybertruck modellen, matt fekete és neon kék kombinációval.",
-      materials: "Vinyl wrap",
-      dimensions: "5.8m × 2.1m"
+      image: "https://miraclebodyandpaint.com/wp-content/uploads/2022/02/Auto-Paint-job-4-1200x480.jpg",
+      description: "Renault clio fényezés korrekció, és újrafújás.",
+      materials: "Festék, edző, hígító",
+      dimensions: "20-22 óra"
     },
     {
       id: 4,
-      title: "Mercedes-Benz Luxury Interior",
+      title: "Autó Sárvédőív lakatolás",
       category: "Hegesztés",
       year: "2023",
-      image: "https://images.pexels.com/photos/120049/pexels-photo-120049.jpeg?auto=compress&cs=tinysrgb&w=800",
-      description: "Exkluzív belső tér átalakítás prémium bőrrel és fa betétekkel.",
-      materials: "Bőr, Diófa",
+      image: "https://mot-centre.com/wp-content/uploads/2016/01/0907phr_07_z1971_mopar_muscle_carwelding_rivet_holes.jpg",
+      description: "Rozsda eltávolítása, lakatolás.",
+      materials: "Co2 gáz, 0.8mm -es huzal",
       dimensions: "Kabintér"
     },
     {
       id: 5,
-      title: "Nissan Patrol Off-Road Build",
+      title: "Amerikai v8 építés",
       category: "Autotuning",
       year: "2023",
-      image: "https://images.pexels.com/photos/2990837/pexels-photo-2990837.jpeg",
-      description: "Teljes off-road átalakítás Nissan Patrolhoz, emelt futóművel, snorkellel és terepgumikkal.",
-      materials: "Acél, Gumi",
-      dimensions: "4.8m × 2.0m"
+      image: "https://images.pexels.com/photos/3076820/pexels-photo-3076820.jpeg",
+      description: "Teljes körű motor építés",
+      materials: "Hengerfej, nyomórudak, szíjjak",
+      dimensions: "48-52 óra"
     },
     {
       id: 6,
-      title: "Porsche 911 GT3 Aero Kit",
+      title: "Porsche 911 Gt3 Ponthegesztés",
       category: "Hegesztés",
       year: "2022",
-      image: "https://images.pexels.com/photos/358070/pexels-photo-358070.jpeg?auto=compress&cs=tinysrgb&w=800",
-      description: "Aerodinamikai tuning csomag Porsche 911 GT3-hoz, karbon szárnyakkal és diffúzorral.",
-      materials: "Karbon",
-      dimensions: "4.6m × 1.8m"
+      image: "https://global.toyota/pages/global_toyota/company/plant-tours/welding_ogp_001.jpg",
+      description: "Porsche kasztni hegesztés.",
+      materials: "Co2 gáz, 0.8mm huzal",
+      dimensions: "120-250 óra"
     },
     {
       id: 7,
-      title: "Ford Mustang Shelby Tribute",
+      title: "Mazda miata",
       category: "Karosszéria munkák",
       year: "2022",
-      image: "https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?auto=compress&cs=tinysrgb&w=800",
-      description: "Egyedi építés Shelby GT500 stílusban, ikonikus csíkozással és V8 motorral.",
-      materials: "Acél, Alumínium",
-      dimensions: "4.7m × 2.0m"
+      image: "https://www.toptreadtyres.co.uk/wp-content/uploads/2019/09/BodyWork.png",
+      description: "Egyedi szélesítés a jobb úttartás érdekében.",
+      materials: "üvegszál, epoxy",
+      dimensions: "52-55 óra"
     },
     {
       id: 8,
-      title: "Motorépítés",
+      title: "Mercedes beltér",
       category: "Kozmetika",
       year: "2022",
-      image: "https://images.pexels.com/photos/2027045/pexels-photo-2027045.jpeg",
-      description: "Egyedi festés sorozat motorokra, street art és klasszikus stílusban.",
-      materials: "Vas/Alumínium",
-      dimensions: "2.1m × 0.9m"
+      image: "https://images.pexels.com/photos/193999/pexels-photo-193999.jpeg",
+      description: "Egyedi bőrfestés húzatolással",
+      materials: "Festék, alkantara, bőr",
+      dimensions: "50-55"
     }
   ];
 
 
 
-  filteredProjects: Project[] = [];
+  Szurtmunka: Project[] = [];
 
   ngOnInit(): void {
-    this.filteredProjects = this.projects;
+    this.Szurtmunka = this.projects;
   }
 
   filterByCategory(category: string): void {
-    this.selectedCategory = category;
+    this.KivalasztottElem = category;
     if (category === 'All') {
-      this.filteredProjects = this.projects;
+      this.Szurtmunka = this.projects;
     } else {
-      this.filteredProjects = this.projects.filter(p => p.category === category);
+      this.Szurtmunka = this.projects.filter(p => p.category === category);
     }
   }
 
-  viewProjectDetails(project: Project): void {
-    console.log('View project:', project);
-    // Navigate to project detail page or open modal
-    // Example: this.router.navigate(['/projects', project.id]);
+  Projektreszletek(project: Project): void {
+    console.log('View project:', project);    
   }
 }
