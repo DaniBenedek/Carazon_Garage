@@ -112,8 +112,6 @@ export class Projects implements OnInit {
     }
   ];
 
-
-
   Szurtmunka: Project[] = [];
 
   ngOnInit(): void {

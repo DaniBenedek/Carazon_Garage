@@ -23,9 +23,9 @@
           <button *ngFor="let category of categories" 
                   (click)="filterByCategory(category)" 
                   [ngClass]="{'bg-amber-600 text-white 
-                               hover:bg-amber-700': selectedCategory === category,
+                               hover:bg-amber-700': KivalasztottElem === category,
                               'bg-white/10 text-white hover:bg-white/20': 
-                              selectedCategory !== category}" 
+                              KivalasztottElem !== category}" 
                   class="px-6 py-3 rounded-lg font-medium transition-all duration-300 
                          transform hover:scale-105 active:scale-95">
             {{ category }}
@@ -44,17 +44,17 @@
           <p class="text-gray-600 text-lg">
             Mutatva
             <span class="font-bold text-gray-900">
-              {{ filteredProjects.length }}
+              {{ Szurtmunka.length }}
             </span>
-            {{ selectedCategory === 'All' ? 'projects' : 
-               selectedCategory.toLowerCase() + ' projects' }}
+            {{ KivalasztottElem === 'All' ? 'projects' : 
+               KivalasztottElem.toLowerCase() + ' projects' }}
           </p>
         </div>
 
         <!-- Maga a kartya grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 
                     lg:grid-cols-3 gap-6 md:gap-8">
-          <div *ngFor="let project of filteredProjects; let i = index" 
+          <div *ngFor="let project of Szurtmunka; let i = index" 
                class="project-card group relative overflow-hidden 
                       rounded-2xl bg-white shadow-lg 
                       transition-all duration-500 hover:shadow-2xl 
@@ -174,7 +174,7 @@
         </div>
 
         <!-- Ismet tailwind-es cucc ha üres -->
-        <div *ngIf="filteredProjects.length === 0" 
+        <div *ngIf="Szurtmunka.length === 0" 
              class="text-center py-20">
           <svg xmlns="http://www.w3.org/2000/svg" 
                width="64" 
