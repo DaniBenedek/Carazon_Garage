@@ -37,7 +37,7 @@ npx ng serve
 - Modern szervíz létrehozása 
 
 # ADATBÁZIS TÁBLÁK:
- appointments(id,user_id,vehicle_id,service_id,date,note,created_at,price)
+ appointments(id,user_id,vehicle_id,service_id,date,note,created_at,price,tables)
  cart(id,user_id,date)
  cart_items(id,cart_id,product_id,quantity)
  country(id,name)
