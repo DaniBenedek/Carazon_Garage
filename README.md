@@ -31,6 +31,7 @@ npm install
 <!-- Ezzel indítható iskolai környezetben hello -->
 ```bash
 npx ng serve
+node server/server.js
 ```
 
 # Cél :
