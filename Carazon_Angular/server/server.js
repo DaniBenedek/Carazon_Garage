@@ -18,14 +18,25 @@ app.get("/api/cars", async (req, res) => {
     res.status(500).json({ error: "Database error" });
   }
 });
-
+// egy autó lekérése id alapján
 app.get("/api/car/:id", async (req, res) => {
   req.params.id
 })
 
 "GET /api/car/20"
 
-// logi api
+// vehicle lista
+app.get("/api/vehicle", async (req, res) => {
+  try {
+    const [rows] = await db.query("SELECT * FROM vehicle");
+    res.json(rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Database error" });
+  }
+});
+
+// login api
 app.post("/api/login", async (req, res) => {
   const { email, password } = req.body;
 

@@ -114,8 +114,13 @@ export class Projects implements OnInit {
   ];
 
 
+  viewProjectDetails(project: Project): void {
+    this.KivalasztottMunka = project;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
   Szurtmunka: Project[] = [];
+  KivalasztottMunka: Project | null = null;
 
   ngOnInit(): void {
     this.Szurtmunka = this.projects;

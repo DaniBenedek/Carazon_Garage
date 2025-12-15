@@ -6,6 +6,7 @@ import { Login } from './pages/login/login';
 import { Projects } from './pages/projects/projects';
 import { Szerviz } from './pages/szerviz/szerviz';
 import { Register } from './pages/register/register';
+import { Profile } from './pages/profile/profile';
 
 export const routes: Routes = [
   { path: 'Carrer', component: Career },
@@ -14,5 +15,7 @@ export const routes: Routes = [
   { path: 'Login', component: Login },
   { path: 'Register', component: Register },
   { path: 'Projects', component: Projects },
-  { path: 'Szerviz', component: Szerviz }
+  { path: 'Szerviz', component: Szerviz },
+  { path: 'Profile', component: Profile }
+  
 ];

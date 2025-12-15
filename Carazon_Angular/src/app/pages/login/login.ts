@@ -23,7 +23,7 @@ email = '';
   login() {
     this.auth.login(this.email, this.password).subscribe({
       next: () => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/Profile']);
       },
       error: err => {
         this.error = err.error.message || 'Hibás adatok';
