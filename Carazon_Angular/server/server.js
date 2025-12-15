@@ -8,7 +8,7 @@ app.use(express.json());
 
 
 
-// api részek lekérés, post
+// api részek lekérés, get
 app.get("/api/cars", async (req, res) => {
   try {
     const [rows] = await db.query("SELECT * FROM user");
@@ -25,7 +25,36 @@ app.get("/api/car/:id", async (req, res) => {
 
 "GET /api/car/20"
 
+// logi api
+app.post("/api/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).json({ message: "Hiányzó adatok" });
+  }
+
+  try {
+    const [rows] = await db.query(
+      "SELECT id, email, name FROM user WHERE email = ? AND password = ?",
+      [email, password]
+    );
+
+    if (rows.length === 0) {
+      return res.status(401).json({ message: "Hibás email vagy jelszó" });
+    }
+
+    res.json({
+      success: true,
+      user: rows[0]
+    });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Szerver hiba" });
+  }
+});
+
 // ide jön majd a build- kiszolgálás
 
 const PORT = 3000;
-app.listen(PORT, () => console.log("Express API running on port " + PORT));
+app.listen(PORT, () => console.log("A backend a következő linken elérhető: localhost:" + PORT));
