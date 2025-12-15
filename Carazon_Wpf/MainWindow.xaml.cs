@@ -29,6 +29,7 @@ namespace carazonGarage
         {
             InitializeComponent();
             AdatbazisIndit();
+            Felhasznalobeker();
         }
         public void openConnection()
         {
@@ -53,43 +54,37 @@ namespace carazonGarage
                 MessageBox.Show(hiba.Message);
             }
         }
-
-        public void executeQuery(string query)
+        private void Felhasznalobeker()
         {
             try
             {
                 openConnection();
-                command = new MySql.Data.MySqlClient.MySqlCommand(query, connection);
-                if (command.ExecuteNonQuery() >= 1)
+
+                using (var adapter = new MySql.Data.MySqlClient.MySqlDataAdapter(
+                    "SELECT id, name FROM `user` WHERE id = 1;", connection))
                 {
-                    MessageBox.Show("Végrehajtva!");
+                    DataSet os = new DataSet();
+                    adapter.Fill(os);
+
+                    if (os.Tables[0].Rows.Count > 0)
+                    {
+                        Texblock_User.Text = os.Tables[0].Rows[0]["name"].ToString();
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Nem lett végrehajtva!");
-                }
-            }
-            catch (Exception kivetel)
-            {
-                MessageBox.Show(kivetel.Message);
-            }
-            finally
-            {
+
                 closeConnection();
             }
+            catch (Exception hiba)
+            {
+                MessageBox.Show(hiba.Message);
+            }
         }
-
         public void closeConnection()
         {
             if (connection.State == ConnectionState.Open)
             {
                 connection.Close();
             }
-        }
-
-        private void Datagrid_Szerviz_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
 
         private void Ugyfelek_Click(object sender, RoutedEventArgs e)
@@ -120,13 +115,12 @@ namespace carazonGarage
 
         private void Alkatreszek_Bejelentkezes(object sender, RoutedEventArgs e)
         {
-
+            // fooldalra megy majd a bejelentkezes utana ez mar nem lesz bent
         }
 
-        private void Datagrid_Szerviz_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            // Kereses ful ide jon majd amire rakerestek az emberek
         }
     }
 }
-
