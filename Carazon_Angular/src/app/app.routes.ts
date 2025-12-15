@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { Career } from './pages/carrer/carrer';
+import { Career } from './pages/career/career';
 import { History } from './pages/history/history';
 import { HomeComponent } from './pages/home/home';
 import { Login } from './pages/login/login';
@@ -9,7 +9,7 @@ import { Register } from './pages/register/register';
 import { Profile } from './pages/profile/profile';
 
 export const routes: Routes = [
-  { path: 'Carrer', component: Career },
+  { path: 'Career', component: Career },
   { path: 'History', component: History },
   { path: '', component: HomeComponent },
   { path: 'Login', component: Login },
