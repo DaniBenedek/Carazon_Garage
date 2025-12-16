@@ -10,13 +10,27 @@ import { AuthService } from '../../services/auth';
   styleUrl: './header.css',
 })
 export class Header {
-   constructor(public auth: AuthService) {}
+
+
+  isMenuOpen = false;
+
+  constructor(public auth: AuthService) {}
+
 
   get user() {
     return JSON.parse(localStorage.getItem('user') || 'null');
   }
-
   logout() {
     this.auth.logout();
+    this.closeMenu(); 
+  }
+
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  closeMenu() {
+    this.isMenuOpen = false;
   }
 }

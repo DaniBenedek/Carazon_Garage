@@ -1,3 +1,91 @@
+<!-- MOBILE MENU -->
+<div *ngIf="isMenuOpen"
+     class="md:hidden fixed inset-0 z-40">
+
+  <!-- háttér -->
+  <div class="absolute inset-0 bg-black/40"
+       (click)="closeMenu()"></div>
+
+  <!-- menü -->
+  <div class="absolute top-16 left-0 w-full
+              bg-white dark:bg-gray-900
+              shadow-xl">
+
+    <nav class="px-6 py-6">
+      <ul class="flex flex-col gap-4 text-base">
+
+        <!-- NAV -->
+        <li>
+          <a href="/Szerviz"
+             (click)="closeMenu()"
+             class="block text-gray-700 dark:text-white">
+            Szerviz
+          </a>
+        </li>
+
+        <li>
+          <a href="/Career"
+             (click)="closeMenu()"
+             class="block text-gray-700 dark:text-white">
+            Careers
+          </a>
+        </li>
+
+        <li>
+          <a href="/History"
+             (click)="closeMenu()"
+             class="block text-gray-700 dark:text-white">
+            History
+          </a>
+        </li>
+
+        <li>
+          <a href="/Projects"
+             (click)="closeMenu()"
+             class="block text-gray-700 dark:text-white">
+            Projects
+          </a>
+        </li>
+
+        <hr class="border-gray-200 dark:border-gray-700">
+
+        <!-- AUTH -->
+        <li *ngIf="!auth.isLoggedIn()">
+          <a href="/Login"
+             (click)="closeMenu()"
+             class="block w-full rounded-md
+                    bg-amber-600 px-4 py-2
+                    text-center text-white">
+            Login
+          </a>
+        </li>
+
+        <li *ngIf="!auth.isLoggedIn()">
+          <a href="/Register"
+             (click)="closeMenu()"
+             class="block w-full rounded-md
+                    bg-gray-200 px-4 py-2
+                    text-center
+                    dark:bg-gray-800 dark:text-white">
+            Register
+          </a>
+        </li>
+
+        <li *ngIf="auth.isLoggedIn()">
+          <button
+            (click)="logout(); closeMenu()"
+            class="w-full rounded-md
+                   bg-red-500 px-4 py-2
+                   text-white">
+            Kilépés
+          </button>
+        </li>
+
+      </ul>
+    </nav>
+  </div>
+</div>
+
 <header class="bg-white 
                dark:bg-gray-900 fixed 
                top-0 left-0 
@@ -104,7 +192,7 @@
             <div class="hidden sm:flex">
               <a class="rounded-md bg-gray-100 px-5 
                         py-2.5 text-sm font-medium 
-                        bg-amber-600 dark:bg-gray-800 
+                        dark:bg-gray-800 
                         dark:text-white"
                   *ngIf="!auth.isLoggedIn()" 
                  href="/Register">
@@ -112,22 +200,21 @@
               </a>
             </div>
           </div>
-
           <div class="block md:hidden">
-            <button class="rounded-sm bg-gray-100 p-2 
-                           text-gray-600 transition 
-                           hover:text-gray-600/75 
-                           dark:bg-gray-800">
-              <svg xmlns="http://www.w3.org/2000/svg" 
-                   class="size-5" 
-                   fill="none" 
+            <button
+              (click)="toggleMenu()"
+              class="rounded-md p-2
+                     bg-gray-100 dark:bg-gray-800
+                     text-gray-600 dark:text-white">
+              <svg xmlns="http://www.w3.org/2000/svg"
+                   class="h-6 w-6"
+                   fill="none"
                    viewBox="0 0 24 24"
-                   stroke="currentColor" 
+                   stroke="currentColor"
                    stroke-width="2">
-                <path stroke-linecap="round" 
-                      stroke-linejoin="round" 
-                      d="M4 6h16M4 12h16M4 18h16">
-                </path>
+                <path stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M4 6h16M4 12h16M4 18h16"/>
               </svg>
             </button>
           </div>
