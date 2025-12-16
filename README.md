@@ -28,7 +28,7 @@ cd Carazon_Angular/
 npm install
 ```
 ## 3
-<!-- Ezzel indítható iskolai környezetben hello -->
+<!-- Ezzel indítható iskolai környezetben -->
 ```bash
 npx ng serve
 node server/server.js
