@@ -34,8 +34,18 @@ npx ng serve
 node server/server.js
 ```
 
+* 5. adatbázis beimportálása:
+
+- indítsd el a Xammp kontroll panelt
+- nyisd meg a localhost/phpmyadmin felületet
+- hozz létre egy "carazongarage" nevezetű adabázist utf8mb4_general_ci-ben
+- importáld be db könytárban lévő adabázist
+
+
 # Cél :
 - Modern szervíz létrehozása 
+
+
 
 # ADATBÁZIS TÁBLÁK:
  appointments(id,user_id,vehicle_id,service_id,date,note,created_at,price,tables)
