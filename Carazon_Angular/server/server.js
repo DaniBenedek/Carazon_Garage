@@ -1,21 +1,29 @@
+//  backend express szerver importalas
 const express = require("express");
+// a cors- al kotom ossze a backend es a frontend-et
 const cors = require("cors");
+// Az adatbazis kapcsolat masik fajlbol
 const db = require("./db");
 
+//express peldany, cors engedelyezes minden kereshez, json body-k automatikus feldolgozasa
 const app = express();
 app.use(cors());
 app.use(express.json());
 
 
-
 // api részek lekérés, get
 app.get("/api/cars", async (req, res) => {
   try {
+    //sql lekerdezes futtatasa
     const [rows] = await db.query("SELECT * FROM user");
+    // Lekért adatok visszaadása json-ban
     res.json(rows);
+    
   } catch (err) {
+    //hiba kiírása konzolra
     console.error(err);
-    res.status(500).json({ error: "Database error" });
+    // 500-as http hibával visszatér
+    res.status(500).json({ error: "Adatbázis hiba" });
   }
 });
 // egy autó lekérése id alapján

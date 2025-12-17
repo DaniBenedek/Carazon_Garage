@@ -1,6 +1,5 @@
 import { Component, OnInit, AfterViewInit, OnDestroy, HostListener, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeroService } from '../../services/hero';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +12,6 @@ export class HomeComponent {
   currentLanguage = 'EN';
   showLanguageOptions = false;
 
-  private heroService = inject(HeroService);
 
   // Hatlamas Szoveg fooldalt
   heroTitle = 'Carazon Garage';
