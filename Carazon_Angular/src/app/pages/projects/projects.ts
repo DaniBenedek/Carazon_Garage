@@ -20,6 +20,7 @@ interface Project {
   templateUrl: './projects.html',
   styleUrls: ['./projects.css']
 })
+
 export class Projects implements OnInit {
   Focim = "helloszia";
   FocimLeiras = "csao";
@@ -28,7 +29,6 @@ export class Projects implements OnInit {
   OtletLeiras = "asd"
   AlsoFoglalasGomb  = "asd"
   Kontakt = "kk"
-
 
   categories: string[] = ['All', 'Autotuning', 'Kozmetika', 'Karosszéria munkák', 'Fényezés', 'Hegesztés'];
   KivalasztottElem: string = 'All';
@@ -46,7 +46,6 @@ export class Projects implements OnInit {
         this.Szurtmunka = data;
       });
   }
-
 
   SzuresKategoriaSzerint(category: string): void {
     this.KivalasztottElem = category;
