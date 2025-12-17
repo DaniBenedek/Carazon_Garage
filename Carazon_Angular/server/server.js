@@ -23,7 +23,7 @@ app.get("/api/cars", async (req, res) => {
     //hiba kiírása konzolra
     console.error(err);
     // 500-as http hibával visszatér
-    res.status(500).json({ error: "Adatbázis hiba" });
+    res.status(500).json({ error: "Adatbázis Hiba" });
   }
 });
 // egy autó lekérése id alapján
@@ -40,7 +40,7 @@ app.get("/api/vehicle", async (req, res) => {
     res.json(rows);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: "Database error" });
+    res.status(500).json({ error: "Adatbázis Hiba!" });
   }
 });
 
@@ -51,33 +51,39 @@ app.get("/api/projects", async (req, res) => {
     res.json(rows);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: "Database error" });
+    res.status(500).json({ error: "Adatbázis Hiba" });
   }
 });
 
 // login api
 app.post("/api/login", async (req, res) => {
+   // Email és jelszó kiolvasása a request body-ból
   const { email, password } = req.body;
 
+  // Ha nincs email vagy jelszó → hibás kérés
   if (!email || !password) {
     return res.status(400).json({ message: "Hiányzó adatok" });
   }
 
   try {
+    // Felhasználó keresése az adatbázisban
     const [rows] = await db.query(
       "SELECT id, email, name FROM user WHERE email = ? AND password = ?",
       [email, password]
     );
 
+     // Ha nincs találat → hibás bejelentkezés
     if (rows.length === 0) {
       return res.status(401).json({ message: "Hibás email vagy jelszó" });
     }
 
+    // Sikeres login válasz
     res.json({
       success: true,
       user: rows[0]
     });
 
+    // Szerver oldali hiba
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Szerver hiba" });
