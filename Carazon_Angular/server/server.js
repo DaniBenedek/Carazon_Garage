@@ -36,6 +36,17 @@ app.get("/api/vehicle", async (req, res) => {
   }
 });
 
+// projects lista
+app.get("/api/projects", async (req, res) => {
+  try {
+    const [rows] = await db.query("SELECT * FROM `projects`");
+    res.json(rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Database error" });
+  }
+});
+
 // login api
 app.post("/api/login", async (req, res) => {
   const { email, password } = req.body;
