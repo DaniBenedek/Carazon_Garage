@@ -11,11 +11,9 @@ import { AuthService } from '../../services/auth';
 })
 export class Header {
 
-
   isMenuOpen = false;
 
   constructor(public auth: AuthService) {}
-
 
   get user() {
     return JSON.parse(localStorage.getItem('user') || 'null');
@@ -24,7 +22,6 @@ export class Header {
     this.auth.logout();
     this.closeMenu(); 
   }
-
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;

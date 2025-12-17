@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, OnDestroy, HostListener, inject } from '@angular/core';
+import { Component} from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,9 +9,6 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./home.css']
 })
 export class HomeComponent {
-  currentLanguage = 'EN';
-  showLanguageOptions = false;
-
 
   // Hatlamas Szoveg fooldalt
   heroTitle = 'Carazon Garage';

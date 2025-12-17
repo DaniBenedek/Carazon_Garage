@@ -1,78 +1,138 @@
+**Carazon Garage – Vizsgaremek Dokumentáció**
+
 # Carazon_Garage
-Miklós Martin és Dani Benedek vizsgaremeke.
 
-# Linkek : 
-- figma : https://www.figma.com/files/team/1295105816093599322/recents-and-sharing?fuid=1295105811775755405
-- github : https://github.com/DaniBenedek/Carazon_Garage
-- trello : https://trello.com/b/GBRdKbUQ/carazongarage
+**Dani Benedek** és **Miklós Martin** vizsgaremeke.
 
-# Indítás:
+# Linkek :
 
-A weblap elindításához a következő lépéseket kell elvégezni:
-## Legelőször is indítsák el a xammp-ot és azon belül az apache szervert valamint a mysql-t
-## utána a db könyvtárból tegyék fel az adatbázist a következő lépésekkel:
-* 1. Xammpon belül kattintsunk a my sql melletti admin gombra
-* 2. lépés adatbázis létrehozása 'carazongarage' - néven utf8mb4_general_ci kódolással
-* 3. lépés a db-könyvtárból importálják az adatbázist
-* 4. lépés weboldal indításának lépései: 
+- *figma* : https://www.figma.com/files/team/1295105816093599322/recents-and-sharing?fuid=1295105811775755405
 
+- *github* : https://github.com/DaniBenedek/Carazon_Garage
 
+- *trello* : https://trello.com/b/GBRdKbUQ/carazongarage
 
-## 1
-```bash
-cd Carazon_Angular/
-```
-## 2
-```bash
-# Csak első indításnál lesz szükséges
-npm install
-```
-## 3
-<!-- Ezzel indítható iskolai környezetben -->
-```bash
-npx ng serve
-node server/server.js
-```
+# Projekt célja:
 
-* 5. adatbázis beimportálása:
+Felhasználó barát, időt álló web applikáció ahol az autószervízünkhöz,
+A **Carazon_Garage** -hoz lehet Időpontot foglalni
 
-- indítsd el a Xammp kontroll panelt
-- nyisd meg a localhost/phpmyadmin felületet
-- hozz létre egy "carazongarage" nevezetű adabázist utf8mb4_general_ci-ben
-- importáld be db könytárban lévő adabázist
+# Felhasznált technológiák:
 
+* **Frontent** : Angular 20.3.10
 
-# Cél :
-- Modern szervíz létrehozása 
+* **Backend** : Express JS
 
+* **Stílus** : Tailwind css
 
+* **Adatbázis** : MySQL
 
-# ADATBÁZIS TÁBLÁK:
- appointments(id,user_id,vehicle_id,service_id,date,note,created_at,price,tables)
- cart(id,user_id,date)
- cart_items(id,cart_id,product_id,quantity)
- country(id,name)
- products(id,name,price,storage_quantity,type)
- service(id,name,time)
- user(id,name,password,email,phone_number,role)
- vehicle(id,vehicle_make,vehicle_model,user_id,license_plate,coutry_id,color,traffic_permit_date,technical_exam_date)
+# Indítás **első** alkalommal
 
-# Összetevők
-- Keretrendszer Angular 20.3.10
-- stílus : tailwindcss
-- backedn : php
-- adatbázis : Mysql
+### 1. projekt leszedése
 
-# Kedd 11.11 Határidővel a következők kellenek:
-- Projekt név - Carazon_Garage✅
-- Projekt Leírás ✅
-- Képernyőtervek ✅
-- Adatbázis 2 táblát létrehozni✅
-- Github létrehozása és Tanár meghívása(Ezt a suliba) ✅
+* Nyissuk meg a "**visual studio code**" nevű app -ot
 
-# Dec 19.-re kész kell lennie
+* kattinstunk bal oldalt a "**Source control**" icon-ra
 
-- Wpf Telepítővel eggyüt és látványterven módosítani
-- Navbar-on belül a dropdown menü kijavítása(hamburger)
-- A carrier,history,home,projects,register,service oldal megdizájnolása és megcsinálása
-- Javascript használása
+* kattintsunk a "**git clone**" gomb-ra majd illesszük be az alábbi linket
+> https://github.com/DaniBenedek/Carazon_Garage.git
+
+* ezek után válasszuk az **"open**" lehetőséget amikor az app azt kérdezi:
+> Would you like to open this project?
+**Open!!**
+
+### 2. Adatbázis felrakása
+
+* a windows -on belül indítsuk el a "**xampp**" alkalmazást
+	* ezen az alkalmazáson belül kattintsunk a "**Mysql**" előtti **"START**" gombra
+	* Kattinstunk az "**Admin**" gombra
+
+* A mysql adatbázist látjuk ahová a következő lépéssekkel tesszük fel az adatbázist:
+
+1. bal felül kattintsunk a "**new**" gombra
+
+2. A(z) "**Database name**" -hez adjuk meg a következőt : "**carazongarage**"
+
+3. a mellette lévő kódolási mezőt állítsuk be a következőre: "**utf8mb4_general_ci**"
+
+4. Kattintsunk a "**Create**" gombra.
+
+* Ez után megfog jelenni bal oldalt egy "**carazongarage**" -nevű tábla kattintsunk rá:
+
+* **Középen felül** látunk egy **"import**" nevű gombot kattinsunk rá.
+	* kattintsunk a "**Choose File**" -ra
+
+* A következő lépésben az "1.lépés" fejezetű már korábban lehúzott mappaszerkezetben keressük meg a "**db**" mappát.
+	* válasszuk ki a "**carazongarage.sql**" fájlt majd töltsük fel.
+	* feltötés után fontos hogy kattinsunk rá az "**import**" gombra.
+
+### Ezzel az adatbázisunk készen áll a használatra már csak a **backend** kell!
+
+## 3. Projekt betöltése
+
+* Lépjünk vissza a korábban megnyitott "**Visual Studio Code**" appba.
+
+* Az app bal felső részében válasszuk a "**Terminal**" Opciót
+
+* Ez egy powershell-t fog nekünk megnyitni amire a programunk optimalizálva van.
+
+* írjuk be a következőt:
+
+*  ``cd .\Carazon_Angular\ ``
+
+* majd a következőt:
+
+*  ``npm install``
+
+* Ezzel feltelepítettük a web applikáció elemeit.
+
+## 4. App indítása:
+
+* Az előző terminálba írjuk be a következőt:
+
+*  ``node .\server\server.js``
+
+* Ezzel elindítottuk a backend-et.
+
+* Következőnek indítsuk el a frontend-et
+
+* ehhez kattintsunk a "**terminal**" -unk jobb felső sarkában lévő
+
+* "**+**" jelre ami mellett az szerepel hogy "**node - Carazon_Angular**"
+
+* Majd válasszuk a(z) "**New Terminal**" opciót
+
+* írjuk be:
+
+*  `` cd .\Carazon_Angular\``
+
+* utána pedig:
+
+*  ``npx ng serve``
+
+# Az appunk sikeresen fut a : [localhost:4200](http://localhost:4200/) porton
+
+## További indítások esetén:
+
+* Indítsuk el a "**xampp**" alkalmazást:
+
+* Kattintsunk a "``Mysql``" melletti "``Start``" gombra
+
+* Szintén két terminál fog kelleni
+
+1. terminál:
+
+*  `` cd .\Carazon_Angular\``
+
+* utána:
+
+*  ``node .\server\server.js``
+
+2. terminál:
+
+*  `` cd .\Carazon_Angular\``
+
+* utána:
+
+*  ``npx ng serve``

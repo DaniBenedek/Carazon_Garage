@@ -36,6 +36,3 @@ export class History {
     }
   }
 }
-
-// --- „A natív fetch API Angular zónán kívül fut, ezért a change detection nem aktiválódik automatikusan.
-// NgZone segítségével visszaléptetem az állapotfrissítést az Angular életciklusába.”
