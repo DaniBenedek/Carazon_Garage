@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2025. Dec 17. 07:46
+-- Létrehozás ideje: 2025. Dec 17. 08:21
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -206,6 +206,20 @@ CREATE TABLE `projects` (
   `materials` varchar(200) NOT NULL,
   `dimensions` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- A tábla adatainak kiíratása `projects`
+--
+
+INSERT INTO `projects` (`id`, `title`, `category`, `year`, `img`, `description`, `materials`, `dimensions`) VALUES
+(1, 'Lowrider Légzsák', 'Autotuning', '2024-01-01', 'https://images.pexels.com/photos/242125/pexels-photo-242125.jpeg', 'Pattog az autó mint a labda.', 'Légzsák, rúgó', '4-6 óra'),
+(2, 'Mercedes bőrözés', 'Kozmetika', '2024-01-01', 'https://images.pexels.com/photos/1104768/pexels-photo-1104768.jpeg', 'Teljes kabintéri bőrözés.', 'Bőr, cérna, alkantara', '6-8 óra'),
+(3, 'Renault Clio Fényezés', 'Fényezés', '2023-01-01', 'https://miraclebodyandpaint.com/wp-content/uploads/2022/02/Auto-Paint-job-4-1200x480.jpg', 'Renault clio fényezés korrekció, és újrafújás.', 'Festék, edző, hígító', '20-22 óra'),
+(4, 'Autó Sárvédőív lakatolás', 'Hegesztés', '2023-01-01', 'https://mot-centre.com/wp-content/uploads/2016/01/0907phr_07_z1971_mopar_muscle_carwelding_rivet_holes.jpg', 'Rozsda eltávolítása, lakatolás.', 'Co2 gáz, 0.8mm-es huzal', 'Kabintér'),
+(5, 'Amerikai V8 építés', 'Autotuning', '2023-01-01', 'https://images.pexels.com/photos/3076820/pexels-photo-3076820.jpeg', 'Teljes körű motor építés', 'Hengerfej, nyomórudak, szíjak', '48-52 óra'),
+(6, 'Porsche 911 GT3 Ponthegesztés', 'Hegesztés', '2022-01-01', 'https://global.toyota/pages/global_toyota/company/plant-tours/welding_ogp_001.jpg', 'Porsche kasztni hegesztés.', 'Co2 gáz, 0.8mm huzal', '120-250 óra'),
+(7, 'Mazda Miata', 'Karosszéria munkák', '2022-01-01', 'https://www.toptreadtyres.co.uk/wp-content/uploads/2019/09/BodyWork.png', 'Egyedi szélesítés a jobb úttartás érdekében.', 'Üvegszál, epoxy', '52-55 óra'),
+(8, 'Mercedes beltér', 'Kozmetika', '2022-01-01', 'https://images.pexels.com/photos/193999/pexels-photo-193999.jpeg', 'Egyedi bőrfestés húzatolással', 'Festék, alkantara, bőr', '50-55 óra');
 
 -- --------------------------------------------------------
 
@@ -419,7 +433,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT a táblához `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT a táblához `service`
