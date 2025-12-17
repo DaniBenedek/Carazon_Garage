@@ -136,3 +136,9 @@ A **Carazon_Garage** -hoz lehet Időpontot foglalni
 * utána:
 
 *  ``npx ng serve``
+
+## 5. Az app teszt fázisban van ezért a Bejelentkezéshez a következő fiók használandó:
+
+**email**  : ``admin@admin.com``
+
+**jelszo** : ``admin``
