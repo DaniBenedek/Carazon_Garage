@@ -54,7 +54,7 @@ A **Carazon_Garage** -hoz lehet Időpontot foglalni
 
 2. A(z) "**Database name**" -hez adjuk meg a következőt : "**carazongarage**"
 
-3. a mellette lévő kódolási mezőt állítsuk be a következőre: "**utf8mb4_general_ci**"
+3. a mellette lévő kódolási mezőt állítsuk be a következőre: "**utf8mb4_general_ci**" annak érdekében hogy minden ékezetes / speciális karakter jól jelenjen meg!
 
 4. Kattintsunk a "**Create**" gombra.
 
