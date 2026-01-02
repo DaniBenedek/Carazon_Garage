@@ -120,14 +120,6 @@
                         Click="Alkatreszek_Click" 
                         FontSize="18"/>
 
-                <Button Content="Bejelentkezés" 
-                        Margin="0,4" 
-                        Background="Transparent" 
-                        Foreground="#EAECEF" 
-                        BorderThickness="0" 
-                        Click="Alkatreszek_Bejelentkezes" 
-                        FontSize="18"/>
-                
                 <Button Content="Kilépés" 
                         Background="#FFDC1C1C" 
                         Foreground="#EAECEF" 

@@ -4,11 +4,13 @@ using MySql.Data.MySqlClient;
 
 namespace carazonGarage
 {
-    public partial class login : Window
+    public partial class Login : Window
     {
+        public string LoggedInUser { get; private set; }
+
         MySqlConnection connection = new MySqlConnection("server=localhost;database=carazongarage;uid=root;");
 
-        public login()
+        public Login()
         {
             InitializeComponent();
         }
@@ -24,6 +26,7 @@ namespace carazonGarage
                 return;
             }
 
+
             try
             {
                 connection.Open();
@@ -36,7 +39,7 @@ namespace carazonGarage
 
                 if (result > 0)
                 {
-                    // ✅ DialogResult true → modal ablak bezárul, App.xaml.cs folytatódik
+                    LoggedInUser = username;
                     this.DialogResult = true;
                 }
                 else

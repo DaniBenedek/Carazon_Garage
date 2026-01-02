@@ -119,9 +119,10 @@
     <Compile Include="Alkatreszek.xaml.cs">
       <DependentUpon>Alkatreszek.xaml</DependentUpon>
     </Compile>
-    <Compile Include="login.xaml.cs">
-      <DependentUpon>login.xaml</DependentUpon>
+    <Compile Include="Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\CustomerCar.cs" />
     <Compile Include="Munkalapok.xaml.cs">
       <DependentUpon>Munkalapok.xaml</DependentUpon>
     </Compile>
@@ -135,7 +136,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="login.xaml">
+    <Page Include="Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

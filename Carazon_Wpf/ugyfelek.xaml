@@ -11,93 +11,70 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" 
-                    Margin="0,0,0,16">
-            <TextBlock Text="Ügyfelek" 
-                       FontSize="26" 
-                       FontWeight="Bold" 
-                       Foreground="#EAECEF"/>
-            <Border Background="#1A1D21" 
-                    CornerRadius="16" 
-                    Padding="6" 
-                    Margin="24,0,0,0">
+        <!-- Header -->
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
+            <TextBlock Text="Ügyfelek" FontSize="26" FontWeight="Bold" Foreground="#EAECEF"/>
+            <Border Background="#1A1D21" CornerRadius="16" Padding="6" Margin="24,0,0,0">
                 <DockPanel>
-                    <TextBlock Text="🔍" 
-                               Foreground="#A9B1BB" 
-                               Margin="0,0,8,0"/>
-                    <TextBox Width="280" 
-                             Background="Transparent" 
-                             BorderThickness="0" 
-                             Foreground="#EAECEF"
-                             CaretBrush="#3BA9FF" 
-                             Text=""/>
+                    <TextBlock Text="🔍" Foreground="#A9B1BB" Margin="0,0,8,0"/>
+                    <TextBox Width="280" Background="Transparent" BorderThickness="0" Foreground="#EAECEF"/>
                 </DockPanel>
             </Border>
-            <Button Content="Új ügyfél" 
-                    Margin="24,0,0,0" 
-                    Background="#3BA9FF" 
-                    Foreground="White"
-                    Click="Uj_UgyfelClick"/>
-            
-            <Button Content="Kilépés" 
-                    Margin="24,0,0,0" 
-                    Background="Red" 
-                    Foreground="White" Click="Button_Click"/>
+            <Button Content="Új ügyfél" Margin="24,0,0,0" Background="#3BA9FF" Foreground="White" Click="NewCustomer_Click"/>
+            <Button Content="Kilépés" Margin="24,0,0,0" Background="Red" Foreground="White" Click="Kilepes_Click"/>
         </StackPanel>
 
+        <!-- Cards -->
         <ScrollViewer Grid.Row="1">
-            <WrapPanel Orientation="Horizontal" 
-                       ItemWidth="220" 
-                       ItemHeight="160">
-                
-                <Border Background="#1A1D21" 
-                        CornerRadius="12" 
-                        Padding="12" 
-                        Margin="8"
-                        Width="220" 
-                        Height="160">
-                    <StackPanel>
-                        <TextBlock Text="Kovács Béla" 
-                                   FontSize="16" 
-                                   FontWeight="Bold" 
-                                   Foreground="#EAECEF"/>
-                        <TextBlock Text="📞 +36 30 123 4567" 
-                                   Foreground="#A9B1BB" 
-                                   Margin="0,4,0,0"/>
-                        <TextBlock Text="🚗 ABC-123 • Opel Astra" 
-                                   Foreground="#A9B1BB" 
-                                   Margin="0,2,0,0"/>
-                        <Separator Margin="0,8,0,8" 
-                                   Background="#2A2F36"/>
-                        <TextBlock Text="Státusz: Aktív" 
-                                   Foreground="#3BD37F"/>
-                    </StackPanel>
-                </Border>
+            <ItemsControl Name="CustomersItems">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
 
-                <Border Background="#1A1D21" 
-                        CornerRadius="12" 
-                        Padding="12" 
-                        Margin="8"
-                        Width="220" 
-                        Height="160">
-                    <StackPanel>
-                        <TextBlock Text="Nagy Anna" 
-                                   FontSize="16" 
-                                   FontWeight="Bold" 
-                                   Foreground="#EAECEF"/>
-                        <TextBlock Text="📞 +36 20 987 6543" 
-                                   Foreground="#A9B1BB" 
-                                   Margin="0,4,0,0"/>
-                        <TextBlock Text="🚗 XYZ-789 • Ford Focus" 
-                                   Foreground="#A9B1BB" 
-                                   Margin="0,2,0,0"/>
-                        <Separator Margin="0,8,0,8" 
-                                   Background="#2A2F36"/>
-                        <TextBlock Text="Státusz: Kész" 
-                                   Foreground="#3BA9FF"/>
-                    </StackPanel>
-                </Border>
-            </WrapPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="#1A1D21"
+                                CornerRadius="12"
+                                Padding="12"
+                                Margin="8"
+                                Width="220"
+                                Height="160"
+                                MouseLeftButtonUp="CustomerCard_Click"
+                                Cursor="Hand">
+                            <StackPanel>
+                                <TextBlock Text="{Binding CustomerName}" FontSize="16" FontWeight="Bold" Foreground="#EAECEF"/>
+                                <TextBlock Text="{Binding Phone}" Foreground="#A9B1BB" Margin="0,4,0,0"/>
+                                <TextBlock Foreground="#A9B1BB" Margin="0,2,0,0">
+                                    <Run Text="{Binding Plate}"/>
+                                    <Run Text=" • "/>
+                                    <Run Text="{Binding Car}"/>
+                                </TextBlock>
+                                <Separator Margin="0,8,0,8" Background="#2A2F36"/>
+                                <TextBlock Text="{Binding Status}" FontWeight="Bold">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Foreground" Value="#A9B1BB"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Status}" Value="KESZ">
+                                                    <Setter Property="Foreground" Value="#3BA9FF"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Status}" Value="AKTIV">
+                                                    <Setter Property="Foreground" Value="#3BD37F"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Status}" Value="HIBAS">
+                                                    <Setter Property="Foreground" Value="#FF5C5C"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </ScrollViewer>
     </Grid>
 </Window>

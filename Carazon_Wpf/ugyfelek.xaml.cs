@@ -1,108 +1,86 @@
-﻿using MySql.Data.MySqlClient;
-using MySqlConnector;
+﻿using carazonGarage.Models;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace carazonGarage
 {
-    /// <summary>
-    /// Interaction logic for ugyfelek.xaml
-    /// </summary>
     public partial class ugyfelek : Window
     {
-        MySql.Data.MySqlClient.MySqlConnection connection = new MySql.Data.MySqlClient.MySqlConnection("server=localhost;database=carazongarage;uid=root");
-        MySql.Data.MySqlClient.MySqlCommand command;
+        List<CustomerCar> customers = new List<CustomerCar>();
+
         public ugyfelek()
         {
             InitializeComponent();
-            AdatbazisIndit();
-        }
-        public void openConnection()
-        {
-            if (connection.State == ConnectionState.Closed)
-            {
-                connection.Open();
-            }
-        }
-        public class Ugyfel
-        {
-            public string name;
-            public string description;
-            public int phone;
-        }
-        private void AdatbazisIndit()
-        {
-            try
-            {
-                MySql.Data.MySqlClient.MySqlDataAdapter adapter = new MySql.Data.MySqlClient.MySqlDataAdapter("SELECT * FROM vehicle", connection);
-                openConnection();
-                DataSet ds = new DataSet();
-                adapter.Fill(ds);
-                //Datagrid_Szerviz.ItemsSource = ds.Tables[0].DefaultView;
-                closeConnection();
-            }
-            catch (Exception hiba)
-            {
-                MessageBox.Show(hiba.Message);
-            }
+            LoadCustomers();
         }
 
-
-        public void executeQuery(string query)
+        private void LoadCustomers()
         {
-            try
+            customers.Clear();
+
+            using (MySqlConnection conn = new MySqlConnection("server=localhost;database=carazongarage;uid=root"))
             {
-                openConnection();
-                command = new MySql.Data.MySqlClient.MySqlCommand(query, connection);
-                if (command.ExecuteNonQuery() >= 1)
+                conn.Open();
+
+                string query = @"
+            SELECT 
+                u.id,
+                u.name,
+                u.phone_number,
+                v.license_plate AS plate,
+                CONCAT(v.vehicle_make, ' ', v.vehicle_model) AS model,
+                'AKTIV' AS status
+            FROM user u
+            JOIN vehicle v ON v.user_id = u.id";
+
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
                 {
-                    MessageBox.Show("Végrehajtva!");
-                }
-                else
-                {
-                    MessageBox.Show("Nem lett végrehajtva!");
+                    customers.Add(new CustomerCar
+                    {
+                        Id = reader.GetInt32("id"),
+                        CustomerName = reader.GetString("name"),
+                        Phone = reader["phone_number"] != DBNull.Value ? "📞 " + reader["phone_number"].ToString() : "",
+                        Plate = "🚗 " + reader["plate"].ToString(),
+                        Car = reader["model"].ToString(),
+                        Status = reader["status"].ToString().ToUpper()
+                    });
                 }
             }
-            catch (Exception kivetel)
-            {
-                MessageBox.Show(kivetel.Message);
-            }
-            finally
-            {
-                closeConnection();
-            }
+
+            CustomersItems.ItemsSource = customers;
         }
 
-        public void closeConnection()
+        private void CustomerCard_Click(object sender, MouseButtonEventArgs e)
         {
-            if (connection.State == ConnectionState.Open)
-            {
-                connection.Close();
-            }
+            var border = sender as Border;
+            if (border == null) return;
+
+            var selected = border.DataContext as CustomerCar;
+            if (selected == null) return;
+
+            // Show details - later can open MunkalapReszletek
+            MessageBox.Show(
+                $"Ügyfél: {selected.CustomerName}\nAutó: {selected.Plate} • {selected.Car}\nStátusz: {selected.Status}",
+                "Részletek");
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void NewCustomer_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void Kilepes_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
-            this.Close();
             mainWindow.Show();
-        }
-
-        private void Uj_UgyfelClick(object sender, RoutedEventArgs e)
-        {
-
+            this.Close();
         }
     }
 }

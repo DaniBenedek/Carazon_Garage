@@ -61,4 +61,4 @@ C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\MunkalapReszletek.baml
 C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\MunkalapReszletek.g.cs
 C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\login.baml
 C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\login.g.cs
-C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\carazonGarage.exe.config
+C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\App.baml

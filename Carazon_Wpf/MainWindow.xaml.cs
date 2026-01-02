@@ -24,12 +24,16 @@ namespace carazonGarage
     public partial class MainWindow : Window
     {
         MySql.Data.MySqlClient.MySqlConnection connection = new MySql.Data.MySqlClient.MySqlConnection("server=localhost;database=carazongarage;uid=root");
-        MySql.Data.MySqlClient.MySqlCommand command;
-        public MainWindow()
+        
+        public MainWindow() : this("")
+        {
+        }
+        public MainWindow(string username)
         {
             InitializeComponent();
+            //Texblock_User.Text = $"{username}";
+            Texblock_User.Text = App.LoggedInUser;
             AdatbazisIndit();
-            Felhasznalobeker();
         }
         public void openConnection()
         {
@@ -54,31 +58,7 @@ namespace carazonGarage
                 MessageBox.Show(hiba.Message);
             }
         }
-        private void Felhasznalobeker()
-        {
-            try
-            {
-                openConnection();
-
-                using (var adapter = new MySql.Data.MySqlClient.MySqlDataAdapter(
-                    "SELECT id, name FROM `user` WHERE id = 1;", connection))
-                {
-                    DataSet os = new DataSet();
-                    adapter.Fill(os);
-
-                    if (os.Tables[0].Rows.Count > 0)
-                    {
-                        Texblock_User.Text = os.Tables[0].Rows[0]["name"].ToString();
-                    }
-                }
-
-                closeConnection();
-            }
-            catch (Exception hiba)
-            {
-                MessageBox.Show(hiba.Message);
-            }
-        }
+        
         public void closeConnection()
         {
             if (connection.State == ConnectionState.Open)
