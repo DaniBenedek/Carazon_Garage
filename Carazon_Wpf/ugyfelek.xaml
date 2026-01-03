@@ -17,7 +17,12 @@
             <Border Background="#1A1D21" CornerRadius="16" Padding="6" Margin="24,0,0,0">
                 <DockPanel>
                     <TextBlock Text="🔍" Foreground="#A9B1BB" Margin="0,0,8,0"/>
-                    <TextBox Width="280" Background="Transparent" BorderThickness="0" Foreground="#EAECEF"/>
+                    <TextBox x:Name="SearchTextBox"
+             Width="280"
+             Background="Transparent"
+             BorderThickness="0"
+             Foreground="#EAECEF"
+             TextChanged="SearchTextBox_TextChanged"/>
                 </DockPanel>
             </Border>
             <Button Content="Új ügyfél" Margin="24,0,0,0" Background="#3BA9FF" Foreground="White" Click="NewCustomer_Click"/>

@@ -20,23 +20,6 @@
                        Foreground="#EAECEF" 
                        Margin="0,0,12,0"/>
 
-            <Border Background="#1A1D21" 
-                    CornerRadius="16" 
-                    Padding="6" 
-                    Margin="12,0,0,0">
-                <DockPanel>
-                    <TextBlock Text="🔍" 
-                               Foreground="#A9B1BB" 
-                               Margin="0,0,8,0"/>
-                    <TextBox Width="280" 
-                             Background="Transparent" 
-                             BorderThickness="0" 
-                             Foreground="#EAECEF"
-                             CaretBrush="#3BA9FF" 
-                             Text=""/>
-                </DockPanel>
-            </Border>
-
             <ComboBox Width="180" 
                       Margin="8,0,0,0" 
                       Foreground="#EAECEF" 
@@ -51,11 +34,7 @@
                     Margin="12,0,0,0" 
                     Background="#3BA9FF" 
                     Foreground="White"/>
-            <Button Content="Rendelés" 
-                    Margin="8,0,0,0" 
-                    Background="#3BA9FF" 
-                    Foreground="White"/>
-            
+
             <Button Content="Kilépés" 
                     Margin="8,0,0,0" 
                     Background="Red" 
@@ -75,7 +54,7 @@
                     Grid.Column="0" 
                     Margin="0,0,12,0">
                 <DataGrid av:ItemsSource="{av:SampleData ItemCount=5}" 
-                          SelectionChanged="DataGrid_SelectionChanged"
+                          SelectionChanged="DataGrid_Alkatreszek_SelectionChanged"
                           Name="Datagrid_Alkatreszek"/>
             </Border>
 
@@ -92,12 +71,15 @@
                     <TextBlock Text="Név: Olajszűrő" 
                                FontSize="18" 
                                FontWeight="Bold" 
-                               Foreground="#EAECEF"/>
-                    <TextBlock Text="Cikkszám: 
-                               OIL-123" Foreground="#A9B1BB" 
-                               Margin="0,4,0,0"/>
+                               Foreground="#EAECEF"
+                               Name="TextBlock_Name"/>
+                    <TextBlock Text="Cikkszám:OIL-123" 
+                               Foreground="#A9B1BB" 
+                               Margin="0,4,0,0"
+                               Name="TextBlock_Cikkszam"/>
                     <TextBlock Text="Kategória: Motor" 
-                               Foreground="#A9B1BB"/>
+                               Foreground="#A9B1BB"
+                               Name="Textblock_Category"/>
                     <Separator Margin="0,8,0,8" 
                                Background="#2A2F36"/>
                     <TextBlock Text="Leírás" 
@@ -105,13 +87,16 @@
                                Foreground="#EAECEF"/>
                     <TextBlock Text="Mannol apm 2730." 
                                TextWrapping="Wrap" 
-                               Foreground="#A9B1BB"/>
+                               Foreground="#A9B1BB"
+                               Name="Textblock_Description"/>
                     <Separator Margin="0,8,0,8" 
                                Background="#2A2F36"/>
-                    <TextBlock Text="Egységár: 4 500 Ft" 
-                               Foreground="#A9B1BB"/>
+                    <TextBlock Text="Egységár: 4 500 Ft"
+                               Foreground="#A9B1BB"
+                               Name="Textblock_Price"/>
                     <TextBlock Text="Készlet: 25 db" 
-                               Foreground="#A9B1BB"/>
+                               Foreground="#A9B1BB"
+                               Name="Textblock_Quanity"/>
                 </StackPanel>
             </Border>
         </Grid>

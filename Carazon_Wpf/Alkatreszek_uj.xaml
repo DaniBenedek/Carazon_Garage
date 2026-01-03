@@ -1,0 +1,69 @@
+﻿<Window x:Class="carazonGarage.Alkatreszek_uj"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Új Alkatrész"
+        Width="418"
+        Height="583"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Background="#121417">
+
+    <Border Background="#1A1D21" CornerRadius="16" Padding="24" Margin="16">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Title -->
+            <TextBlock Text="Új alkatrész felvétele"
+                       FontSize="22"
+                       FontWeight="Bold"
+                       Foreground="#EAECEF"
+                       Margin="0,0,0,16"/>
+
+            <!-- Form -->
+            <StackPanel Grid.Row="1" Margin="0,8,0,8">
+
+                <TextBlock Text="Megnevezés" Foreground="#A9B1BB"/>
+                <TextBox x:Name="textBox_Name" Style="{StaticResource TextBoxStyle}"/>
+
+                <TextBlock Text="Ár" Foreground="#A9B1BB" Margin="0,8,0,0"/>
+                <TextBox x:Name="textBox_Price" Style="{StaticResource TextBoxStyle}"/>
+
+                <TextBlock Text="Mennyiség" Foreground="#A9B1BB" Margin="0,8,0,0"/>
+                <TextBox x:Name="textBox_Quantity" Style="{StaticResource TextBoxStyle}"/>
+
+                <Separator Margin="0,12,0,12"/>
+
+                <TextBlock Text="Típus" Foreground="#A9B1BB"/>
+                <TextBox x:Name="textBox_Type" Style="{StaticResource TextBoxStyle}"/>
+
+                <TextBlock Text="Cikkszám" Foreground="#A9B1BB" Margin="0,8,0,0"/>
+                <TextBox x:Name="textbox_Cikkszam" Style="{StaticResource TextBoxStyle}"/>
+
+                <TextBlock Text="Leírás" Foreground="#A9B1BB" Margin="0,8,0,0"/>
+                <TextBox x:Name="textBox_Description" Style="{StaticResource TextBoxStyle}"/>
+
+            </StackPanel>
+
+
+            <!-- Buttons -->
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Mégse"
+                        Width="90"
+                        Margin="0,0,12,0"
+                        Background="#2A2F36"
+                        Foreground="#EAECEF"
+                        Click="Cancel_Click"/>
+
+                <Button Content="Mentés"
+                        Width="110"
+                        Background="#3BA9FF"
+                        Foreground="White"
+                        Click="Save_Click"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

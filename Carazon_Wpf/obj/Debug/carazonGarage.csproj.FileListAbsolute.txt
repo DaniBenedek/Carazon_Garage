@@ -62,3 +62,5 @@ C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\MunkalapReszletek.g.cs
 C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\login.baml
 C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\login.g.cs
 C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\App.baml
+C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\ugyfelek_uj.baml
+C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\ugyfelek_uj.g.cs

@@ -71,9 +71,31 @@ namespace carazonGarage
                 "Részletek");
         }
 
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string search = SearchTextBox.Text.ToLower();
+
+            if (string.IsNullOrWhiteSpace(search))
+            {
+                CustomersItems.ItemsSource = customers;
+                return;
+            }
+
+            var filtered = customers.FindAll(c =>
+                c.CustomerName.ToLower().Contains(search)
+            );
+
+            CustomersItems.ItemsSource = filtered;
+        }
+
+
         private void NewCustomer_Click(object sender, RoutedEventArgs e)
         {
-            
+            ugyfelek_uj uj = new ugyfelek_uj();
+            if (uj.ShowDialog() == true)
+            {
+                LoadCustomers();
+            }
         }
 
         private void Kilepes_Click(object sender, RoutedEventArgs e)

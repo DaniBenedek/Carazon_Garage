@@ -119,6 +119,12 @@
     <Compile Include="Alkatreszek.xaml.cs">
       <DependentUpon>Alkatreszek.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Alkatreszek_KeszletFrissit.xaml.cs">
+      <DependentUpon>Alkatreszek_KeszletFrissit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Alkatreszek_uj.xaml.cs">
+      <DependentUpon>Alkatreszek_uj.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -132,7 +138,18 @@
     <Compile Include="ugyfelek.xaml.cs">
       <DependentUpon>ugyfelek.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ugyfelek_uj.xaml.cs">
+      <DependentUpon>ugyfelek_uj.xaml</DependentUpon>
+    </Compile>
     <Page Include="Alkatreszek.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Alkatreszek_KeszletFrissit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Alkatreszek_uj.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -161,6 +178,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ugyfelek.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ugyfelek_uj.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

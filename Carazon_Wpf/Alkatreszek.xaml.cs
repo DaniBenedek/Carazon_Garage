@@ -41,7 +41,7 @@ namespace carazonGarage
         {
             try
             {
-                MySql.Data.MySqlClient.MySqlDataAdapter adapter = new MySql.Data.MySqlClient.MySqlDataAdapter("SELECT * FROM appointments", connection);
+                MySql.Data.MySqlClient.MySqlDataAdapter adapter = new MySql.Data.MySqlClient.MySqlDataAdapter("SELECT * FROM products", connection);
                 openConnection();
                 DataSet ds = new DataSet();
                 adapter.Fill(ds);
@@ -87,11 +87,6 @@ namespace carazonGarage
             }
         }
 
-        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void Alkatreszek_kilepes(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
@@ -99,5 +94,23 @@ namespace carazonGarage
             mainWindow.Show();
         }
 
+        private void DataGrid_Alkatreszek_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Datagrid_Alkatreszek.SelectedItem == null)
+                return;
+
+            var row = Datagrid_Alkatreszek.SelectedItem as DataRowView;
+
+            if (row == null)
+                return;
+
+            TextBlock_Name.Text = row["name"].ToString();
+            TextBlock_Cikkszam.Text = row["item_number"].ToString();
+            Textblock_Category.Text = row["type"].ToString();
+            Textblock_Description.Text = row["description"].ToString();
+            Textblock_Price.Text = row["price"].ToString();
+            Textblock_Quanity.Text = row["storage_quantity"].ToString();
+
+        }
     }
 }
