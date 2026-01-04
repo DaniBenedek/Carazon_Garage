@@ -12,6 +12,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -41,7 +42,7 @@ namespace carazonGarage
         {
             try
             {
-                MySql.Data.MySqlClient.MySqlDataAdapter adapter = new MySql.Data.MySqlClient.MySqlDataAdapter("SELECT * FROM products", connection);
+                MySql.Data.MySqlClient.MySqlDataAdapter adapter = new MySql.Data.MySqlClient.MySqlDataAdapter("SELECT id AS \"sorszám\", \r\n\t\tname AS \"név\",\r\n        type AS \"Típus\",\r\n        item_number AS \"Cikkszám\",\r\n        description AS \"Leírás\",\r\n        storage_quantity AS \"Raktáron\",\r\n        price AS \"Ár\",\r\n        description AS \"Leírás\"\r\nFROM products;", connection);
                 openConnection();
                 DataSet ds = new DataSet();
                 adapter.Fill(ds);
@@ -104,13 +105,27 @@ namespace carazonGarage
             if (row == null)
                 return;
 
-            TextBlock_Name.Text = row["name"].ToString();
-            TextBlock_Cikkszam.Text = row["item_number"].ToString();
-            Textblock_Category.Text = row["type"].ToString();
-            Textblock_Description.Text = row["description"].ToString();
-            Textblock_Price.Text = row["price"].ToString();
-            Textblock_Quanity.Text = row["storage_quantity"].ToString();
+            TextBlock_Name.Text = row["név"].ToString();
+            TextBlock_Cikkszam.Text = row["Cikkszám"].ToString();
+            Textblock_Category.Text = row["Típus"].ToString();
+            Textblock_Description.Text = row["Leírás"].ToString();
+            Textblock_Price.Text = row["Ár"].ToString();
+            Textblock_Quanity.Text = row["Raktáron"].ToString();
 
+        }
+
+        private void Button_NewPart(object sender, RoutedEventArgs e)
+        {
+            Alkatreszek_uj mainWindow = new Alkatreszek_uj();
+            this.Hide();
+            mainWindow.Show();
+        }
+
+        private void Button_UpdatePart(object sender, RoutedEventArgs e)
+        {
+            Alkatreszek_KeszletFrissit mainWindow = new Alkatreszek_KeszletFrissit();
+            this.Close();
+            mainWindow.Show();
         }
     }
 }

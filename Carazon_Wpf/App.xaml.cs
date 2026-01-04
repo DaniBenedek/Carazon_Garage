@@ -26,7 +26,7 @@ namespace carazonGarage
                 LoggedInUser = loginWindow.LoggedInUser;
 
                 MainWindow mainWindow = new MainWindow(loginWindow.LoggedInUser);
-                MainWindow = mainWindow; // important
+                MainWindow = mainWindow;
                 mainWindow.Show();
             }
             else

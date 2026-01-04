@@ -2,7 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Munkalap részletek"
-        Width="480" Height="620"
+        Width="480" 
+        Height="620"
         Background="#0F1114"
         WindowStyle="None"
         ResizeMode="NoResize"
@@ -22,7 +23,7 @@
             </Grid.RowDefinitions>
 
             <DockPanel Grid.Row="0">
-                <TextBlock Text="🔧 Munkalap részletek"
+                <TextBlock Text="Munkalap részletek"
                            FontSize="20"
                            FontWeight="Bold"
                            Foreground="#EAECEF"
@@ -73,24 +74,35 @@
                            Foreground="#EAECEF"/>
 
                 <StackPanel Margin="0,4,0,0">
-                    <CheckBox Content="🛢 Olajcsere" 
+                    <CheckBox Content="Olajcsere" 
                               Foreground="#EAECEF" 
-                              Margin="0,6,0,2"/>
-                    <CheckBox Content="🛞 Féktárcsa / betét csere" 
+                              Margin="0,6,0,2"
+                              Name="CheckBox_Oilchange"/>
+                    
+                    <CheckBox Content="Féktárcsa / betét csere" 
                               Foreground="#EAECEF" 
-                              Margin="0,6,0,2"/>
-                    <CheckBox Content="🧰 Általános szerviz" 
+                              Margin="0,6,0,2"
+                              Name="CheckBox_Brakechange"/>
+                    
+                    <CheckBox Content="Általános szerviz" 
                               Foreground="#EAECEF" 
-                              Margin="0,6,0,2"/>
-                    <CheckBox Content="🌡 Diagnosztika" 
+                              Margin="0,6,0,2"
+                              Name="CheckBox_General"/>
+                    
+                    <CheckBox Content="Diagnosztika" 
                               Foreground="#EAECEF" 
-                              Margin="0,6,0,2"/>
-                    <CheckBox Content="❄ Klíma töltés" 
+                              Margin="0,6,0,2"
+                              Name="CheckBox_Diagnostic"/>
+                    
+                    <CheckBox Content="Klíma töltés" 
                               Foreground="#EAECEF" 
-                              Margin="0,6,0,2"/>
-                    <CheckBox Content="⚙ Kuplung csere" 
+                              Margin="0,6,0,2"
+                              Name="CheckBox_AcFill"/>
+                    
+                    <CheckBox Content="Kuplung csere" 
                               Foreground="#EAECEF" 
-                              Margin="0,6,0,2"/>
+                              Margin="0,6,0,2"
+                              Name="CheckBox_Clutchfix"/>
                 </StackPanel>
             </StackPanel>
 

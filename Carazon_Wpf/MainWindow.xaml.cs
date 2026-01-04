@@ -31,7 +31,6 @@ namespace carazonGarage
         public MainWindow(string username)
         {
             InitializeComponent();
-            //Texblock_User.Text = $"{username}";
             Texblock_User.Text = App.LoggedInUser;
             AdatbazisIndit();
         }
@@ -46,7 +45,7 @@ namespace carazonGarage
         {
             try
             {
-                MySql.Data.MySqlClient.MySqlDataAdapter adapter = new MySql.Data.MySqlClient.MySqlDataAdapter("SELECT * FROM vehicle", connection);
+                MySql.Data.MySqlClient.MySqlDataAdapter adapter = new MySql.Data.MySqlClient.MySqlDataAdapter("SELECT \r\n\tvehicle.id AS \"Sorszám\",\r\n\tuser.name AS \"Ügyfél_Név\",\r\n    vehicle.vehicle_make AS \"Autó_Márka\",\r\n    vehicle.vehicle_model AS \"Autó_típus\",\r\n    appointments.price AS \"Szervízköltség\",\r\n    vehicle.traffic_permit_date AS \"Műszaki vizsga jó\",\r\n    vehicle.technical_exam_date AS \"Szervízidőpont\"\r\nFROM `user`\r\nJOIN appointments \r\n    ON `user`.id = appointments.user_id\r\nJOIN vehicle \r\n    ON `user`.id = vehicle.user_id\r\nLIMIT 0, 25;\r\n", connection);
                 openConnection();
                 DataSet ds = new DataSet();
                 adapter.Fill(ds);
@@ -91,16 +90,6 @@ namespace carazonGarage
         private void Kilepes_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
-        }
-
-        private void Alkatreszek_Bejelentkezes(object sender, RoutedEventArgs e)
-        {
-            // fooldalra megy majd a bejelentkezes utana ez mar nem lesz bent
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            // Kereses ful ide jon majd amire rakerestek az emberek
         }
     }
 }

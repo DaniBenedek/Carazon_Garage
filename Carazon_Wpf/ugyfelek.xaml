@@ -2,7 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Ügyfelek"
-        Width="1000" Height="700"
+        Width="1000" 
+        Height="700"
         Background="#121417">
 
     <Grid Margin="16">
@@ -11,25 +12,41 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Header -->
-        <StackPanel Orientation="Horizontal" Margin="0,0,0,16">
-            <TextBlock Text="Ügyfelek" FontSize="26" FontWeight="Bold" Foreground="#EAECEF"/>
-            <Border Background="#1A1D21" CornerRadius="16" Padding="6" Margin="24,0,0,0">
+        <StackPanel Orientation="Horizontal" 
+                    Margin="0,0,0,16">
+            <TextBlock Text="Ügyfelek" 
+                       FontSize="26" 
+                       FontWeight="Bold" 
+                       Foreground="#EAECEF"/>
+            <Border Background="#1A1D21" 
+                    CornerRadius="16" 
+                    Padding="6" 
+                    Margin="24,0,0,0">
                 <DockPanel>
-                    <TextBlock Text="🔍" Foreground="#A9B1BB" Margin="0,0,8,0"/>
+                    <TextBlock Text="🔍" 
+                               Foreground="#A9B1BB" 
+                               Margin="0,0,8,0"/>
                     <TextBox x:Name="SearchTextBox"
-             Width="280"
-             Background="Transparent"
-             BorderThickness="0"
-             Foreground="#EAECEF"
-             TextChanged="SearchTextBox_TextChanged"/>
+                             Width="280"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             Foreground="#EAECEF"
+                             TextChanged="SearchTextBox_TextChanged"/>
                 </DockPanel>
             </Border>
-            <Button Content="Új ügyfél" Margin="24,0,0,0" Background="#3BA9FF" Foreground="White" Click="NewCustomer_Click"/>
-            <Button Content="Kilépés" Margin="24,0,0,0" Background="Red" Foreground="White" Click="Kilepes_Click"/>
+            <Button Content="Új ügyfél" 
+                    Margin="24,0,0,0" 
+                    Background="#3BA9FF" 
+                    Foreground="White" 
+                    Click="NewCustomer_Click"/>
+            
+            <Button Content="Kilépés" 
+                    Margin="24,0,0,0" 
+                    Background="Red" 
+                    Foreground="White" 
+                    Click="Kilepes_Click"/>
         </StackPanel>
 
-        <!-- Cards -->
         <ScrollViewer Grid.Row="1">
             <ItemsControl Name="CustomersItems">
                 <ItemsControl.ItemsPanel>
@@ -49,9 +66,17 @@
                                 MouseLeftButtonUp="CustomerCard_Click"
                                 Cursor="Hand">
                             <StackPanel>
-                                <TextBlock Text="{Binding CustomerName}" FontSize="16" FontWeight="Bold" Foreground="#EAECEF"/>
-                                <TextBlock Text="{Binding Phone}" Foreground="#A9B1BB" Margin="0,4,0,0"/>
-                                <TextBlock Foreground="#A9B1BB" Margin="0,2,0,0">
+                                <TextBlock Text="{Binding CustomerName}" 
+                                           FontSize="16" 
+                                           FontWeight="Bold" 
+                                           Foreground="#EAECEF"/>
+                                
+                                <TextBlock Text="{Binding Phone}" 
+                                           Foreground="#A9B1BB" 
+                                           Margin="0,4,0,0"/>
+                                
+                                <TextBlock Foreground="#A9B1BB" 
+                                           Margin="0,2,0,0">
                                     <Run Text="{Binding Plate}"/>
                                     <Run Text=" • "/>
                                     <Run Text="{Binding Car}"/>
@@ -62,14 +87,20 @@
                                         <Style TargetType="TextBlock">
                                             <Setter Property="Foreground" Value="#A9B1BB"/>
                                             <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Status}" Value="KESZ">
-                                                    <Setter Property="Foreground" Value="#3BA9FF"/>
+                                                <DataTrigger Binding="{Binding Status}" 
+                                                             Value="KESZ">
+                                                    <Setter Property="Foreground" 
+                                                            Value="#3BA9FF"/>
                                                 </DataTrigger>
-                                                <DataTrigger Binding="{Binding Status}" Value="AKTIV">
-                                                    <Setter Property="Foreground" Value="#3BD37F"/>
+                                                <DataTrigger Binding="{Binding Status}" 
+                                                             Value="AKTIV">
+                                                    <Setter Property="Foreground" 
+                                                            Value="#3BD37F"/>
                                                 </DataTrigger>
-                                                <DataTrigger Binding="{Binding Status}" Value="HIBAS">
-                                                    <Setter Property="Foreground" Value="#FF5C5C"/>
+                                                <DataTrigger Binding="{Binding Status}" 
+                                                             Value="HIBAS">
+                                                    <Setter Property="Foreground" 
+                                                            Value="#FF5C5C"/>
                                                 </DataTrigger>
                                             </Style.Triggers>
                                         </Style>

@@ -8,6 +8,9 @@ using System.Windows.Input;
 
 namespace carazonGarage
 {
+    /// <summary>
+    /// Interaction logic for ugyfelek.xaml
+    /// </summary>
     public partial class ugyfelek : Window
     {
         List<CustomerCar> customers = new List<CustomerCar>();
@@ -27,15 +30,15 @@ namespace carazonGarage
                 conn.Open();
 
                 string query = @"
-            SELECT 
-                u.id,
-                u.name,
-                u.phone_number,
-                v.license_plate AS plate,
-                CONCAT(v.vehicle_make, ' ', v.vehicle_model) AS model,
-                'AKTIV' AS status
-            FROM user u
-            JOIN vehicle v ON v.user_id = u.id";
+                                SELECT 
+                                    u.id,
+                                    u.name,
+                                    u.phone_number,
+                                    v.license_plate AS plate,
+                                    CONCAT(v.vehicle_make, ' ', v.vehicle_model) AS model,
+                                    'AKTIV' AS status
+                                FROM user u
+                                JOIN vehicle v ON v.user_id = u.id";
 
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 MySqlDataReader reader = cmd.ExecuteReader();
@@ -46,8 +49,8 @@ namespace carazonGarage
                     {
                         Id = reader.GetInt32("id"),
                         CustomerName = reader.GetString("name"),
-                        Phone = reader["phone_number"] != DBNull.Value ? "📞 " + reader["phone_number"].ToString() : "",
-                        Plate = "🚗 " + reader["plate"].ToString(),
+                        Phone = reader["phone_number"] != DBNull.Value ? "Telefon: " + reader["phone_number"].ToString() : "",
+                        Plate = "Rendszamtabla: " + reader["plate"].ToString(),
                         Car = reader["model"].ToString(),
                         Status = reader["status"].ToString().ToUpper()
                     });
@@ -65,7 +68,6 @@ namespace carazonGarage
             var selected = border.DataContext as CustomerCar;
             if (selected == null) return;
 
-            // Show details - later can open MunkalapReszletek
             MessageBox.Show(
                 $"Ügyfél: {selected.CustomerName}\nAutó: {selected.Plate} • {selected.Car}\nStátusz: {selected.Status}",
                 "Részletek");
@@ -87,7 +89,6 @@ namespace carazonGarage
 
             CustomersItems.ItemsSource = filtered;
         }
-
 
         private void NewCustomer_Click(object sender, RoutedEventArgs e)
         {

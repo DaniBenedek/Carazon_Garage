@@ -4,6 +4,9 @@ using MySql.Data.MySqlClient;
 
 namespace carazonGarage
 {
+    /// <summary>
+    /// Interaction logic for Login.xaml
+    /// </summary>
     public partial class Login : Window
     {
         public string LoggedInUser { get; private set; }
@@ -25,7 +28,6 @@ namespace carazonGarage
                 MessageBox.Show("Kérlek, add meg a felhasználónevet és a jelszót!");
                 return;
             }
-
 
             try
             {

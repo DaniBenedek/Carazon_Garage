@@ -5,17 +5,16 @@
 
     <Application.Resources>
          
-    <Style x:Key="TextBoxStyle" TargetType="TextBox">
-        <Setter Property="Height" Value="34"/>
-        <Setter Property="Margin" Value="0,4,0,0"/>
-        <Setter Property="Background" Value="#121417"/>
-        <Setter Property="Foreground" Value="#EAECEF"/>
-        <Setter Property="BorderBrush" Value="#2A2F36"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="Padding" Value="8,4"/>
-    </Style>
+        <Style x:Key="TextBoxStyle" TargetType="TextBox">
+            <Setter Property="Height" Value="34"/>
+            <Setter Property="Margin" Value="0,4,0,0"/>
+            <Setter Property="Background" Value="#121417"/>
+            <Setter Property="Foreground" Value="#EAECEF"/>
+            <Setter Property="BorderBrush" Value="#2A2F36"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="8,4"/>
+        </Style>
         
     </Application.Resources>
     
-
 </Application>

@@ -1,16 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using MySql.Data.MySqlClient;
 
 namespace carazonGarage
 {
@@ -19,34 +9,134 @@ namespace carazonGarage
     /// </summary>
     public partial class MunkalapReszletek : Window
     {
-        public MunkalapReszletek()
+        private string _rendszam;
+
+        public MunkalapReszletek(string ugyfelNev, string rendszam, string megjegyzes, string statusz)
         {
             InitializeComponent();
-            this.Closed += Window_Closed;
+
+            _rendszam = rendszam;
+
+            UgyfelNev.Text = ugyfelNev;
+            Rendszam.Text = $"Rendszám: {rendszam}";
+            Statusz.Text = $"Státusz: {statusz}";
+            Leiras.Text = megjegyzes;
+
+            LoadServiceStatus();
         }
 
-        private void Window_Closed(object sender, EventArgs e)
+        private void LoadServiceStatus()
         {
-            Application.Current.Shutdown();
+            using (MySqlConnection conn = new MySqlConnection(
+                "server=localhost;database=carazongarage;uid=root"))
+            {
+                conn.Open();
+
+                string query =
+                    $"SELECT * FROM service_status " +
+                    $"WHERE license_plate = '{_rendszam}' " +
+                    $"AND service_date = CURDATE()";
+
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    CheckBox_Oilchange.IsChecked = Convert.ToInt32(reader["oil_change"]) == 1;
+                    CheckBox_Brakechange.IsChecked = Convert.ToInt32(reader["brake_repair"]) == 1;
+                    CheckBox_General.IsChecked = Convert.ToInt32(reader["general_inspection"]) == 1;
+                    CheckBox_Diagnostic.IsChecked = Convert.ToInt32(reader["diagnostic"]) == 1;
+                    CheckBox_AcFill.IsChecked = Convert.ToInt32(reader["ac_fill"]) == 1;
+                    CheckBox_Clutchfix.IsChecked = Convert.ToInt32(reader["clutch_change"]) == 1;
+                }
+                else
+                {
+                    CheckBox_Oilchange.IsChecked = false;
+                    CheckBox_Brakechange.IsChecked = false;
+                    CheckBox_General.IsChecked = false;
+                    CheckBox_Diagnostic.IsChecked = false;
+                    CheckBox_AcFill.IsChecked = false;
+                    CheckBox_Clutchfix.IsChecked = false;
+                }
+            }
         }
-        public MunkalapReszletek(string name, string plate, string note, string status)
+        private void MarkAppointmentDone()
         {
-            InitializeComponent();
-            UgyfelNev.Text = "Ügyfél: " + name;
-            Rendszam.Text = "Rendszám: " + plate;
-            Statusz.Text = "Státusz: " + status;
-            Leiras.Text = "Leírás: " + note;
+            using (MySqlConnection conn = new MySqlConnection(
+                "server=localhost;database=carazongarage;uid=root"))
+            {
+                conn.Open();
+
+                string query =
+                    "UPDATE appointments a " +
+                    "JOIN vehicle v ON a.vehicle_id = v.id " +
+                    "SET a.status = 'done' " +
+                    "WHERE v.license_plate = @plate " +
+                    "AND a.date = CURDATE()";
+
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@plate", _rendszam);
+
+                cmd.ExecuteNonQuery();
+            }
         }
 
         private void Mentes_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Mentve!");
-            this.Close();
+            using (MySqlConnection conn = new MySqlConnection(
+                "server=localhost;database=carazongarage;uid=root"))
+            {
+                conn.Open();
+
+                string check =
+                    $"SELECT COUNT(*) FROM service_status " +
+                    $"WHERE license_plate = '{_rendszam}' " +
+                    $"AND service_date = CURDATE()";
+
+                MySqlCommand checkCmd = new MySqlCommand(check, conn);
+                int exists = Convert.ToInt32(checkCmd.ExecuteScalar());
+
+                int oil = CheckBox_Oilchange.IsChecked == true ? 1 : 0;
+                int brake = CheckBox_Brakechange.IsChecked == true ? 1 : 0;
+                int general = CheckBox_General.IsChecked == true ? 1 : 0;
+                int diag = CheckBox_Diagnostic.IsChecked == true ? 1 : 0;
+                int ac = CheckBox_AcFill.IsChecked == true ? 1 : 0;
+                int clutch = CheckBox_Clutchfix.IsChecked == true ? 1 : 0;
+
+                if (exists > 0)
+                {
+                    string update =
+                        $"UPDATE service_status SET " +
+                        $"oil_change={oil}, " +
+                        $"brake_repair={brake}, " +
+                        $"general_inspection={general}, " +
+                        $"diagnostic={diag}, " +
+                        $"ac_fill={ac}, " +
+                        $"clutch_change={clutch} " +
+                        $"WHERE license_plate='{_rendszam}' " +
+                        $"AND service_date=CURDATE()";
+
+                    new MySqlCommand(update, conn).ExecuteNonQuery();
+                }
+                else
+                {
+                    string insert =
+                        $"INSERT INTO service_status " +
+                        $"(license_plate, service_date, oil_change, brake_repair, general_inspection, diagnostic, ac_fill, clutch_change) " +
+                        $"VALUES ('{_rendszam}', CURDATE(), {oil}, {brake}, {general}, {diag}, {ac}, {clutch})";
+
+                    new MySqlCommand(insert, conn).ExecuteNonQuery();
+                }
+            }
+            MarkAppointmentDone();
+            MessageBox.Show("Szerviz mentve.", "Információ");
+            DialogResult = true;
+            Close();
         }
 
         private void Kilpes_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }

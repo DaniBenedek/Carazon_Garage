@@ -40,7 +40,6 @@ namespace carazonGarage
             {
                 conn.Open();
 
-                // 🔍 1️⃣ Check email
                 string checkEmail =
                     $"SELECT COUNT(*) FROM user WHERE email = '{textBox_Email.Text}'";
 
@@ -53,7 +52,6 @@ namespace carazonGarage
                     return;
                 }
 
-                // 🔍 2️⃣ Check license plate
                 string checkPlate =
                     $"SELECT COUNT(*) FROM vehicle WHERE license_plate = '{textBox_LicensePlate.Text}'";
 
@@ -66,7 +64,6 @@ namespace carazonGarage
                     return;
                 }
 
-                // 3️⃣ Insert user
                 string insertUser =
                     $"INSERT INTO user(name, email, phone_number) " +
                     $"VALUES('{textBox_Name.Text}', '{textBox_Email.Text}', '{textBox_Phone.Text}')";
@@ -75,7 +72,6 @@ namespace carazonGarage
                 cmdUser.ExecuteNonQuery();
                 int userId = (int)cmdUser.LastInsertedId;
 
-                // 4️⃣ Insert vehicle (country_id = 1)
                 string insertVehicle =
                     $"INSERT INTO vehicle(user_id, country_id, license_plate, vehicle_make, vehicle_model) " +
                     $"VALUES({userId}, 1, '{textBox_LicensePlate.Text}', '{textBox_Make.Text}', '{textBox_Model.Text}')";
@@ -87,8 +83,6 @@ namespace carazonGarage
             DialogResult = true;
             Close();
         }
-
-
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
