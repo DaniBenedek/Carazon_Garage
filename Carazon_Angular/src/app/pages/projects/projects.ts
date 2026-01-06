@@ -67,13 +67,13 @@ export class Projects implements OnInit {
       : this.projects.filter(p => p.category === category);
   }
 
-  // Ez csak felgorget de hogy minek
+  // Kiválasztja a megadott projektet és felpörget az oldal tetejére
   viewProjectDetails(project: Project):void {
     this.kivalasztottMunka = project;
     window.scrollTo({top: 0, behavior: 'smooth'});
   }
 
-  // ez meg kivagja konzolra hogy asd
+  // Console teszt
   Projektreszletek(project: Project):void {
     console.log('asd',project)
   }
