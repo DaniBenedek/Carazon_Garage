@@ -1,0 +1,171 @@
+<section class="min-h-screen 
+             bg-zinc-950 
+             py-20 px-4 flex 
+             items-center 
+             justify-center">
+
+  <div class="w-full max-w-4xl 
+            bg-zinc-900/50 backdrop-blur-xl 
+            border border-white/10 rounded-3xl 
+            overflow-hidden shadow-2xl">
+    
+    <div class="p-8 border-b 
+             border-white/5 
+             flex justify-between 
+             items-center">
+      <div>
+        <h2 class="text-2xl font-bold 
+                text-white tracking-tight">
+                Időpontfoglalás
+        </h2>
+        <p class="text-amber-500/80 
+                    text-sm italic">
+                    Carazon Garage Premium Service
+        </p>
+      </div>
+      <div class="flex gap-2">
+        <div [class]="currentStep >= 1 ? 'w-8 h-1 
+                    bg-amber-600' : 'w-8 h-1 bg-zinc-700'" 
+                    class="rounded-full transition-all">
+        </div>
+        <div [class]="currentStep >= 2 ? 'w-8 h-1 
+                    bg-amber-600' : 'w-8 h-1 bg-zinc-700'" 
+                    class="rounded-full transition-all">
+        </div>
+        <div [class]="currentStep >= 3 ? 'w-8 h-1 
+                    bg-amber-600' : 'w-8 h-1 bg-zinc-700'" 
+                    class="rounded-full transition-all">
+        </div>
+      </div>
+    </div>
+
+    <div class="p-8">
+      <div *ngIf="currentStep === 1" 
+           class="animate-fade-in space-y-8">
+        <div class="grid md:grid-cols-2 gap-10">
+          <div>
+            <label class="block text-zinc-400 text-sm mb-4 
+                          uppercase tracking-widest">
+                          Válasszon napot
+            </label>
+            <div class="grid grid-cols-7 gap-2">
+              <button *ngFor="let i of [19,20,21,22,23]" 
+                      (click)="selectDate(i)"
+                [class]="selectedDate?.getDate() === i ? 'bg-amber-600 
+                      text-white' : 'bg-white/5 text-zinc-300 hover:bg-white/10'"
+                class="aspect-square rounded-xl transition-all 
+                       flex items-center justify-center 
+                       font-medium border border-white/5">
+                {{i}}
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-zinc-400 
+                          text-sm mb-4 uppercase 
+                          tracking-widest">
+                          Szabad időpontok
+            </label>
+            <div class="grid grid-cols-3 gap-2 
+                        h-48 overflow-y-auto pr-2 
+                        custom-scrollbar">
+              <button *ngFor="let slot of timeSlots" 
+                      (click)="selectedSlot = slot"
+                [class]="selectedSlot === slot ? 'border-amber-500 
+                      text-amber-500 bg-amber-500/10' : 'border-white/5 text-zinc-400'"
+                class="py-2 border rounded-lg 
+                      hover:border-amber-500/50 transition-all text-sm">
+                {{slot}}
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="flex justify-end pt-6">
+          <button (click)="nextStep()" 
+                  [disabled]="!selectedSlot || !selectedDate"
+            class="px-10 py-3 bg-amber-600 
+                  hover:bg-amber-700 disabled:opacity-30 
+                  text-white rounded-full 
+                  font-semibold transition-all transform hover:scale-105">
+            Tovább az adatokhoz
+          </button>
+        </div>
+      </div>
+
+      <div *ngIf="currentStep === 2" 
+            class="animate-fade-in max-w-lg mx-auto">
+        <form [formGroup]="bookingForm" 
+              class="space-y-6">
+          <div class="space-y-4">
+            <select formControlName="service" 
+                    class="w-full bg-white/5 border-b border-white/10 p-3 
+                        text-white focus:border-amber-600 
+                        outline-none transition-all">
+              <option value="" 
+                      disabled selected>
+                      Válasszon szolgáltatást
+              </option>
+              <option *ngFor="let s of services" 
+                      [value]="s.id">{{s.name}} ({{s.price}})
+              </option>
+            </select>
+            <input formControlName="name" 
+                   placeholder="Teljes név" 
+                   class="w-full bg-white/5 border-b 
+                        border-white/10 p-3 text-white 
+                        focus:border-amber-600 outline-none">
+            <input formControlName="email" 
+                   type="email" 
+                   placeholder="Email cím" 
+                   class="w-full bg-white/5 border-b 
+                        border-white/10 p-3 text-white 
+                        focus:border-amber-600 outline-none">
+            <input formControlName="phone" 
+                   placeholder="Telefonszám" 
+                   class="w-full bg-white/5 border-b 
+                       border-white/10 p-3 text-white 
+                       focus:border-amber-600 outline-none">
+          </div>
+          <button (click)="confirmBooking()" 
+                  [disabled]="bookingForm.invalid"
+            class="w-full py-4 bg-amber-600 hover:bg-amber-700 
+                   disabled:opacity-30 text-white rounded-xl 
+                   font-bold transition-all">
+            Foglalás véglegesítése
+          </button>
+        </form>
+      </div>
+
+      <div *ngIf="currentStep === 3" 
+            class="text-center py-10 animate-scale-up">
+        <div class="w-20 h-20 bg-amber-600/20 
+                  text-amber-500 rounded-full flex 
+                    items-center justify-center mx-auto mb-6">
+          <svg class="w-10 h-10" 
+               fill="none" 
+               stroke="currentColor" 
+               viewBox="0 0 24 24">
+                <path stroke-linecap="round" 
+                      stroke-linejoin="round" 
+                      stroke-width="2" 
+                      d="M5 13l4 4L19 7">
+                </path>
+          </svg>
+        </div>
+        <h2 class="text-3xl font-bold 
+                 text-white mb-2">
+                 Sikeres foglalás!
+        </h2>
+        <p class="text-zinc-400 mb-8">
+          A visszaigazolást elküldtük az email címére.
+        </p>
+        <button onclick="location.reload()" 
+                class="text-amber-500 hover:text-amber-400 font-medium">
+                Vissza a főoldalra
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
