@@ -10,7 +10,7 @@ import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } 
   styleUrl: './szerviz.css',
 })
 
-// szerviz komponens osztály definíciója
+// szervíz osztály definíció
 export class Szerviz {
   bookingForm: FormGroup;
   currentStep = 1;
@@ -22,10 +22,10 @@ export class Szerviz {
   currentMonth = new Date(2026, 0); // január 2026
   daysInMonth: number[] = [];
   
-  // zárolt napok (amikor nem dolgozol)
-  closedDates: number[] = [1, 7, 14, 21, 28]; // példa: vasárnapok
+  // olyan napok amikor nem dolgozol
+  closedDates: number[] = [1, 7, 14, 21, 28];
 
-  // elérhető szerviz szolgáltatások listája
+  // jelenlegi elérhető szolgáltatások
   services = [
     { id: 1, name: 'Általános Szerviz', price: '25.000 Ft-tól' },
     { id: 2, name: 'Diagnosztika', price: '15.000 Ft' },
