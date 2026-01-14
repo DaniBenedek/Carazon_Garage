@@ -31,7 +31,8 @@
                              Email
                       </label>
                       <input type="email" 
-                             name="email" 
+                             name="email"
+                             autocomplete="email"
                              id="email" 
                              class="bg-gray-50 border border-gray-300 
                                     text-gray-900 rounded-lg 
@@ -53,9 +54,11 @@
                              Jelszo
                       </label>
                       <input type="password" 
-                             name="password" 
-                             id="password" 
-                             placeholder="" 
+                             name="password"
+                             [type]="isPasswordVisible ? 'text' : 'password'"
+                             id="password"
+                             autocomplete="new-password"
+                             placeholder="password" 
                              class="bg-gray-50 border border-gray-300 
                                     text-gray-900 rounded-lg 
                                     focus:ring-primary-600 
@@ -71,8 +74,9 @@
                   <div class="flex items-center justify-between">
                       <div class="flex items-start">
                           <div class="flex items-center h-5">
-                            <input id="remember" 
-                                   aria-describedby="remember" 
+                            <input id="showpass" 
+                                   aria-describedby="showpass"
+                                   (change)="togglePassword()"
                                    type="checkbox" 
                                    class="w-4 h-4 border border-gray-300 
                                           rounded bg-gray-50 focus:ring-3 
@@ -83,7 +87,7 @@
                                    required="">
                           </div>
                           <div class="ml-3 text-sm">
-                            <label for="remember" 
+                            <label for="showpass" 
                                    class="text-gray-500 dark:text-gray-300">
                                    Mutasd a jelszót!
                             </label>
