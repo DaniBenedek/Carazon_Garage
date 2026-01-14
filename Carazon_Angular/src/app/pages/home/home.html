@@ -15,18 +15,15 @@
                 inset-0 
                 w-full 
                 h-full">
-      <video autoplay 
-             muted 
-             loop 
-             playsinline 
-             class="hero-video 
-               absolute 
-               inset-0 
-               w-full 
-               h-full 
-               object-cover" 
-              src="https://www.pexels.com/download/video/8469665/">
+      <video 
+          autoplay 
+          [muted]="true" 
+          loop 
+          playsinline
+          class="hero-video absolute inset-0 w-full h-full object-cover" 
+          [src]="'assets/videos/main_bk.mp4'">
       </video>
+
       <div class="hero-overlay 
                   absolute 
                   inset-0 
@@ -35,6 +32,7 @@
                   duration-300">
       </div>
     </div>
+
     <!-- Tartalom -->
     <div class="hero-content 
                 w-full 
@@ -48,6 +46,7 @@
                   gap-8 
                   lg:gap-12 
                   items-center">
+                  
         <!-- Bal oldali iras -->
         <div class="hero-left 
                     space-y-6 
