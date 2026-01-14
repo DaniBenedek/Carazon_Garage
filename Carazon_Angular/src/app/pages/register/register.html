@@ -33,6 +33,7 @@
         </h1>
 
         <form 
+          #regForm="ngForm"
           class="space-y-4 md:space-y-6" 
           (ngSubmit)="onSubmit()">
 
@@ -47,12 +48,14 @@
               name="name" 
               [(ngModel)]="regData.name"
               id="name" 
+              autocomplete="name"
               class="bg-gray-50 border border-gray-300 
                      text-gray-900 rounded-lg 
                      focus:ring-primary-600 focus:border-primary-600 
                      block w-full p-2.5 
                      dark:bg-gray-700 dark:border-gray-600 
-                     dark:text-white" 
+                     dark:text-white
+                     placeholder-gray-500" 
               placeholder="Felhasználónév" 
               required>
           </div>
@@ -67,15 +70,26 @@
               type="email" 
               name="email" 
               [(ngModel)]="regData.email"
+              #emailInput="ngModel"
               id="email" 
+              autocomplete="email"
               class="bg-gray-50 border border-gray-300 
                      text-gray-900 rounded-lg 
                      focus:ring-primary-600 focus:border-primary-600 
                      block w-full p-2.5 
                      dark:bg-gray-700 dark:border-gray-600 
-                     dark:text-white" 
+                     dark:text-white
+                     placeholder-gray-500" 
               placeholder="email@pelda.hu" 
-              required>
+              required
+              email> <div 
+              class="min-h-5 mt-1">
+              <p 
+                *ngIf="emailInput.invalid && emailInput.touched" 
+                class="text-xs text-red-600 dark:text-red-400 font-medium">
+                Kérjük, adj meg egy érvényes email címet (pl. @ jellel)!
+              </p>
+            </div>
           </div>
 
           <div>
@@ -89,12 +103,14 @@
               name="phone" 
               [(ngModel)]="regData.phone"
               id="phone" 
+              autocomplete="te"
               class="bg-gray-50 border border-gray-300 
                      text-gray-900 rounded-lg 
                      focus:ring-primary-600 focus:border-primary-600 
                      block w-full p-2.5 
                      dark:bg-gray-700 dark:border-gray-600 
-                     dark:text-white" 
+                     dark:text-white
+                     placeholder-gray-500" 
               placeholder="+36 30 123 4567" 
               required>
           </div>
@@ -174,7 +190,7 @@
 
           <button 
             type="submit" 
-            [disabled]="regData.password !== regData.confirmPassword"
+            [disabled]="regForm.invalid || regData.password !== regData.confirmPassword"
             class="w-full text-white bg-amber-600 
                    hover:bg-amber-700 
                    disabled:opacity-50 disabled:cursor-not-allowed 
