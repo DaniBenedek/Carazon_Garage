@@ -93,10 +93,13 @@
           <div class="space-y-4">
             
             <!-- szolgáltatás választó -->
-            <select formControlName="service" 
+            <select formControlName="service"
+                    name="select"
+                    id="select" 
                     class="w-full bg-white/5 border-b border-white/10 p-3 text-white 
                           focus:border-amber-600 outline-none transition-all">
-              <option value="" disabled selected>
+              <option value="" 
+                      disabled selected>
                 Válasszon szolgáltatást
               </option>
               <option *ngFor="let s of services" 
@@ -108,20 +111,29 @@
             
             <!-- név -->
             <input formControlName="name" 
-                   placeholder="Teljes név" 
+                   name="name"
+                   id="name"
+                   placeholder="Teljes név"
+                   autocomplete="name"
                    class="w-full bg-white/5 border-b border-white/10 p-3 text-white 
                         focus:border-amber-600 outline-none">
             
             <!-- email -->
-            <input formControlName="email" 
-                   type="email" 
+            <input formControlName="email"
+                   name="email"
+                   id="email"
+                   type="email"
+                   autocomplete="email"
                    placeholder="Email cím" 
                    class="w-full bg-white/5 border-b border-white/10 p-3 text-white 
                         focus:border-amber-600 outline-none">
             
             <!-- telefonszám -->
-            <input formControlName="phone" 
-                   placeholder="Telefonszám" 
+            <input formControlName="phone"
+                   name="phone"
+                   id="phone"
+                   placeholder="Telefonszám"
+                   autocomplete="phone" 
                    class="w-full bg-white/5 border-b border-white/10 p-3 text-white 
                         focus:border-amber-600 outline-none">
           </div>
