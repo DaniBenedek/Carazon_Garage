@@ -44,7 +44,7 @@
           <p class="text-gray-600 text-lg">
             Mutatva
             <span class="font-bold text-gray-900">
-              {{ Szurtmunka.length }}
+              {{ Szurtmunka().length }}
             </span>
             {{ KivalasztottElem === 'All' ? 'projekt' : 
                KivalasztottElem.toLowerCase() + ' projekt' }}
@@ -54,7 +54,7 @@
         <!-- Maga a kartya grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 
                     lg:grid-cols-3 gap-6 md:gap-8">
-          <div *ngFor="let project of Szurtmunka; let i = index" 
+          <div *ngFor="let project of Szurtmunka(); let i = index" 
                class="project-card group relative overflow-hidden 
                       rounded-2xl bg-white shadow-lg 
                       transition-all duration-500 hover:shadow-2xl 

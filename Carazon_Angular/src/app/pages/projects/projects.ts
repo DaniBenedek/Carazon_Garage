@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Signal, signal, } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 
@@ -36,7 +36,7 @@ export class Projects implements OnInit {
   KivalasztottElem: string = 'All';
 
   projects: Project[] = [];
-  Szurtmunka: Project[] = [];
+  Szurtmunka = signal<Project[]>([]);
   kivalasztottMunka: Project | null = null;
 
   // HttpClient beinjektálása az API hívásokhoz
@@ -52,7 +52,7 @@ export class Projects implements OnInit {
         this.projects = data;
 
         // Kezdetben minden projekt megjelenik (Mar ha betolt addigra)
-        this.Szurtmunka = data;
+        this.Szurtmunka.set(data);
 
       });
   }
@@ -63,9 +63,9 @@ export class Projects implements OnInit {
     this.KivalasztottElem = category;
 
     // ez amugy egy if else ha all akkor minden ha : akkor meg csak az adott kategoria
-    this.Szurtmunka = category === 'All'
+    this.Szurtmunka.set(category === 'All'
       ? this.projects
-      : this.projects.filter(p => p.category === category);
+      : this.projects.filter(p => p.category === category));
   }
 
   // Kiválasztja a megadott projektet és felpörget az oldal tetejére
