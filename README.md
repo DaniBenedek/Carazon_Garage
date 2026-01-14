@@ -45,8 +45,8 @@ A **Carazon_Garage** -hoz lehet Időpontot foglalni
 ### 2. Adatbázis felrakása
 
 * a windows -on belül indítsuk el a "**xampp**" alkalmazást
-	* ezen az alkalmazáson belül kattintsunk a "**Mysql**" előtti **"START**" gombra
-	* Kattinstunk az "**Admin**" gombra
+	* ezen az alkalmazáson belül kattintsunk a "**Mysql**" és az "**Apache**" utáni **"START**" gombra
+	* Ezek után kattintsunk a "**Mysql**" utáni "**Admin**" gombra
 
 * A mysql adatbázist látjuk ahová a következő lépéssekkel tesszük fel az adatbázist:
 
