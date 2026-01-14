@@ -24,7 +24,7 @@ export class Contact implements OnInit {
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required]], // Autószerviznél a telefon kritikus!
-      carModel: [''], // Opcionális: Milyen autóval kapcsolatban keresnek
+      carModel: [''], // Milyen autóval kapcsolatban keresnek
       message: ['', [Validators.required, Validators.minLength(10)]]
     });
   }
