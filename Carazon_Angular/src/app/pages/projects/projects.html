@@ -63,7 +63,7 @@
             [style.animation-delay.s]="i * 0.1">
 
             <!-- Munka kepek -->
-            <div class="project-image-wrapper relative overflow-hidden aspect-[4/3]">
+            <div class="project-image-wrapper relative overflow-hidden aspect-4/3">
               <img [src]="project.img" 
                    [alt]="project.title"
                    class="w-full h-full object-cover transform group-hover:scale-110 
@@ -71,7 +71,7 @@
 
               <!-- Ha rahuzod az egeret jelenjen meg -->
               <div class="project-overlay absolute 
-                          inset-0 bg-gradient-to-t 
+                          inset-0 bg-linear-to-t 
                           from-black/90 via-black/50 to-transparent 
                           opacity-0 group-hover:opacity-100 
                           transition-opacity duration-300">
@@ -176,7 +176,7 @@
         </div>
 
         <!-- Ha üres a stájsz akkor megjelenik a dosszié -->
-        <div *ngIf="Szurtmunka.length === 0" 
+        <div *ngIf="Szurtmunka().length === 0" 
              class="text-center py-20">
           <svg xmlns="http://www.w3.org/2000/svg" 
                width="64" 
