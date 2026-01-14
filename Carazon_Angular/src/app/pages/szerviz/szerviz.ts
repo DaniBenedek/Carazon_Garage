@@ -82,7 +82,7 @@ export class Szerviz {
     if (this.currentStep < 3) this.currentStep++;
   }
 
-  // foglalás megerősítése és adatok konzolra írása
+  // foglalás megerősítése és a konzolra az adatok kíírása
   confirmBooking() {
     console.log('Foglalás adatai:', {
       ...this.bookingForm.value,
