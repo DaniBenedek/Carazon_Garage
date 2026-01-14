@@ -22,7 +22,7 @@ export class Szerviz {
   currentMonth = new Date(2026, 0); // január 2026
   daysInMonth: number[] = [];
   
-  // olyan napok amikor nem dolgozol
+  // Azok a napok amikor nincs munka
   closedDates: number[] = [1, 7, 14, 21, 28];
 
   // jelenlegi elérhető szolgáltatások
@@ -44,7 +44,7 @@ export class Szerviz {
     this.generateCalendar();
   }
 
-  // naptár napjainak generálása
+  // Naptár Napjainak létrehozása
   generateCalendar() {
     const year = this.currentMonth.getFullYear();
     const month = this.currentMonth.getMonth();
@@ -53,12 +53,12 @@ export class Szerviz {
     this.daysInMonth = Array.from({ length: daysCount }, (_, i) => i + 1);
   }
 
-  // ellenőrzi hogy az adott nap zárva van-e
+  // Nyitva van e az üzlet azt ellenőrzni le
   isDayClosed(day: number): boolean {
     return this.closedDates.includes(day);
   }
 
-  // időpontok generálása 9-től 17 óráig 30 perces intervallumokban
+  // 9 től 17 óráig 30 percenként időpont létrehozás
   generateTimeSlots() {
     for (let hour = 9; hour < 17; hour++) {
       this.timeSlots.push(`${hour.toString().padStart(2, '0')}:00`);
