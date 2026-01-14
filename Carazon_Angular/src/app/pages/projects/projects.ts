@@ -53,6 +53,7 @@ export class Projects implements OnInit {
 
         // Kezdetben minden projekt megjelenik (Mar ha betolt addigra)
         this.Szurtmunka = data;
+
       });
   }
 
