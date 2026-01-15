@@ -5,15 +5,15 @@ import { AuthService } from '../../services/auth';
 
 @Component({
   selector: 'app-header',
-  standalone: true, // Biztosítja, hogy az imports rész működjön
+  standalone: true, 
   imports: [CommonModule, RouterModule],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
 export class Header {
 
-  isMenuOpen = false;           // Mobil menü állapota
-  isUserDropdownOpen = false;   // Profil dropdown állapota
+  isMenuOpen = false;         
+  isUserDropdownOpen = false;   
 
   constructor(public auth: AuthService) {}
 
@@ -21,22 +21,21 @@ export class Header {
     return JSON.parse(localStorage.getItem('user') || 'null');
   }
 
-  // Meglévő metódusaid
+  // Meglévő metódusok
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
-    // Ha a mobil menüt nyitjuk, zárjuk be a profilt
     if (this.isMenuOpen) this.isUserDropdownOpen = false;
   }
 
   closeMenu() {
     this.isMenuOpen = false;
-    this.isUserDropdownOpen = false; // Minden menüt bezárunk
+    this.isUserDropdownOpen = false; // Mindent bezár
   }
 
-  // ÚJ: Profil dropdown kapcsoló
+  // Profil dropdown kapcsoló
   toggleUserDropdown() {
     this.isUserDropdownOpen = !this.isUserDropdownOpen;
-    // Ha a profilt nyitjuk, zárjuk be a mobil menüt
+
     if (this.isUserDropdownOpen) this.isMenuOpen = false;
   }
 
