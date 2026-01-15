@@ -176,12 +176,14 @@
             <div *ngIf="auth.isLoggedIn()" 
                   class="flex items-center gap-4">
               <span class="text-white">{{ user?.name }}</span>
-              <button (click)="logout()" 
-                      class="bg-red-500 px-5 py-2.5 
-                             rounded-md text-sm 
-                             shadow-sm text-white">
-                Kilépés
-              </button>
+              <a href="/">
+                <button (click)="logout()" 
+                        class="bg-red-500 px-5 py-2.5 
+                               rounded-md text-sm 
+                               shadow-sm text-white">
+                  Kilépés
+                </button>
+              </a>
             </div>
 
             <div class="hidden sm:flex">
