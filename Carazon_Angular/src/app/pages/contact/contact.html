@@ -148,6 +148,7 @@
               </label>
               <input 
                 type="text"
+                maxlength="100"
                 id="TeljesNev"
                 autocomplete="name" 
                 name="name" 
@@ -164,6 +165,7 @@
               </label>
               <input
                 id="Email"
+                maxlength="150"
                 type="email" 
                 autocomplete="email" 
                 name="email" 
@@ -182,7 +184,8 @@
             </label>
             <input
               id="Telefonszam"
-              type="text" 
+              type="text"
+              maxlength="20" 
               autocomplete="mobile" 
               name="telephone" 
               formControlName="phone" 
@@ -199,7 +202,9 @@
               Üzenet / Hiba leírása
             </label>
             <textarea 
-              formControlName="message" 
+              formControlName="message"
+              minlength="5"
+              maxlength="500"
               id="Uzenet"
               autocomplete="on" 
               name="message" 
@@ -207,6 +212,12 @@
               class="w-full px-4 py-3 rounded-lg border border-gray-200 
                      focus:border-amber-600 focus:ring-2 focus:ring-amber-600/20 
                      outline-none transition-all"></textarea>
+          </div>
+
+          <div class="flex justify-end mt-1">
+            <span class="text-xs text-gray-500">
+              Még <b>{{ 500 - (contactForm.get('message')?.value?.length || 0) }}</b> karakter marad.
+            </span>
           </div>
 
           <button 
