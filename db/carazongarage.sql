@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Jan 30. 08:55
+-- Létrehozás ideje: 2026. Jan 30. 11:32
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -165,6 +165,27 @@ CREATE TABLE `language` (
 -- --------------------------------------------------------
 
 --
+-- Tábla szerkezet ehhez a táblához `memberships`
+--
+
+CREATE TABLE `memberships` (
+  `id` int(11) NOT NULL,
+  `membership` varchar(15) NOT NULL,
+  `discount` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- A tábla adatainak kiíratása `memberships`
+--
+
+INSERT INTO `memberships` (`id`, `membership`, `discount`) VALUES
+(1, 'Standard', 5),
+(2, 'Gold', 10),
+(3, 'Gold+', 15);
+
+-- --------------------------------------------------------
+
+--
 -- Tábla szerkezet ehhez a táblához `products`
 --
 
@@ -291,23 +312,24 @@ CREATE TABLE `user` (
   `email` varchar(150) NOT NULL,
   `phone_number` varchar(20) DEFAULT NULL,
   `role` varchar(50) DEFAULT NULL,
-  `img` varchar(100) DEFAULT NULL
+  `img` varchar(100) DEFAULT NULL,
+  `membership_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- A tábla adatainak kiíratása `user`
 --
 
-INSERT INTO `user` (`id`, `name`, `password`, `email`, `phone_number`, `role`, `img`) VALUES
-(1, 'Kiss Péter', 'pw123', 'peter.kiss@example.com', '+36201234567', 'customer', NULL),
-(2, 'Nagy Anna', 'pw456', 'anna.nagy@example.com', '+36205554444', 'admin', NULL),
-(3, 'Tóth Béla', 'pw789', 'bela.toth@example.com', '+36207778888', 'mechanic', NULL),
-(4, 'Szabó László', 'pw111', 'laszlo.szabo@example.com', '+36209991111', 'customer', NULL),
-(5, 'Horváth Júlia', 'pw222', 'julia.horvath@example.com', '+36203334444', 'customer', NULL),
-(6, 'Farkas Gergely', 'pw333', 'gergely.farkas@example.com', '+36206667777', 'mechanic', NULL),
-(7, 'Molnár Eszter', 'pw444', 'eszter.molnar@example.com', '+36201239876', 'customer', NULL),
-(8, 'Balogh Tamás', 'pw555', 'tamas.balogh@example.com', '+36204561234', 'admin', NULL),
-(9, 'admin', 'admin', 'admin@admin.com', '5555', 'admin', NULL);
+INSERT INTO `user` (`id`, `name`, `password`, `email`, `phone_number`, `role`, `img`, `membership_id`) VALUES
+(1, 'Kiss Péter', 'pw123', 'peter.kiss@example.com', '+36201234567', 'customer', NULL, 0),
+(2, 'Nagy Anna', 'pw456', 'anna.nagy@example.com', '+36205554444', 'admin', NULL, 0),
+(3, 'Tóth Béla', 'pw789', 'bela.toth@example.com', '+36207778888', 'mechanic', NULL, 0),
+(4, 'Szabó László', 'pw111', 'laszlo.szabo@example.com', '+36209991111', 'customer', NULL, 0),
+(5, 'Horváth Júlia', 'pw222', 'julia.horvath@example.com', '+36203334444', 'customer', NULL, 0),
+(6, 'Farkas Gergely', 'pw333', 'gergely.farkas@example.com', '+36206667777', 'mechanic', NULL, 0),
+(7, 'Molnár Eszter', 'pw444', 'eszter.molnar@example.com', '+36201239876', 'customer', NULL, 0),
+(8, 'Balogh Tamás', 'pw555', 'tamas.balogh@example.com', '+36204561234', 'admin', NULL, 0),
+(9, 'admin', 'admin', 'admin@admin.com', '5555', 'admin', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -388,6 +410,12 @@ ALTER TABLE `language`
   ADD PRIMARY KEY (`id`);
 
 --
+-- A tábla indexei `memberships`
+--
+ALTER TABLE `memberships`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- A tábla indexei `products`
 --
 ALTER TABLE `products`
@@ -416,7 +444,8 @@ ALTER TABLE `service_status`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
+  ADD UNIQUE KEY `email` (`email`),
+  ADD KEY `membership_id` (`membership_id`);
 
 --
 -- A tábla indexei `vehicle`
@@ -460,6 +489,12 @@ ALTER TABLE `country`
 --
 ALTER TABLE `hero_content`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT a táblához `memberships`
+--
+ALTER TABLE `memberships`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT a táblához `products`
