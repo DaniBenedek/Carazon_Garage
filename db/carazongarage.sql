@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Jan 30. 11:32
+-- Létrehozás ideje: 2026. Feb 02. 11:22
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -254,22 +254,22 @@ INSERT INTO `projects` (`id`, `title`, `category`, `year`, `img`, `description`,
 CREATE TABLE `service` (
   `id` int(5) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `time` datetime NOT NULL
+  `service_status_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- A tábla adatainak kiíratása `service`
 --
 
-INSERT INTO `service` (`id`, `name`, `time`) VALUES
-(1, 'Olajcsere', '0000-00-00 00:00:00'),
-(2, 'Fékbetét csere', '0000-00-00 00:00:00'),
-(3, 'Műszaki vizsga', '2000-01-20 00:00:00'),
-(4, 'Kerékcsere', '0000-00-00 00:00:00'),
-(5, 'Klíma tisztítás', '0000-00-00 00:00:00'),
-(6, 'Diagnosztika', '0000-00-00 00:00:00'),
-(7, 'Akkumulátor csere', '0000-00-00 00:00:00'),
-(8, 'Futómű beállítás', '0000-00-00 00:00:00');
+INSERT INTO `service` (`id`, `name`, `service_status_id`) VALUES
+(1, 'Olajcsere', 0),
+(2, 'Fékbetét csere', 0),
+(3, 'Műszaki vizsga', 0),
+(4, 'Kerékcsere', 0),
+(5, 'Klíma tisztítás', 0),
+(6, 'Diagnosztika', 0),
+(7, 'Akkumulátor csere', 0),
+(8, 'Futómű beállítás', 0);
 
 -- --------------------------------------------------------
 
@@ -431,7 +431,8 @@ ALTER TABLE `projects`
 -- A tábla indexei `service`
 --
 ALTER TABLE `service`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `service_status_id` (`service_status_id`);
 
 --
 -- A tábla indexei `service_status`
