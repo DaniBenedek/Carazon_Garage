@@ -22,7 +22,7 @@ export class Hr implements OnInit {
     title: '',
     description: '',
     salary: '',
-    location: 'Budapest, X. kerület'
+    location: 'Makó'
   };
 
   ngOnInit() {
@@ -39,7 +39,7 @@ export class Hr implements OnInit {
     if (!this.newJob.title || !this.newJob.description) return;
     this.jobService.postJob(this.newJob).subscribe(() => {
       this.loadJobs();
-      this.newJob = { title: '', description: '', salary: '', location: 'Budapest, X. kerület' };
+      this.newJob = { title: '', description: '', salary: '', location: 'Makó' };
       alert('Sikeresen közzétéve!');
     });
   }
