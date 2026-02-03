@@ -55,6 +55,44 @@ app.get("/api/projects", async (req, res) => {
   }
 });
 
+// Munkák lekérése 
+app.get("/api/jobs", async (req, res) => {
+  try {
+    const [rows] = await db.query("SELECT * FROM jobs ORDER BY id DESC");
+    res.json(rows);
+  } catch (err) {
+    res.status(500).json({ error: "Hiba a munkák lekérésekor" });
+  }
+});
+
+// Új munka feltöltése (HR oldalról)
+app.post("/api/jobs", async (req, res) => {
+  const { title, description, salary, location } = req.body;
+  try {
+    await db.query(
+      "INSERT INTO jobs (title, description, salary, location) VALUES (?, ?, ?, ?)",
+      [title, description, salary, location]
+    );
+    res.json({ success: true, message: "Munka hozzáadva!" });
+  } catch (err) {
+    res.status(500).json({ error: "Hiba a mentés során" });
+  }
+});
+
+
+// Jelentkezők lekérése
+app.get("/api/applicants/:jobId", async (req, res) => {
+  try {
+    const [rows] = await db.query(
+      "SELECT * FROM applicants WHERE job_id = ? ORDER BY id DESC", 
+      [req.params.jobId]
+    );
+    res.json(rows);
+  } catch (err) {
+    res.status(500).json({ error: "Hiba a jelentkezők lekérésekor" });
+  }
+});
+
 // login api
 app.post("/api/login", async (req, res) => {
    // Email és jelszó kiolvasása a request body-ból
