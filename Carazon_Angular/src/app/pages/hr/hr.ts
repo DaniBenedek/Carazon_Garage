@@ -9,7 +9,7 @@ import { JobService } from '../../services/job';
   imports: [CommonModule, FormsModule],
   templateUrl: './hr.html'
 })
-export class HrComponent implements OnInit {
+export class Hr implements OnInit {
   private jobService = inject(JobService);
 
   jobs: any[] = [];

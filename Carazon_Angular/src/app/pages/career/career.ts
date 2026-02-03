@@ -16,7 +16,6 @@ export class Career implements OnInit {
   jobs: any[] = [];
   selectedJob: any = null;
 
-  // Jelentkezési űrlap adatai
   application = {
     name: '',
     email: '',
@@ -35,7 +34,6 @@ export class Career implements OnInit {
 
   selectJob(job: any) {
     this.selectedJob = job;
-    // Reseteljük az űrlapot új választásnál
     this.application = { name: '', email: '', message: '' };
   }
 

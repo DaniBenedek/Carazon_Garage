@@ -8,7 +8,7 @@ import { Szerviz } from './pages/szerviz/szerviz';
 import { Register } from './pages/register/register';
 import { Profile } from './pages/profile/profile';
 import { Contact } from './pages/contact/contact';
-import { HrComponent } from './pages/hr/hr';
+import { Hr } from './pages/hr/hr';
 
 export const routes: Routes = [
   { path: 'Career', component: Career },
@@ -19,7 +19,7 @@ export const routes: Routes = [
   { path: 'Projects', component: Projects },
   { path: 'Szerviz', component: Szerviz },
   { path: 'Profile', component: Profile },
-  { path: 'Hr', component: HrComponent },
+  { path: 'Hr', component: Hr },
   { path: 'Contact', component: Contact }
   
 ];
