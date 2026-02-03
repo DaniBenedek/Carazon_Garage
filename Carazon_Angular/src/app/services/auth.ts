@@ -24,7 +24,7 @@ export class AuthService {
 
         // A backend által visszaküldött user objektum elmentése localStorage-be
         localStorage.setItem('user', JSON.stringify(res.user));
-      })
+      }) 
     );
   }
 
