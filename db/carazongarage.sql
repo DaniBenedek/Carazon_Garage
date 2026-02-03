@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Feb 02. 11:22
+-- Létrehozás ideje: 2026. Feb 03. 12:16
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -20,6 +20,21 @@ SET time_zone = "+00:00";
 --
 -- Adatbázis: `carazongarage`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `applicants`
+--
+
+CREATE TABLE `applicants` (
+  `id` int(11) NOT NULL,
+  `job_id` int(11) DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `message` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -154,6 +169,29 @@ INSERT INTO `hero_content` (`id`, `heroTitle`, `heroSubtitle`, `heroDescription`
 -- --------------------------------------------------------
 
 --
+-- Tábla szerkezet ehhez a táblához `jobs`
+--
+
+CREATE TABLE `jobs` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `salary` varchar(100) DEFAULT NULL,
+  `location` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- A tábla adatainak kiíratása `jobs`
+--
+
+INSERT INTO `jobs` (`id`, `title`, `description`, `salary`, `location`, `created_at`) VALUES
+(3, 'Főszerelő', 'Autók szerelése', '850.000-900.000', 'Makó', '2026-02-03 11:04:29'),
+(4, 'Marketing', 'Cég hirdetése ', '700.000-820.000', 'Makó', '2026-02-03 11:05:10');
+
+-- --------------------------------------------------------
+
+--
 -- Tábla szerkezet ehhez a táblához `language`
 --
 
@@ -161,27 +199,6 @@ CREATE TABLE `language` (
   `id` char(2) NOT NULL,
   `data` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Tábla szerkezet ehhez a táblához `memberships`
---
-
-CREATE TABLE `memberships` (
-  `id` int(11) NOT NULL,
-  `membership` varchar(15) NOT NULL,
-  `discount` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- A tábla adatainak kiíratása `memberships`
---
-
-INSERT INTO `memberships` (`id`, `membership`, `discount`) VALUES
-(1, 'Standard', 5),
-(2, 'Gold', 10),
-(3, 'Gold+', 15);
 
 -- --------------------------------------------------------
 
@@ -254,22 +271,22 @@ INSERT INTO `projects` (`id`, `title`, `category`, `year`, `img`, `description`,
 CREATE TABLE `service` (
   `id` int(5) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `service_status_id` int(11) NOT NULL
+  `time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- A tábla adatainak kiíratása `service`
 --
 
-INSERT INTO `service` (`id`, `name`, `service_status_id`) VALUES
-(1, 'Olajcsere', 0),
-(2, 'Fékbetét csere', 0),
-(3, 'Műszaki vizsga', 0),
-(4, 'Kerékcsere', 0),
-(5, 'Klíma tisztítás', 0),
-(6, 'Diagnosztika', 0),
-(7, 'Akkumulátor csere', 0),
-(8, 'Futómű beállítás', 0);
+INSERT INTO `service` (`id`, `name`, `time`) VALUES
+(1, 'Olajcsere', '0000-00-00 00:00:00'),
+(2, 'Fékbetét csere', '0000-00-00 00:00:00'),
+(3, 'Műszaki vizsga', '2000-01-20 00:00:00'),
+(4, 'Kerékcsere', '0000-00-00 00:00:00'),
+(5, 'Klíma tisztítás', '0000-00-00 00:00:00'),
+(6, 'Diagnosztika', '0000-00-00 00:00:00'),
+(7, 'Akkumulátor csere', '0000-00-00 00:00:00'),
+(8, 'Futómű beállítás', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -311,25 +328,23 @@ CREATE TABLE `user` (
   `password` varchar(255) NOT NULL,
   `email` varchar(150) NOT NULL,
   `phone_number` varchar(20) DEFAULT NULL,
-  `role` varchar(50) DEFAULT NULL,
-  `img` varchar(100) DEFAULT NULL,
-  `membership_id` int(11) NOT NULL
+  `role` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- A tábla adatainak kiíratása `user`
 --
 
-INSERT INTO `user` (`id`, `name`, `password`, `email`, `phone_number`, `role`, `img`, `membership_id`) VALUES
-(1, 'Kiss Péter', 'pw123', 'peter.kiss@example.com', '+36201234567', 'customer', NULL, 0),
-(2, 'Nagy Anna', 'pw456', 'anna.nagy@example.com', '+36205554444', 'admin', NULL, 0),
-(3, 'Tóth Béla', 'pw789', 'bela.toth@example.com', '+36207778888', 'mechanic', NULL, 0),
-(4, 'Szabó László', 'pw111', 'laszlo.szabo@example.com', '+36209991111', 'customer', NULL, 0),
-(5, 'Horváth Júlia', 'pw222', 'julia.horvath@example.com', '+36203334444', 'customer', NULL, 0),
-(6, 'Farkas Gergely', 'pw333', 'gergely.farkas@example.com', '+36206667777', 'mechanic', NULL, 0),
-(7, 'Molnár Eszter', 'pw444', 'eszter.molnar@example.com', '+36201239876', 'customer', NULL, 0),
-(8, 'Balogh Tamás', 'pw555', 'tamas.balogh@example.com', '+36204561234', 'admin', NULL, 0),
-(9, 'admin', 'admin', 'admin@admin.com', '5555', 'admin', NULL, 0);
+INSERT INTO `user` (`id`, `name`, `password`, `email`, `phone_number`, `role`) VALUES
+(1, 'Kiss Péter', 'pw123', 'peter.kiss@example.com', '+36201234567', 'customer'),
+(2, 'Nagy Anna', 'pw456', 'anna.nagy@example.com', '+36205554444', 'admin'),
+(3, 'Tóth Béla', 'pw789', 'bela.toth@example.com', '+36207778888', 'mechanic'),
+(4, 'Szabó László', 'pw111', 'laszlo.szabo@example.com', '+36209991111', 'customer'),
+(5, 'Horváth Júlia', 'pw222', 'julia.horvath@example.com', '+36203334444', 'customer'),
+(6, 'Farkas Gergely', 'pw333', 'gergely.farkas@example.com', '+36206667777', 'mechanic'),
+(7, 'Molnár Eszter', 'pw444', 'eszter.molnar@example.com', '+36201239876', 'customer'),
+(8, 'Balogh Tamás', 'pw555', 'tamas.balogh@example.com', '+36204561234', 'admin'),
+(9, 'admin', 'admin', 'admin@admin.com', '5555', 'admin');
 
 -- --------------------------------------------------------
 
@@ -368,6 +383,13 @@ INSERT INTO `vehicle` (`id`, `vehicle_make`, `vehicle_model`, `user_id`, `licens
 --
 
 --
+-- A tábla indexei `applicants`
+--
+ALTER TABLE `applicants`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `job_id` (`job_id`);
+
+--
 -- A tábla indexei `appointments`
 --
 ALTER TABLE `appointments`
@@ -404,15 +426,15 @@ ALTER TABLE `hero_content`
   ADD PRIMARY KEY (`id`);
 
 --
--- A tábla indexei `language`
+-- A tábla indexei `jobs`
 --
-ALTER TABLE `language`
+ALTER TABLE `jobs`
   ADD PRIMARY KEY (`id`);
 
 --
--- A tábla indexei `memberships`
+-- A tábla indexei `language`
 --
-ALTER TABLE `memberships`
+ALTER TABLE `language`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -431,8 +453,7 @@ ALTER TABLE `projects`
 -- A tábla indexei `service`
 --
 ALTER TABLE `service`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `service_status_id` (`service_status_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- A tábla indexei `service_status`
@@ -445,8 +466,7 @@ ALTER TABLE `service_status`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`),
-  ADD KEY `membership_id` (`membership_id`);
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- A tábla indexei `vehicle`
@@ -460,6 +480,12 @@ ALTER TABLE `vehicle`
 --
 -- A kiírt táblák AUTO_INCREMENT értéke
 --
+
+--
+-- AUTO_INCREMENT a táblához `applicants`
+--
+ALTER TABLE `applicants`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT a táblához `appointments`
@@ -492,10 +518,10 @@ ALTER TABLE `hero_content`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT a táblához `memberships`
+-- AUTO_INCREMENT a táblához `jobs`
 --
-ALTER TABLE `memberships`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `jobs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT a táblához `products`
@@ -536,6 +562,12 @@ ALTER TABLE `vehicle`
 --
 -- Megkötések a kiírt táblákhoz
 --
+
+--
+-- Megkötések a táblához `applicants`
+--
+ALTER TABLE `applicants`
+  ADD CONSTRAINT `applicants_ibfk_1` FOREIGN KEY (`job_id`) REFERENCES `jobs` (`id`) ON DELETE CASCADE;
 
 --
 -- Megkötések a táblához `appointments`

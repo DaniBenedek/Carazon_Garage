@@ -93,6 +93,17 @@ app.get("/api/applicants/:jobId", async (req, res) => {
   }
 });
 
+app.post('/api/apply', (req, res) => {
+  const { job_id, name, email, message } = req.body;
+  
+  const sql = "INSERT INTO applicants (job_id, name, email, message) VALUES (?, ?, ?, ?)";
+  
+  db.query(sql, [job_id, name, email, message], (err, result) => {
+    if (err) return res.status(500).send(err);
+    res.status(200).send({ message: "Sikeres jelentkezés!" });
+  });
+});
+
 // login api
 app.post("/api/login", async (req, res) => {
    // Email és jelszó kiolvasása a request body-ból
