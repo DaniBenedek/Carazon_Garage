@@ -9,7 +9,6 @@ import { CommonModule } from '@angular/common';
   styleUrl: './gallery.css',
 })
 export class Gallery {
-  // Ezt a tömböt hiányolta a fordító:
   galleryItems = [
     { 
       id: 1, 
@@ -31,7 +30,6 @@ export class Gallery {
     }
   ];
 
-  // A gombokhoz tartozó metódusok, ha a Home-ról másoltad a logikát:
   Munkaink() {
     console.log('Navigálás a munkákhoz...');
   }

@@ -20,9 +20,9 @@
           Nyitott pozícióink
         </h2>
         
-        <div *ngFor="let job of jobs" 
+        <div *ngFor="let job of jobs()" 
              (click)="selectJob(job)" 
-             [class.border-amber-500]="selectedJob?.id === job.id"
+             [class.border-amber-500]="selectedJob()?.id === job.id"
              class="p-6 bg-gray-50 border-2 border-transparent 
                     rounded-2xl cursor-pointer hover:shadow-md transition-all group">
           
@@ -46,13 +46,13 @@
       </div>
 
       <div class="relative">
-        <div *ngIf="selectedJob; else noSelection" 
+        <div *ngIf="selectedJob(); else noSelection" 
              class="bg-white p-8 rounded-3xl shadow-2xl border 
                     border-gray-100 sticky top-8 animate-fade-in">
           
-          <h3 class="text-2xl font-bold text-gray-900">{{ selectedJob.title }}</h3>
-          <p class="text-gray-500 mt-2 leading-relaxed">{{ selectedJob.description }}</p>
-          <p class="mt-4 font-bold text-amber-600">{{ selectedJob.salary }}</p>
+          <h3 class="text-2xl font-bold text-gray-900">{{ selectedJob().title }}</h3>
+          <p class="text-gray-500 mt-2 leading-relaxed">{{ selectedJob().description }}</p>
+          <p class="mt-4 font-bold text-amber-600">{{ selectedJob().salary }}</p>
 
           <hr class="my-8">
 
@@ -104,7 +104,7 @@
             <p>Válassz pozíciót a részletekért</p>
           </div>
         </ng-template>
-        
+
       </div>
     </div>
   </div>

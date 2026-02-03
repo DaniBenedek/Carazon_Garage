@@ -1,48 +1,27 @@
 <div class="min-h-screen bg-gray-50 p-6 md:p-12 mt-10">
   <div class="max-w-6xl mx-auto">
-    
     <div class="grid lg:grid-cols-3 gap-8">
+      
       <div class="lg:col-span-1">
-        <div class="bg-white p-6 rounded-2xl 
-                      shadow-sm border border-gray-200">
-          <h2 class="text-xl font-bold mb-6 text-amber-600">
-            Új hirdetés
-          </h2>
-
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+          <h2 class="text-xl font-bold mb-6 text-amber-600">Új hirdetés</h2>
           <div class="space-y-4">
-            <input [(ngModel)]="newJob.title" 
-                   placeholder="Pozíció" 
-                   class="w-full p-3 bg-gray-50 border 
-                          rounded-lg outline-none focus:ring-2 
-                          focus:ring-amber-500">
-
-            <input [(ngModel)]="newJob.salary" 
-                   placeholder="Fizetés" 
-                   class="w-full p-3 bg-gray-50 border 
-                          rounded-lg outline-none 
-                          focus:ring-2 focus:ring-amber-500">
-
-            <textarea [(ngModel)]="newJob.description" 
-                      placeholder="Leírás" 
-                      class="w-full p-3 bg-gray-50 border rounded-lg 
-                             h-32 outline-none focus:ring-2 
-                             focus:ring-amber-500">
-            </textarea>
-
+            <input [(ngModel)]="newJob.title" placeholder="Pozíció" 
+                   class="w-full p-3 bg-gray-50 border rounded-lg outline-none focus:ring-2 focus:ring-amber-500">
+            <input [(ngModel)]="newJob.salary" placeholder="Fizetés" 
+                   class="w-full p-3 bg-gray-50 border rounded-lg outline-none focus:ring-2 focus:ring-amber-500">
+            <textarea [(ngModel)]="newJob.description" placeholder="Leírás" 
+                      class="w-full p-3 bg-gray-50 border rounded-lg h-32 outline-none focus:ring-2 focus:ring-amber-500"></textarea>
             <button (click)="addJob()" 
-                    class="w-full bg-gray-900 text-white 
-                          py-3 rounded-lg font-bold 
-                          hover:bg-amber-600 transition-all">
-                          Mentés
+                    class="w-full bg-gray-900 text-white py-3 rounded-lg font-bold hover:bg-amber-600 transition-all">
+              Mentés
             </button>
           </div>
         </div>
       </div>
 
       <div class="lg:col-span-2">
-        <div class="bg-white rounded-2xl shadow-sm 
-                      border border-gray-200 overflow-hidden">
-
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
           <table class="w-full text-left">
             <thead class="bg-gray-900 text-white text-xs uppercase">
               <tr>
@@ -50,51 +29,43 @@
                 <th class="p-4 text-center">Művelet</th>
               </tr>
             </thead>
-
             <tbody class="divide-y divide-gray-100">
-              @for (job of jobs; track job.id) {
-                <tr class="hover:bg-gray-50">
-                  <td class="p-4 font-bold">{{ job.title }}</td>
-                  <td class="p-4 text-center">
-                    <button (click)="viewApplicants(job.id, job.title)" 
-                            class="bg-amber-100 text-amber-700 px-4 py-2 
-                                    rounded-full text-xs font-bold 
-                                    hover:bg-amber-600 
-                                    hover:text-white transition-all">
-                      Jelentkezők listája
-                    </button>
-                  </td>
-                </tr>
-              }
+              <tr *ngFor="let job of jobs()" class="hover:bg-gray-50">
+                <td class="p-4 font-bold">{{ job.title }}</td>
+                <td class="p-4 text-center">
+                  <button (click)="viewApplicants(job.id, job.title)" 
+                          class="bg-amber-100 text-amber-700 px-4 py-2 rounded-full text-xs font-bold hover:bg-amber-600 hover:text-white transition-all">
+                    Jelentkezők listája
+                  </button>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
 
-        <div id="applicants-section" 
-             class="mt-8">
-          @if (selectedJobTitle) {
+        <div id="applicants-section" class="mt-8">
+          <div *ngIf="selectedJobTitle()">
             <h3 class="text-xl font-bold mb-4">
-              Jelentkezők: 
-              <span class="text-amber-600">
-                {{ selectedJobTitle }}
-              </span>
+              Jelentkezők: <span class="text-amber-600">{{ selectedJobTitle() }}</span>
             </h3>
 
             <div class="grid md:grid-cols-2 gap-4">
-              @for (app of selectedJobForReview; track app.id) {
-                <div class="bg-white p-5 rounded-xl border-l-4 border-amber-500 shadow-sm">
-                  <h4 class="font-bold">{{ app.name }}</h4>
-                  <p class="text-sm text-amber-600">{{ app.email }}</p>
-                  <p class="text-gray-600 mt-2 text-sm italic">"{{ app.message }}"</p>
-                  <p class="text-[10px] text-gray-400 mt-3">{{ app.created_at | date:'short' }}</p>
-                </div>
-              } @empty {
-                <p class="text-gray-400 italic">Még nincs jelentkező erre az állásra.</p>
-              }
+              <div *ngFor="let app of selectedJobForReview()" 
+                   class="bg-white p-5 rounded-xl border-l-4 border-amber-500 shadow-sm">
+                <h4 class="font-bold">{{ app.name }}</h4>
+                <p class="text-sm text-amber-600">{{ app.email }}</p>
+                <p class="text-gray-600 mt-2 text-sm italic">"{{ app.message }}"</p>
+                <p class="text-[10px] text-gray-400 mt-3">{{ app.created_at | date:'short' }}</p>
+              </div>
+
+              <p *ngIf="selectedJobForReview().length === 0" class="text-gray-400 italic">
+                Még nincs jelentkező erre az állásra.
+              </p>
             </div>
-          }
+          </div>
         </div>
       </div>
+
     </div>
   </div>
 </div>

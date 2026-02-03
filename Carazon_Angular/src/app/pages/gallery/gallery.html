@@ -1,22 +1,40 @@
 <section class="py-20 bg-gray-50">
   <div class="container mx-auto px-4">
+    
     <div class="text-center mb-16">
-      <h2 class="text-4xl font-bold text-gray-900 mb-4">Referenciáink</h2>
-      <p class="text-gray-600 max-w-2xl mx-auto">Válogatás a legutóbbi prémium projektjeinkből. Precizitás és szenvedély minden autónál.</p>
+      <h2 class="text-4xl font-bold text-gray-900 mb-4">
+        Referenciáink
+      </h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">
+        Válogatás a legutóbbi prémium projektjeinkből. 
+        Precizitás és szenvedély minden autónál.
+      </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      @for (item of galleryItems; track item.id) {
-        <div class="group relative overflow-hidden rounded-xl shadow-lg bg-black">
-          <img [src]="item.imageUrl" [alt]="item.title" 
-               class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+      
+      <div *ngFor="let item of galleryItems" 
+           class="group relative overflow-hidden rounded-xl shadow-lg bg-black">
+        
+        <img [src]="item.imageUrl" 
+             [alt]="item.title" 
+             class="w-full h-80 object-cover transition-transform duration-500 
+                    group-hover:scale-110 opacity-80 group-hover:opacity-100">
+        
+        <div class="absolute inset-0 bg-linear-to-t 
+                  from-black/80 via-transparent to-transparent flex flex-col justify-end p-6">
           
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-6">
-            <span class="text-amber-500 text-sm font-semibold uppercase tracking-wider">{{ item.category }}</span>
-            <h3 class="text-white text-xl font-bold">{{ item.title }}</h3>
-          </div>
+          <span class="text-amber-500 text-sm font-semibold uppercase tracking-wider">
+            {{ item.category }}
+          </span>
+          
+          <h3 class="text-white text-xl font-bold">
+            {{ item.title }}
+          </h3>
+
         </div>
-      }
+      </div>
+
     </div>
   </div>
 </section>
