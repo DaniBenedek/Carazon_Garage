@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
+<<<<<<< HEAD
+-- Létrehozás ideje: 2026. Feb 03. 12:16
+=======
 -- Létrehozás ideje: 2026. Feb 03. 09:58
+>>>>>>> 82e3e4cc8c39ac8bbc216a340199d8d989e2d4df
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -186,7 +190,12 @@ CREATE TABLE `jobs` (
 --
 
 INSERT INTO `jobs` (`id`, `title`, `description`, `salary`, `location`, `created_at`) VALUES
+<<<<<<< HEAD
+(3, 'Főszerelő', 'Autók szerelése', '850.000-900.000', 'Makó', '2026-02-03 11:04:29'),
+(4, 'Marketing', 'Cég hirdetése ', '700.000-820.000', 'Makó', '2026-02-03 11:05:10');
+=======
 (1, 'asd', 'asd', 'asd', 'Budapest, X. kerület', '2026-02-03 08:48:35');
+>>>>>>> 82e3e4cc8c39ac8bbc216a340199d8d989e2d4df
 
 -- --------------------------------------------------------
 
@@ -484,7 +493,11 @@ ALTER TABLE `vehicle`
 -- AUTO_INCREMENT a táblához `applicants`
 --
 ALTER TABLE `applicants`
+<<<<<<< HEAD
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+=======
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+>>>>>>> 82e3e4cc8c39ac8bbc216a340199d8d989e2d4df
 
 --
 -- AUTO_INCREMENT a táblához `appointments`
@@ -520,7 +533,11 @@ ALTER TABLE `hero_content`
 -- AUTO_INCREMENT a táblához `jobs`
 --
 ALTER TABLE `jobs`
+<<<<<<< HEAD
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+=======
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+>>>>>>> 82e3e4cc8c39ac8bbc216a340199d8d989e2d4df
 
 --
 -- AUTO_INCREMENT a táblához `products`

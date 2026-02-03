@@ -52,6 +52,7 @@ export class Hr implements OnInit {
       next: (data) => {
         this.selectedJobForReview.set(data);
         
+
         setTimeout(() => {
           document.getElementById('applicants-section')?.scrollIntoView({ behavior: 'smooth' });
         }, 100);

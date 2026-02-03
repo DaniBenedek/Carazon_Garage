@@ -9,10 +9,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './profile.css',
 })
 export class Profile implements OnInit {
-  // A felhasználói adatok betöltése a tárolóból
   user = JSON.parse(localStorage.getItem('user') || 'null');
 
-  // Példa adatok a felület teszteléséhez (ezeket később API-ból is töltheted)
   appointments = [
     {
       carType: 'BMW M3 (G80)',
@@ -31,17 +29,15 @@ export class Profile implements OnInit {
   ngOnInit(): void {
     if (!this.user) {
       console.warn('Nincs bejelentkezett felhasználó!');
-      // Itt esetleg átirányíthatod a login oldalra, ha használsz Router-t
     }
   }
 
-  // Segédfüggvény a név kezdőbetűjéhez az avatarhoz
   getInitials(): string {
     return this.user?.name ? this.user.name.charAt(0).toUpperCase() : 'U';
   }
 
   logout() {
     localStorage.removeItem('user');
-    window.location.reload(); // Vagy router.navigate
+    window.location.reload();
   }
 }
