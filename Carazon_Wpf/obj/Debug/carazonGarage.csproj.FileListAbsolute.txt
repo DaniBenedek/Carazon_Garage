@@ -64,3 +64,9 @@ C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\login.g.cs
 C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\App.baml
 C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\ugyfelek_uj.baml
 C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\ugyfelek_uj.g.cs
+C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\carazonGarage.exe.config
+C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\Alkatreszek_uj.baml
+C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\Alkatreszek_KeszletFrissit.g.cs
+C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\Alkatreszek_uj.g.cs
+C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\carazonGarage_MarkupCompile.lref
+C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\Alkatreszek_KeszletFrissit.baml

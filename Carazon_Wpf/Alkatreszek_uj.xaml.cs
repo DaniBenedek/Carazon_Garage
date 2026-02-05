@@ -32,7 +32,7 @@ namespace carazonGarage
                 string.IsNullOrWhiteSpace(textBox_Type.Text) ||
                 string.IsNullOrWhiteSpace(textbox_Cikkszam.Text))
             {
-                MessageBox.Show("Alkatrész név,típus,cikkszám megadása kötelező", "Hiba");
+                MessageBox.Show("Alkatrész név, típus és cikkszám megadása kötelező!", "Hiba");
                 return;
             }
 
@@ -41,9 +41,8 @@ namespace carazonGarage
             {
                 conn.Open();
 
-                // 🔍 1️⃣ Check email
                 string checkItemCode =
-                    $"SELECT COUNT(*) FROM products WHERE email = '{textbox_Cikkszam.Text}'";
+                    $"SELECT COUNT(*) FROM products WHERE item_number = '{textbox_Cikkszam.Text}'";
 
                 MySqlCommand itemcodeCmd = new MySqlCommand(checkItemCode, conn);
                 int itemcodeExists = Convert.ToInt32(itemcodeCmd.ExecuteScalar());
@@ -54,27 +53,19 @@ namespace carazonGarage
                     return;
                 }
 
-                // 3️⃣ Insert user
                 string insertPart =
                     $"INSERT INTO products(name, price, storage_quantity, type, item_number, description) " +
-                    $"VALUES('{textBox_Name.Text}', '{textBox_Price.Text}', '{textBox_Quantity.Text}', '{textBox_Type.Text}', '{textbox_Cikkszam.Text}', '{textBox_Description.Text}')";
+                    $"VALUES('{textBox_Name.Text}', '{textBox_Price.Text}', '{textBox_Quantity.Text}', " +
+                    $"'{textBox_Type.Text}', '{textbox_Cikkszam.Text}', '{textBox_Description.Text}')";
 
                 MySqlCommand cmdPart = new MySqlCommand(insertPart, conn);
                 cmdPart.ExecuteNonQuery();
-                int userId = (int)cmdPart.LastInsertedId;
-
-                // 4️⃣ Insert vehicle (country_id = 1)
-                string insertVehicle =
-                    $"INSERT INTO vehicle(user_id, country_id, license_plate, vehicle_make, vehicle_model) " +
-                    $"VALUES({userId}, 1, '{textBox_LicensePlate.Text}', '{textBox_Make.Text}', '{textBox_Model.Text}')";
-
-                MySqlCommand cmdVehicle = new MySqlCommand(insertVehicle, conn);
-                cmdVehicle.ExecuteNonQuery();
             }
 
             DialogResult = true;
             Close();
         }
+
 
 
 
