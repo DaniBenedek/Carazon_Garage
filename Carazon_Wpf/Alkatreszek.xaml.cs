@@ -93,6 +93,12 @@ namespace carazonGarage
             this.Close();
             mainWindow.Show();
         }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Alkatreszek_uj ujalkatresz = new Alkatreszek_uj();
+            this.Close();
+            ujalkatresz.Show();
+        }
 
         private void DataGrid_Alkatreszek_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -112,5 +118,6 @@ namespace carazonGarage
             Textblock_Quanity.Text = row["storage_quantity"].ToString();
 
         }
+
     }
 }

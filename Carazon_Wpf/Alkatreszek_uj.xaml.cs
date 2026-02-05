@@ -66,12 +66,11 @@ namespace carazonGarage
             Close();
         }
 
-
-
-
         private void Cancel_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            Alkatreszek alkatreszek = new Alkatreszek();
+            this.Close();
+            alkatreszek.Show();
         }
     }
 }
