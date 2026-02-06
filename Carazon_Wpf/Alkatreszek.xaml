@@ -4,7 +4,8 @@
         xmlns:av="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="av" x:Class="carazonGarage.Alkatreszek"
         Title="Alkatrészek (Parts Inventory)"
         Width="1000" Height="700"
-        Background="#121417">
+        Background="#121417"
+        WindowStyle="None">
 
     <Grid Margin="16">
         <Grid.RowDefinitions>

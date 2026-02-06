@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Ügyfelek"
         Width="1000" Height="700"
-        Background="#121417">
+        Background="#121417"
+        WindowStyle="None">
 
     <Grid Margin="16">
         <Grid.RowDefinitions>

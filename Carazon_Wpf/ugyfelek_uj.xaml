@@ -6,7 +6,8 @@
         Height="583"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
-        Background="#121417">
+        Background="#121417"
+        WindowStyle="None">
 
     <Border Background="#1A1D21" CornerRadius="16" Padding="24" Margin="16">
         <Grid>

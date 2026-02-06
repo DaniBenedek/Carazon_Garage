@@ -8,7 +8,8 @@
         Title="CarazonGarage" 
         Width="1200" 
         Height="800"
-        Background="#121417">
+        Background="#121417"
+        WindowStyle="None">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="240"/>

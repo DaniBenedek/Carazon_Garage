@@ -4,7 +4,8 @@
         Title="Bejelentkezés" Height="300" Width="400"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
-        Background="#121417">
+        Background="#121417"
+        WindowStyle="None">
 
     <Grid>
         <StackPanel Margin="20" VerticalAlignment="Center">
