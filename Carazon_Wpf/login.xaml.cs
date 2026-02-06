@@ -56,5 +56,11 @@ namespace carazonGarage
                 connection.Close();
             }
         }
+
+        private void Kilepes_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            this.Close();
+        }
     }
 }

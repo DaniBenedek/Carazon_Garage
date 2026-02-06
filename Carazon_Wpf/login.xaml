@@ -8,13 +8,31 @@
         WindowStyle="None">
 
     <Grid>
-        <StackPanel Margin="20" VerticalAlignment="Center">
+        <Button Content="✕" 
+                Background="#FFDC1C1C" 
+                Foreground="#EAECEF" 
+                BorderThickness="1" 
+                Click="Kilepes_Click" 
+                FontSize="14"
+                Width="25" 
+                Height="25"
+                Margin="10,10"
+                HorizontalAlignment="Right" 
+                VerticalAlignment="Top"
+                Cursor="Hand"/>
+
+        <StackPanel Margin="40,20,40,20" VerticalAlignment="Center">
+
             <TextBlock Text="Bejelentkezés" FontSize="20" FontWeight="Bold" Foreground="White" Margin="0,0,0,20" HorizontalAlignment="Center"/>
+
             <TextBlock Text="Felhasználónév" Foreground="#A9B1BB"/>
-            <TextBox Name="TxtUsername" Margin="0,4,0,12" Background="#2A2F36" Foreground="White"/>
+            <TextBox Name="TxtUsername" Margin="0,4,0,12" Background="#2A2F36" Foreground="White" Padding="5"/>
+
             <TextBlock Text="Jelszó" Foreground="#A9B1BB"/>
-            <PasswordBox Name="TxtPassword" Margin="0,4,0,20" Background="#2A2F36" Foreground="White"/>
-            <Button Content="Bejelentkezés" Background="#3BA9FF" Foreground="White" Click="BtnLogin_Click"/>
+            <PasswordBox Name="TxtPassword" Margin="0,4,0,20" Background="#2A2F36" Foreground="White" Padding="5"/>
+
+            <Button Content="Bejelentkezés" Background="#3BA9FF" Foreground="White" Height="35" Click="BtnLogin_Click"/>
+
         </StackPanel>
     </Grid>
 </Window>
