@@ -1,12 +1,12 @@
 //  backend express szerver importalas
-const express = require("express");
+let express = require("express");
 // a cors- al kotom ossze a backend es a frontend-et
-const cors = require("cors");
+let cors = require("cors");
 // Az adatbazis kapcsolat masik fajlbol
-const db = require("./db");
+let db = require("./db");
 
 //express peldany, cors engedelyezes minden kereshez, json body-k automatikus feldolgozasa
-const app = express();
+let app = express();
 app.use(cors());
 app.use(express.json());
 
@@ -15,7 +15,17 @@ app.use(express.json());
 app.get("/api/cars", async (req, res) => {
   try {
     //sql lekerdezes futtatasa
-    const [rows] = await db.query("SELECT * FROM user");
+    let [rows] = await db.query(`SELECT
+                                        id,
+                                        name,
+                                        password,
+                                        email,
+                                        phone_number,
+                                        role,
+                                        img,
+                                        membership_id
+                                    FROM
+                                        user`);
     // Lekért adatok visszaadása json-ban
     res.json(rows);
     
@@ -36,8 +46,18 @@ app.get("/api/car/:id", async (req, res) => {
 // vehicle lista
 app.get("/api/vehicle", async (req, res) => {
   try {
-    const [rows] = await db.query("SELECT * FROM vehicle");
-    res.json(rows);
+    let [rows] = await db.query(`SELECT id,
+                                          vehicle_make,
+                                          vehicle_model,
+                                          user_id,
+                                          license_plate,
+                                          country_id,
+                                          color,
+                                          traffic_permit_date,
+                                          technical_exam_date
+                                      FROM 
+                                          vehicle`);
+    res.json(rows); 
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Adatbázis Hiba!" });
@@ -47,7 +67,16 @@ app.get("/api/vehicle", async (req, res) => {
 // projects lista
 app.get("/api/projects", async (req, res) => {
   try {
-    const [rows] = await db.query("SELECT * FROM `projects`");
+    let [rows] = await db.query(`SELECT id,
+                                          title,
+                                          category,
+                                          year,
+                                          img,
+                                          description,
+                                          materials,
+                                          dimensions
+                                      FROM
+                                          projects`);
     res.json(rows);
   } catch (err) {
     console.error(err);
@@ -58,7 +87,7 @@ app.get("/api/projects", async (req, res) => {
 // Munkák lekérése 
 app.get("/api/jobs", async (req, res) => {
   try {
-    const [rows] = await db.query("SELECT * FROM jobs ORDER BY id DESC");
+    let [rows] = await db.query("SELECT * FROM jobs ORDER BY id DESC");
     res.json(rows);
   } catch (err) {
     res.status(500).json({ error: "Hiba a munkák lekérésekor" });
@@ -67,7 +96,7 @@ app.get("/api/jobs", async (req, res) => {
 
 // Új munka feltöltése (HR oldalról)
 app.post("/api/jobs", async (req, res) => {
-  const { title, description, salary, location } = req.body;
+  let { title, description, salary, location } = req.body;
   try {
     await db.query(
       "INSERT INTO jobs (title, description, salary, location) VALUES (?, ?, ?, ?)",
@@ -83,7 +112,7 @@ app.post("/api/jobs", async (req, res) => {
 // Jelentkezők lekérése
 app.get("/api/applicants/:jobId", async (req, res) => {
   try {
-    const [rows] = await db.query(
+    let [rows] = await db.query(
       "SELECT * FROM applicants WHERE job_id = ? ORDER BY id DESC", 
       [req.params.jobId]
     );
@@ -94,9 +123,9 @@ app.get("/api/applicants/:jobId", async (req, res) => {
 });
 
 app.post('/api/apply', (req, res) => {
-  const { job_id, name, email, message } = req.body;
+  let { job_id, name, email, message } = req.body;
   
-  const sql = "INSERT INTO applicants (job_id, name, email, message) VALUES (?, ?, ?, ?)";
+  let sql = "INSERT INTO applicants (job_id, name, email, message) VALUES (?, ?, ?, ?)";
   
   db.query(sql, [job_id, name, email, message], (err, result) => {
     if (err) return res.status(500).send(err);
@@ -107,7 +136,7 @@ app.post('/api/apply', (req, res) => {
 // login api
 app.post("/api/login", async (req, res) => {
    // Email és jelszó kiolvasása a request body-ból
-  const { email, password } = req.body;
+  let { email, password } = req.body;
 
   // Ha nincs email vagy jelszó → hibás kérés
   if (!email || !password) {
@@ -116,7 +145,7 @@ app.post("/api/login", async (req, res) => {
 
   try {
     // Felhasználó keresése az adatbázisban
-    const [rows] = await db.query(
+    let [rows] = await db.query(
       "SELECT id, email, name FROM user WHERE email = ? AND password = ?",
       [email, password]
     );
@@ -141,5 +170,5 @@ app.post("/api/login", async (req, res) => {
 
 // ide jön majd a build- kiszolgálás
 
-const PORT = 3000;
+let PORT = 3000;
 app.listen(PORT, () => console.log("A backend a következő linken elérhető: localhost:" + PORT));
