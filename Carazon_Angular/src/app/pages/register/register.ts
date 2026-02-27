@@ -1,19 +1,20 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms'; // Kell a form validációhoz és az ngModel-hez
-import { CommonModule } from '@angular/common'; // Kell az *ngIf hibaüzenethez
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
   standalone: true,
   imports: [
     FormsModule, 
-    CommonModule
+    CommonModule,
+    HttpClientModule
   ],
   templateUrl: './register.html',
   styleUrl: './register.css',
 })
 export class Register {
-  // Ebben az objektumban tároljuk az űrlap adatait
   regData = {
     name: '',
     email: '',
@@ -24,17 +25,32 @@ export class Register {
 
   isPasswordVisible: boolean = false;
   
+  constructor(private http: HttpClient) {}
+
   togglePassword() {
     this.isPasswordVisible = !this.isPasswordVisible;
   }
 
-  // Ez a függvény fut le a Regisztráció gomb megnyomásakor
   onSubmit() {
-    // Itt íratjuk ki az adatokat a konzolra
-    console.log('Sikeres regisztráció! Az adatok:');
-    console.log('Név:', this.regData.name);
-    console.log('Email:', this.regData.email);
-    console.log('Telefon:', this.regData.phone);
-    console.log('Jelszó:', this.regData.password);
+    const payload = {
+      name: this.regData.name,
+      email: this.regData.email,
+      password: this.regData.password,
+      phone_number: this.regData.phone
+    };
+
+
+    this.http.post('http://localhost:3000/api/register', payload)
+      .subscribe({
+        next: (response: any) => {
+          console.log('Szerver válasza:', response);
+          alert('Sikeres regisztráció!');
+
+        },
+        error: (error) => {
+          console.error('Hiba történt:', error);
+          alert(error.error?.message || 'Hiba történt a regisztráció során.');
+        }
+      });
   }
 }

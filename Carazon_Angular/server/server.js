@@ -168,7 +168,35 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
-// ide jön majd a build- kiszolgálás
+//Register
+app.post("/api/register", (req, res) => {
+  // Figyelj a nevekre: a frontendről "phone_number" néven küldjük most már!
+  const { name, password, email, phone_number } = req.body;
+
+  // Ellenőrizzük, hogy minden adat megjött-e
+  if (!name || !password || !email) {
+    return res.status(400).json({ message: "Hiányzó adatok!" });
+  }
+
+  const sql = `INSERT INTO user (name, password, email, phone_number) VALUES (?, ?, ?, ?)`;
+  
+  db.query(sql, [name, password, email, phone_number], (error, result) => {
+    if (error) {
+      console.error("Adatbázis hiba:", error);
+      // Ha például már létezik az email
+      if (error.code === 'ER_DUP_ENTRY') {
+        return res.status(400).json({ message: "Ez az email már regisztrálva van!" });
+      }
+      return res.status(500).json({ message: "Hiba történt a mentés során." });
+    }
+
+    res.json("Siker");
+    res.status(201).json({ message: "Sikeres regisztráció!" });
+    
+  });
+});
+
+
 
 let PORT = 3000;
 app.listen(PORT, () => console.log("A backend a következő linken elérhető: localhost:" + PORT));
