@@ -94,6 +94,22 @@ app.get("/api/jobs", async (req, res) => {
   }
 });
 
+// Szerviz szolgáltatások lekérése
+app.get("/api/services", async (req, res) => {
+  try {
+    let [rows] = await db.query(`
+      SELECT id, name, time
+      FROM service
+      ORDER BY id ASC
+    `);
+
+    res.json(rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Hiba a szolgáltatások lekérésekor" });
+  }
+});
+
 // Új munka feltöltése (HR oldalról)
 app.post("/api/jobs", async (req, res) => {
   let { title, description, salary, location } = req.body;

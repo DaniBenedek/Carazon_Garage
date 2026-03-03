@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -21,19 +22,12 @@ export class Szerviz {
   // naptár adatok
   currentMonth = new Date(2026, 0); // január 2026
   daysInMonth: number[] = [];
-  
-  // Azok a napok amikor nincs munka
-  closedDates: number[] = [1, 7, 14, 21, 28];
 
   // jelenlegi elérhető szolgáltatások
-  services = [
-    { id: 1, name: 'Általános Szerviz', price: '25.000 Ft-tól' },
-    { id: 2, name: 'Diagnosztika', price: '15.000 Ft' },
-    { id: 3, name: 'Prémium Kozmetika', price: '40.000 Ft-tól' }
-  ];
+  services: any[] = [];
 
   // komponens inicializálása, űrlap létrehozása és időpontok generálása
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private http: HttpClient) {
     this.bookingForm = this.fb.group({
       service: ['', Validators.required],
       name: ['', Validators.required],
@@ -42,6 +36,7 @@ export class Szerviz {
     });
     this.generateTimeSlots();
     this.generateCalendar();
+    this.loadServices(); 
   }
 
   // Naptár Napjainak létrehozása
@@ -54,8 +49,17 @@ export class Szerviz {
   }
 
   // Nyitva van e az üzlet azt ellenőrzni le
+  // Nyitva van-e az üzlet (hétvége ellenőrzés)
   isDayClosed(day: number): boolean {
-    return this.closedDates.includes(day);
+    const date = new Date(
+      this.currentMonth.getFullYear(),
+      this.currentMonth.getMonth(),
+      day
+    );
+  
+    const dayOfWeek = date.getDay(); // 0 = vasárnap, 6 = szombat
+  
+    return dayOfWeek === 0 || dayOfWeek === 6;
   }
 
   // 9 től 17 óráig 30 percenként időpont létrehozás
@@ -65,6 +69,13 @@ export class Szerviz {
       this.timeSlots.push(`${hour.toString().padStart(2, '0')}:30`);
     }
   }
+
+  loadServices() {
+  this.http.get<any[]>('http://localhost:3000/api/services')
+    .subscribe(data => {
+      this.services = data;
+    });
+}
 
   // dátum kiválasztása a naptárból
   selectDate(day: number) {
