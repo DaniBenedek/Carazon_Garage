@@ -20,7 +20,7 @@ export class Szerviz {
   timeSlots: string[] = [];
   
   // naptár adatok
-  currentMonth = new Date(2026, 0); // január 2026
+  currentMonth = new Date(); // aktuális hónap
   daysInMonth: number[] = [];
 
   // jelenlegi elérhető szolgáltatások
@@ -41,26 +41,40 @@ export class Szerviz {
 
   // Naptár Napjainak létrehozása
   generateCalendar() {
-    const year = this.currentMonth.getFullYear();
-    const month = this.currentMonth.getMonth();
-    const daysCount = new Date(year, month + 1, 0).getDate();
-    
-    this.daysInMonth = Array.from({ length: daysCount }, (_, i) => i + 1);
+  let year = this.currentMonth.getFullYear();
+  let month = this.currentMonth.getMonth();
+
+  let firstDayOfMonth = new Date(year, month, 1).getDay(); 
+
+  let daysCount = new Date(year, month + 1, 0).getDate();
+
+  let days: number[] = [];
+
+  // Üres helyek a hónap elején
+  for (let i = 0; i < firstDayOfMonth; i++) {
+    days.push(0);
   }
 
-  // Nyitva van e az üzlet azt ellenőrzni le
-  // Nyitva van-e az üzlet (hétvége ellenőrzés)
-  isDayClosed(day: number): boolean {
-    const date = new Date(
-      this.currentMonth.getFullYear(),
-      this.currentMonth.getMonth(),
-      day
-    );
-  
-    const dayOfWeek = date.getDay(); // 0 = vasárnap, 6 = szombat
-  
-    return dayOfWeek === 0 || dayOfWeek === 6;
+  // Hónap napjai
+  for (let i = 1; i <= daysCount; i++) {
+    days.push(i);
   }
+
+  this.daysInMonth = days;
+}
+  isDayClosed(day: number): boolean {
+  if (day === 0) return false;
+
+  const date = new Date(
+    this.currentMonth.getFullYear(),
+    this.currentMonth.getMonth(),
+    day
+  );
+
+  let dayOfWeek = date.getDay(); 
+
+  return dayOfWeek === 0 || dayOfWeek === 6;
+}
 
   // 9 től 17 óráig 30 percenként időpont létrehozás
   generateTimeSlots() {
