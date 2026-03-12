@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Feb 03. 12:16
+-- Létrehozás ideje: 2026. Már 12. 11:00
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -67,59 +67,6 @@ INSERT INTO `appointments` (`id`, `user_id`, `vehicle_id`, `service_id`, `date`,
 (6, 6, 6, 6, '2025-12-15', 'pending', 'Diagnosztika szükséges', '2025-11-11 11:14:40', 25000.00),
 (7, 7, 7, 7, '2025-12-20', 'booked', 'Akkumulátor csere', '2025-11-11 11:14:40', 30000.00),
 (8, 8, 8, 8, '2025-12-22', 'confirmed', 'Futómű beállítás', '2025-11-11 11:14:40', 35000.00);
-
--- --------------------------------------------------------
-
---
--- Tábla szerkezet ehhez a táblához `cart`
---
-
-CREATE TABLE `cart` (
-  `id` int(5) NOT NULL,
-  `user_id` int(5) NOT NULL,
-  `date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- A tábla adatainak kiíratása `cart`
---
-
-INSERT INTO `cart` (`id`, `user_id`, `date`) VALUES
-(1, 1, '2025-11-10'),
-(2, 2, '2025-11-11'),
-(3, 3, '2025-11-12'),
-(4, 4, '2025-11-13'),
-(5, 5, '2025-11-14'),
-(6, 6, '2025-11-15'),
-(7, 7, '2025-11-16'),
-(8, 8, '2025-11-17');
-
--- --------------------------------------------------------
-
---
--- Tábla szerkezet ehhez a táblához `cart_items`
---
-
-CREATE TABLE `cart_items` (
-  `id` int(5) NOT NULL,
-  `cart_id` int(5) NOT NULL,
-  `product_id` int(5) NOT NULL,
-  `quantity` int(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- A tábla adatainak kiíratása `cart_items`
---
-
-INSERT INTO `cart_items` (`id`, `cart_id`, `product_id`, `quantity`) VALUES
-(1, 1, 1, 2),
-(2, 1, 3, 5),
-(3, 2, 2, 1),
-(4, 4, 4, 1),
-(5, 5, 5, 1),
-(6, 6, 6, 2),
-(7, 7, 7, 1),
-(8, 8, 8, 1);
 
 -- --------------------------------------------------------
 
@@ -399,21 +346,6 @@ ALTER TABLE `appointments`
   ADD KEY `service_id` (`service_id`);
 
 --
--- A tábla indexei `cart`
---
-ALTER TABLE `cart`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`);
-
---
--- A tábla indexei `cart_items`
---
-ALTER TABLE `cart_items`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `cart_id` (`cart_id`),
-  ADD KEY `product_id` (`product_id`);
-
---
 -- A tábla indexei `country`
 --
 ALTER TABLE `country`
@@ -494,18 +426,6 @@ ALTER TABLE `appointments`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT a táblához `cart`
---
-ALTER TABLE `cart`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT a táblához `cart_items`
---
-ALTER TABLE `cart_items`
-  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
 -- AUTO_INCREMENT a táblához `country`
 --
 ALTER TABLE `country`
@@ -576,19 +496,6 @@ ALTER TABLE `appointments`
   ADD CONSTRAINT `appointments_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   ADD CONSTRAINT `appointments_ibfk_2` FOREIGN KEY (`vehicle_id`) REFERENCES `vehicle` (`id`),
   ADD CONSTRAINT `appointments_ibfk_3` FOREIGN KEY (`service_id`) REFERENCES `service` (`id`);
-
---
--- Megkötések a táblához `cart`
---
-ALTER TABLE `cart`
-  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
-
---
--- Megkötések a táblához `cart_items`
---
-ALTER TABLE `cart_items`
-  ADD CONSTRAINT `cart_items_ibfk_1` FOREIGN KEY (`cart_id`) REFERENCES `cart` (`id`),
-  ADD CONSTRAINT `cart_items_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
 
 --
 -- Megkötések a táblához `vehicle`
