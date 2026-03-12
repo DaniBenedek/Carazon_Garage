@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './profile.css',
 })
 export class Profile implements OnInit {
-  user = JSON.parse(localStorage.getItem('user') || 'null');
+  user = JSON.parse(localStorage.getItem('carazongarage_user') || 'null');
 
   appointments = [
     {
@@ -37,7 +37,7 @@ export class Profile implements OnInit {
   }
 
   logout() {
-    localStorage.removeItem('user');
+    localStorage.removeItem('carazongarage_user');
     window.location.reload();
   }
 }
