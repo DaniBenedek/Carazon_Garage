@@ -18,7 +18,7 @@ export class Header {
   constructor(public auth: AuthService) {}
 
   get user() {
-    return JSON.parse(localStorage.getItem('user') || 'null');
+    return JSON.parse(localStorage.getItem('carazongarage_user') || 'null');
   }
 
   // Meglévő metódusok
