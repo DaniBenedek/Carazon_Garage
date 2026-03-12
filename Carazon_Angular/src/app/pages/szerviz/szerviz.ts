@@ -1,32 +1,33 @@
-import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { CommonModule, registerLocaleData } from '@angular/common';
+import localeHu from '@angular/common/locales/hu';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+// Magyar nyelv regisztrálása a dátum pipe-hoz
+registerLocaleData(localeHu);
 
 @Component({
   selector: 'app-szerviz',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, HttpClientModule],
   templateUrl: './szerviz.html',
   styleUrl: './szerviz.css',
 })
-
-// szervíz osztály definíció
-export class Szerviz {
+export class Szerviz implements OnInit {
   bookingForm: FormGroup;
   currentStep = 1;
   selectedDate: Date | null = null;
   selectedSlot: string | null = null;
   timeSlots: string[] = [];
   
-  // naptár adatok
-  currentMonth = new Date(); // aktuális hónap
+  // Naptár adatok
+  currentMonth = new Date();
   daysInMonth: number[] = [];
+  weekDays = ['H', 'K', 'Sze', 'Cs', 'P', 'Szo', 'V'];
 
-  // jelenlegi elérhető szolgáltatások
   services: any[] = [];
 
-  // komponens inicializálása, űrlap létrehozása és időpontok generálása
   constructor(private fb: FormBuilder, private http: HttpClient) {
     this.bookingForm = this.fb.group({
       service: ['', Validators.required],
@@ -34,86 +35,89 @@ export class Szerviz {
       email: ['', [Validators.required, Validators.email]],
       phone: ['', Validators.required]
     });
-    this.generateTimeSlots();
+  }
+
+  ngOnInit() {
     this.generateCalendar();
-    this.loadServices(); 
+    this.loadServices();
   }
 
-  // Naptár Napjainak létrehozása
   generateCalendar() {
-  let year = this.currentMonth.getFullYear();
-  let month = this.currentMonth.getMonth();
+    let year = this.currentMonth.getFullYear();
+    let month = this.currentMonth.getMonth();
 
-  let firstDayOfMonth = new Date(year, month, 1).getDay(); 
+    // Hétfői kezdés kiszámítása
+    let firstDayIndex = new Date(year, month, 1).getDay();
+    let offset = firstDayIndex === 0 ? 6 : firstDayIndex - 1;
 
-  let daysCount = new Date(year, month + 1, 0).getDate();
+    let daysCount = new Date(year, month + 1, 0).getDate();
+    let days: number[] = [];
 
-  let days: number[] = [];
+    for (let i = 0; i < offset; i++) {
+      days.push(0);
+    }
 
-  // Üres helyek a hónap elején
-  for (let i = 0; i < firstDayOfMonth; i++) {
-    days.push(0);
+    for (let i = 1; i <= daysCount; i++) {
+      days.push(i);
+    }
+
+    this.daysInMonth = days;
   }
 
-  // Hónap napjai
-  for (let i = 1; i <= daysCount; i++) {
-    days.push(i);
+  changeMonth(delta: number) {
+    this.currentMonth = new Date(
+      this.currentMonth.getFullYear(),
+      this.currentMonth.getMonth() + delta,
+      1
+    );
+    this.generateCalendar();
+    this.selectedDate = null;
+    this.selectedSlot = null;
+    this.timeSlots = [];
   }
 
-  this.daysInMonth = days;
-}
   isDayClosed(day: number): boolean {
-  if (day === 0) return false;
+    if (day === 0) return true;
+    const checkDate = new Date(this.currentMonth.getFullYear(), this.currentMonth.getMonth(), day);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    // Vasárnap (0) vagy múltbéli nap
+    return checkDate < today || checkDate.getDay() === 0;
+  }
 
-  const date = new Date(
-    this.currentMonth.getFullYear(),
-    this.currentMonth.getMonth(),
-    day
-  );
+  selectDate(day: number) {
+    if (day === 0 || this.isDayClosed(day)) return;
+    this.selectedDate = new Date(this.currentMonth.getFullYear(), this.currentMonth.getMonth(), day);
+    this.selectedSlot = null;
+    this.generateTimeSlots(this.selectedDate);
+  }
 
-  let dayOfWeek = date.getDay(); 
+  generateTimeSlots(date: Date) {
+    this.timeSlots = [];
+    const dayOfWeek = date.getDay(); 
+    // Szombat: 8-13 | Hétköznap: 8-17
+    let endHour = (dayOfWeek === 6) ? 13 : 17;
 
-  return dayOfWeek === 0 || dayOfWeek === 6;
-}
-
-  // 9 től 17 óráig 30 percenként időpont létrehozás
-  generateTimeSlots() {
-    for (let hour = 9; hour < 17; hour++) {
+    for (let hour = 8; hour < endHour; hour++) {
       this.timeSlots.push(`${hour.toString().padStart(2, '0')}:00`);
       this.timeSlots.push(`${hour.toString().padStart(2, '0')}:30`);
     }
   }
 
   loadServices() {
-  this.http.get<any[]>('http://localhost:3000/api/services')
-    .subscribe(data => {
-      this.services = data;
-    });
-}
-
-  // dátum kiválasztása a naptárból
-  selectDate(day: number) {
-    if (!this.isDayClosed(day)) {
-      this.selectedDate = new Date(
-        this.currentMonth.getFullYear(), 
-        this.currentMonth.getMonth(), 
-        day
-      );
-    }
+    this.http.get<any[]>('http://localhost:3000/api/services')
+      .subscribe({
+        next: (data) => this.services = data,
+        error: () => this.services = [{ id: 1, name: 'Általános javítás', price: 'Egyedi ár' }]
+      });
   }
 
-  // léptetés a következő lépésre (maximum 3-ig)
   nextStep() {
     if (this.currentStep < 3) this.currentStep++;
   }
 
-  // foglalás megerősítése és a konzolra az adatok kíírása
   confirmBooking() {
-    console.log('Foglalás adatai:', {
-      ...this.bookingForm.value,
-      date: this.selectedDate,
-      slot: this.selectedSlot
-    });
+    console.log('Adatok:', { ...this.bookingForm.value, date: this.selectedDate, slot: this.selectedSlot });
     this.nextStep();
   }
 }
