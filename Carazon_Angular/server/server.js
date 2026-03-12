@@ -201,12 +201,14 @@ app.post("/api/register", async (req, res) => {
     }
 
     // Jelszó hossz ellenőrzése
-    if (password.length < 6) {
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+    if (!passwordRegex.test(password)) {
       return res.status(400).json({ message: "A jelszónak legalább 6 karakter hosszúnak kell lennie!" });
     }
 
     // Telefonszám formátum ellenőrzése (opcionális)
-    if (phone_number && phone_number.length > 20) {
+    const phoneRegex = /^(\+?[0-9\s\-]{7,15})$/;
+    if (!phoneRegex.test(phone_number)) {
       return res.status(400).json({ message: "A telefonszám túl hosszú!" });
     }
 

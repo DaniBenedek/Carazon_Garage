@@ -74,6 +74,7 @@
               [(ngModel)]="regData.email"
               #emailInput="ngModel"
               id="email" 
+              pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
               autocomplete="email"
               class="bg-gray-50 border border-gray-300 
                      text-gray-900 rounded-lg 
@@ -103,19 +104,23 @@
             <input 
               type="tel" 
               name="phone"
-              maxlength="20"
               [(ngModel)]="regData.phone"
+              #phoneInput="ngModel"
               id="phone" 
-              autocomplete="mobile"
-              class="bg-gray-50 border border-gray-300 
-                     text-gray-900 rounded-lg 
-                     focus:ring-primary-600 focus:border-primary-600 
-                     block w-full p-2.5 
-                     dark:bg-gray-700 dark:border-gray-600 
-                     dark:text-white
-                     placeholder-gray-500" 
+              autocomplete="tel"
+              pattern="^(\+?[0-9\s\-]{7,15})$"
+              class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white placeholder-gray-500" 
               placeholder="+36 30 123 4567" 
               required>
+          
+            <div class="min-h-5 mt-1">
+              <p 
+                *ngIf="phoneInput.invalid && phoneInput.touched" 
+                class="text-xs text-red-600 dark:text-red-400 font-medium">
+                <span *ngIf="phoneInput.errors?.['required']">A telefonszám kötelező!</span>
+                <span *ngIf="phoneInput.errors?.['pattern']">Érvénytelen formátum! Példa: +36 30 123 4567</span>
+              </p>
+            </div>
           </div>
 
           <div>
@@ -128,6 +133,7 @@
               [type]="isPasswordVisible ? 'text' : 'password'" 
               name="password"
               maxlength="100"
+              pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$"
               [(ngModel)]="regData.password"
               id="password" 
               class="bg-gray-50 border border-gray-300 
