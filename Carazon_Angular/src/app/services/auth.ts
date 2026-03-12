@@ -13,28 +13,28 @@ export class AuthService {
   // Paraméterként emailt és jelszót kap
   login(email: string, password: string) {
 
-    // POST kérés küldése a backend login végpontjára
-    return this.http.post<any>(`${this.apiUrl}/login`, {
-      email,
-      password
-    }).pipe(
+  // Régi adatok törlése
+  localStorage.clear();
 
-      // A tap nem módosítja a választ, csak "mellékhatást" hajt végre
-      tap(res => {
+  return this.http.post<any>(`${this.apiUrl}/login`, {
+    email,
+    password
+  }).pipe(
+    tap(res => {
 
-        // A backend által visszaküldött user objektum elmentése localStorage-be
-        localStorage.setItem('user', JSON.stringify(res.user));
-      }) 
-    );
-  }
+      // Új user mentése
+      localStorage.setItem('carazongarage_user', JSON.stringify(res.user));
+    })
+  );
+}
 
   // ha bevan jelentkezve false ha igen true
   isLoggedIn(): boolean {
-    return !!localStorage.getItem('user');
+    return !!localStorage.getItem('carazongarage_user');
   }
 
   //Kijelentkezesnel torli a felhasznalo adatait
   logout() {
-    localStorage.removeItem('user');
+    localStorage.removeItem('carazongarage_user');
   }
 }

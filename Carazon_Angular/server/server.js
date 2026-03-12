@@ -129,7 +129,7 @@ app.post("/api/jobs", async (req, res) => {
 app.get("/api/applicants/:jobId", async (req, res) => {
   try {
     let [rows] = await db.query(
-      "SELECT * FROM applicants WHERE job_id = ? ORDER BY id DESC", 
+      "SELECT * FROM applicants WHERE job_id = ? ORDER BY id DESC",   
       [req.params.jobId]
     );
     res.json(rows);
@@ -184,34 +184,59 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
-//Register
-app.post("/api/register", (req, res) => {
-  // Figyelj a nevekre: a frontendről "phone_number" néven küldjük most már!
-  const { name, password, email, phone_number } = req.body;
+// Register - Extrás validációs verzió
+app.post("/api/register", async (req, res) => {
+  try {
+    const { name, password, email, phone_number } = req.body;
 
-  // Ellenőrizzük, hogy minden adat megjött-e
-  if (!name || !password || !email) {
-    return res.status(400).json({ message: "Hiányzó adatok!" });
-  }
-
-  const sql = `INSERT INTO user (name, password, email, phone_number) VALUES (?, ?, ?, ?)`;
-  
-  db.query(sql, [name, password, email, phone_number], (error, result) => {
-    if (error) {
-      console.error("Adatbázis hiba:", error);
-      // Ha például már létezik az email
-      if (error.code === 'ER_DUP_ENTRY') {
-        return res.status(400).json({ message: "Ez az email már regisztrálva van!" });
-      }
-      return res.status(500).json({ message: "Hiba történt a mentés során." });
+    // Ellenőrizzük, hogy minden adat megjött-e
+    if (!name || !password || !email) {
+      return res.status(400).json({ message: "Hiányzó adatok! A név, email és jelszó megadása kötelező." });
     }
 
-    res.json("Siker");
-    res.status(201).json({ message: "Sikeres regisztráció!" });
-    
-  });
-});
+    // Email formátum ellenőrzése
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ message: "Érvénytelen email formátum!" });
+    }
 
+    // Jelszó hossz ellenőrzése
+    if (password.length < 6) {
+      return res.status(400).json({ message: "A jelszónak legalább 6 karakter hosszúnak kell lennie!" });
+    }
+
+    // Telefonszám formátum ellenőrzése (opcionális)
+    if (phone_number && phone_number.length > 20) {
+      return res.status(400).json({ message: "A telefonszám túl hosszú!" });
+    }
+
+    const sql = `INSERT INTO user (name, password, email, phone_number) VALUES (?, ?, ?, ?)`;
+    
+    const [result] = await db.query(sql, [name, password, email, phone_number || null]);
+    
+    res.status(201).json({ 
+      success: true,
+      message: "Sikeres regisztráció!",
+      userId: result.insertId 
+    });
+
+  } catch (error) {
+    console.error("Adatbázis hiba:", error);
+    
+    // MySQL duplicate entry hiba (email már létezik)
+    if (error.code === 'ER_DUP_ENTRY') {
+      return res.status(400).json({ 
+        success: false,
+        message: "Ez az email cím már regisztrálva van!" 
+      });
+    }
+    
+    res.status(500).json({ 
+      success: false,
+      message: "Hiba történt a regisztráció során. Kérlek próbáld később!" 
+    });
+  }
+});
 
 
 let PORT = 3000;
