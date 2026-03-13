@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Már 12. 11:00
+-- Létrehozás ideje: 2026. Már 13. 08:32
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -218,22 +218,23 @@ INSERT INTO `projects` (`id`, `title`, `category`, `year`, `img`, `description`,
 CREATE TABLE `service` (
   `id` int(5) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `time` datetime NOT NULL
+  `time` datetime NOT NULL,
+  `price` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- A tábla adatainak kiíratása `service`
 --
 
-INSERT INTO `service` (`id`, `name`, `time`) VALUES
-(1, 'Olajcsere', '0000-00-00 00:00:00'),
-(2, 'Fékbetét csere', '0000-00-00 00:00:00'),
-(3, 'Műszaki vizsga', '2000-01-20 00:00:00'),
-(4, 'Kerékcsere', '0000-00-00 00:00:00'),
-(5, 'Klíma tisztítás', '0000-00-00 00:00:00'),
-(6, 'Diagnosztika', '0000-00-00 00:00:00'),
-(7, 'Akkumulátor csere', '0000-00-00 00:00:00'),
-(8, 'Futómű beállítás', '0000-00-00 00:00:00');
+INSERT INTO `service` (`id`, `name`, `time`, `price`) VALUES
+(1, 'Olajcsere', '0000-00-00 00:00:00', 30000),
+(2, 'Fékbetét csere', '0000-00-00 00:00:00', 70000),
+(3, 'Műszaki vizsga', '2000-01-20 00:00:00', 60000),
+(4, 'Kerékcsere', '0000-00-00 00:00:00', 150000),
+(5, 'Klíma tisztítás', '0000-00-00 00:00:00', 25000),
+(6, 'Diagnosztika', '0000-00-00 00:00:00', 15000),
+(7, 'Akkumulátor csere', '0000-00-00 00:00:00', 60000),
+(8, 'Futómű beállítás', '0000-00-00 00:00:00', 15000);
 
 -- --------------------------------------------------------
 

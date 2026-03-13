@@ -98,7 +98,7 @@ app.get("/api/jobs", async (req, res) => {
 app.get("/api/services", async (req, res) => {
   try {
     let [rows] = await db.query(`
-      SELECT id, name, time
+      SELECT id, name, time, price
       FROM service
       ORDER BY id ASC
     `);
