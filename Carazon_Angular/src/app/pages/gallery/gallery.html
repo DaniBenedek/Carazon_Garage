@@ -11,10 +11,27 @@
       </p>
     </div>
 
+    <!-- Categories -->
+    <div class="flex flex-wrap justify-center gap-4 mb-12">
+      <button
+        *ngFor="let category of categories"
+        (click)="filterByCategory(category)"
+        class="px-6 py-2 rounded-full font-medium transition-colors duration-200"
+        [ngClass]="{
+          'bg-amber-500 text-white': activeCategory === category,
+          'bg-white text-gray-700 hover:bg-gray-100': activeCategory !== category
+        }"
+      >
+        {{ category }}
+      </button>
+    </div>
+
+    <!-- Gallery Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       
-      <div *ngFor="let item of galleryItems" 
-           class="group relative overflow-hidden rounded-xl shadow-lg bg-black">
+      <div *ngFor="let item of filteredItems" 
+           class="group relative overflow-hidden rounded-xl shadow-lg bg-black cursor-pointer"
+           (click)="openModal(item)">
         
         <img [src]="item.imageUrl" 
              [alt]="item.title" 
@@ -35,6 +52,45 @@
         </div>
       </div>
 
+    </div>
+  </div>
+
+  <!-- Lightbox Modal -->
+  <div *ngIf="showModal" 
+       class="fixed inset-0 z-50 flex items-center justify-center bg-black/90"
+       (click)="closeModal($event)">
+    
+    <div class="relative max-w-7xl max-h-screen p-4">
+      <!-- Close button -->
+      <button class="absolute top-2 right-2 text-white text-4xl hover:text-amber-500 z-10"
+              (click)="closeModal($event)">
+        &times;
+      </button>
+
+      <!-- Previous button -->
+      <button *ngIf="hasPrev" 
+              class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-5xl hover:text-amber-500 z-10"
+              (click)="prevImage($event)">
+        ‹
+      </button>
+
+      <!-- Image -->
+      <img [src]="selectedImage?.imageUrl" 
+           [alt]="selectedImage?.title"
+           class="max-h-[90vh] max-w-full object-contain"
+           (click)="$event.stopPropagation()">
+
+      <!-- Next button -->
+      <button *ngIf="hasNext" 
+              class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-5xl hover:text-amber-500 z-10"
+              (click)="nextImage($event)">
+        ›
+      </button>
+
+      <!-- Caption -->
+      <div class="absolute bottom-4 left-0 right-0 text-center text-white bg-black/50 py-2 px-4 mx-auto w-fit rounded">
+        {{ selectedImage?.title }} - {{ selectedImage?.category }}
+      </div>
     </div>
   </div>
 </section>
