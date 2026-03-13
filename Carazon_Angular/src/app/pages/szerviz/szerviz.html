@@ -107,7 +107,7 @@
                            focus:border-amber-600 outline-none transition-all">
               <option value="" disabled selected>Válasszon szolgáltatást</option>
               <option *ngFor="let s of services" [value]="s.id" class="text-black">
-                {{s.name}} ({{s.price}})
+                {{s.name}} Ár ({{s.price}}) -tól
               </option>
             </select>
 
