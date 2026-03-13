@@ -1,88 +1,55 @@
-<div 
-  *ngIf="isMenuOpen" 
-  class="md:hidden fixed inset-0 z-40">
-  
-  <div 
-    class="absolute inset-0 bg-black/40" 
-    (click)="closeMenu()">
-  </div>
+<div *ngIf="isMenuOpen" class="md:hidden fixed inset-0 z-40">
+  <div class="absolute inset-0 bg-black/40" (click)="closeMenu()"></div>
 
-  <div 
-    class="absolute top-16 left-0 w-full 
-           bg-white dark:bg-gray-900 shadow-xl">
-    <nav 
-      class="px-6 py-6">
-      <ul 
-        class="flex flex-col gap-4 text-base">
+  <div class="absolute top-16 left-0 w-full bg-white dark:bg-gray-900 shadow-xl">
+    <nav class="px-6 py-6">
+      <ul class="flex flex-col gap-4 text-base text-center items-center">
         
-        <li>
-          <a 
-            href="/Szerviz" 
-            (click)="closeMenu()" 
-            class="block text-gray-700 dark:text-white">
+        <li class="w-full">
+          <a href="/Szerviz" (click)="closeMenu()" class="block text-gray-700 dark:text-white py-2">
             Szerviz
           </a>
         </li>
         
-        <li>
-          <a 
-            href="/Career" 
-            (click)="closeMenu()" 
-            class="block text-gray-700 dark:text-white">
+        <li class="w-full">
+          <a href="/Career" (click)="closeMenu()" class="block text-gray-700 dark:text-white py-2">
             Careers
           </a>
         </li>
         
-        <li>
-          <a 
-            href="/History" 
-            (click)="closeMenu()" 
-            class="block text-gray-700 dark:text-white">
+        <li class="w-full">
+          <a href="/History" (click)="closeMenu()" class="block text-gray-700 dark:text-white py-2">
             History
           </a>
         </li>
         
-        <li>
-          <a 
-            href="/Projects" 
-            (click)="closeMenu()" 
-            class="block text-gray-700 dark:text-white">
+        <li class="w-full">
+          <a href="/Projects" (click)="closeMenu()" class="block text-gray-700 dark:text-white py-2">
             Projects
           </a>
         </li>
         
-        <hr 
-          class="border-gray-200 dark:border-gray-700">
+        <li class="w-full px-4">
+          <hr class="border-gray-200 dark:border-gray-700">
+        </li>
 
-        <li 
-          *ngIf="!auth.isLoggedIn()">
-          <a 
-            href="/Login" 
-            (click)="closeMenu()" 
-            class="block w-full rounded-md bg-amber-600 
-                   px-4 py-2 text-center text-white">
+        <li *ngIf="!auth.isLoggedIn()" class="w-full">
+          <a href="/Login" (click)="closeMenu()" 
+             class="block w-full rounded-md bg-amber-600 px-4 py-2 text-center text-white">
             Login
           </a>
         </li>
         
-        <li 
-          *ngIf="!auth.isLoggedIn()">
-          <a 
-            href="/Register" 
-            (click)="closeMenu()" 
-            class="block w-full rounded-md bg-gray-200 
-                   px-4 py-2 text-center 
-                   dark:bg-gray-800 dark:text-white">
+        <li *ngIf="!auth.isLoggedIn()" class="w-full">
+          <a href="/Register" (click)="closeMenu()" 
+             class="block w-full rounded-md bg-gray-200 px-4 py-2 text-center dark:bg-gray-800 dark:text-white">
             Register
           </a>
         </li>
 
-        <li 
-          *ngIf="auth.isLoggedIn()">
-          <button 
-            (click)="logout(); closeMenu()" 
-            class="w-full rounded-md bg-red-500 
-                   px-4 py-2 text-white">
+        <li *ngIf="auth.isLoggedIn()" class="w-full">
+          <button (click)="logout(); closeMenu()" 
+                  class="w-full rounded-md bg-red-500 px-4 py-2 text-white text-center">
             Kilépés 
           </button>
         </li>
@@ -106,7 +73,7 @@
           <img 
             [src]="'assets/pictures/logo5.png'" 
             alt="Logo" 
-            class="h-55 w-55 pb-2">
+            class="h-55 w-55 ">
         </a>
       </div>
 
