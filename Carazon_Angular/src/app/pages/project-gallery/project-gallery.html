@@ -1,0 +1,26 @@
+<section class="py-20 bg-gray-50">
+
+<div class="container mx-auto px-4">
+
+<h2 class="text-3xl font-bold mb-10">
+
+{{categoryName}}
+
+</h2>
+
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+
+<div *ngFor="let img of images">
+
+<img
+[src]="img.imageUrl"
+class="w-full h-56 object-cover rounded-lg shadow"
+/>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
