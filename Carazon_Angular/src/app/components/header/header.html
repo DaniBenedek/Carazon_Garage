@@ -6,26 +6,26 @@
       <ul class="flex flex-col gap-4 text-base text-center items-center">
         
         <li class="w-full">
-          <a href="/Szerviz" (click)="closeMenu()" class="block text-gray-700 dark:text-white py-2">
+          <a href="/szerviz" (click)="closeMenu()" class="block text-gray-700 dark:text-white py-2">
             Szerviz
           </a>
         </li>
         
         <li class="w-full">
-          <a href="/Career" (click)="closeMenu()" class="block text-gray-700 dark:text-white py-2">
-            Careers
+          <a href="/career" (click)="closeMenu()" class="block text-gray-700 dark:text-white py-2">
+            Karrierunk
           </a>
         </li>
         
-        <li class="w-full">
-          <a href="/History" (click)="closeMenu()" class="block text-gray-700 dark:text-white py-2">
-            History
+        <!-- <li class="w-full">
+          <a href="/project-gallery" (click)="closeMenu()" class="block text-gray-700 dark:text-white py-2">
+            Galéria
           </a>
-        </li>
+        </li> -->
         
         <li class="w-full">
-          <a href="/Projects" (click)="closeMenu()" class="block text-gray-700 dark:text-white py-2">
-            Projects
+          <a href="/projects" (click)="closeMenu()" class="block text-gray-700 dark:text-white py-2">
+            Projektjeink
           </a>
         </li>
         
@@ -34,16 +34,16 @@
         </li>
 
         <li *ngIf="!auth.isLoggedIn()" class="w-full">
-          <a href="/Login" (click)="closeMenu()" 
+          <a href="/login" (click)="closeMenu()" 
              class="block w-full rounded-md bg-amber-600 px-4 py-2 text-center text-white">
-            Login
+            Bejelentkezés
           </a>
         </li>
         
         <li *ngIf="!auth.isLoggedIn()" class="w-full">
-          <a href="/Register" (click)="closeMenu()" 
+          <a href="/register" (click)="closeMenu()" 
              class="block w-full rounded-md bg-gray-200 px-4 py-2 text-center dark:bg-gray-800 dark:text-white">
-            Register
+            Regisztráció
           </a>
         </li>
 
@@ -88,7 +88,7 @@
               <a 
                 class="text-gray-500 transition hover:text-amber-600 amber-
                        dark:text-white dark:hover:text-amber-600 white/75" 
-                href="/Szerviz">
+                href="/szerviz">
                 Szerviz
               </a>
             </li>
@@ -96,31 +96,31 @@
               <a 
                 class="text-gray-500 transition hover:text-amber-600
                        dark:text-white dark:hover:text-amber-600" 
-                href="/Contact">
-                Contact
+                href="/contact">
+                Kontakt
               </a>
             </li>
             <li>
               <a 
                 class="text-gray-500 transition hover:text-amber-600
                        dark:text-white dark:hover:text-amber-600" 
-                href="/Career">
-                Careers
+                href="/career">
+                Karrierünk
               </a>
             </li>
-            <li>
+            <!-- <li>
               <a 
                 class="text-gray-500 transition hover:text-amber-600
                        dark:text-white dark:hover:text-amber-600" 
-                href="/referenciak">
+                href="/p">
                 Galéria
               </a>
-            </li>
+            </li> -->
             <li>
               <a 
                 class="text-gray-500 transition hover:hover:text-amber-600    
                        dark:text-white dark:hover:text-amber-600" 
-                href="/Projects">
+                href="/projects">
                 Projects
               </a>
             </li>
@@ -197,7 +197,7 @@
                   </li>
                   <li>
                     <a 
-                      href="/Hr" 
+                      href="/hr" 
                       (click)="closeMenu()" 
                       class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">
                       Hr
@@ -222,8 +222,8 @@
               <a 
                 class="rounded-md bg-amber-600 px-5 py-2.5 
                        text-sm font-medium text-white shadow-sm" 
-                href="/Login">
-                Login
+                href="/login">
+                Bejelentkezés
               </a>
               <div 
                 class="hidden sm:flex">
@@ -231,8 +231,8 @@
                   class="rounded-md bg-gray-100 px-5 py-2.5 
                          text-sm font-medium dark:bg-gray-800 
                          dark:text-white" 
-                  href="/Register">
-                  Register
+                  href="/register">
+                  Regisztráció
                 </a>
               </div>
             </ng-container>
