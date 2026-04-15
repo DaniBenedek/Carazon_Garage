@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -24,6 +25,7 @@ export class Register {
   };
 
   isPasswordVisible: boolean = false;
+  private router = inject(Router)
   
   constructor(private http: HttpClient) {}
 
@@ -46,11 +48,13 @@ export class Register {
           console.log('Szerver válasza:', response);
           alert('Sikeres regisztráció!');
 
+          this.router.navigate(["/login"])
         },
         error: (error) => {
           console.error('Hiba történt:', error);
           alert(error.error?.message || 'Hiba történt a regisztráció során.');
         }
       });
+
   }
 }

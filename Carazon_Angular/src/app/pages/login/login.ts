@@ -21,6 +21,11 @@ export class Login {
     private router: Router
   ) {}
 
+  isPasswordVisible: boolean = false;
+  togglePassword() {
+    this.isPasswordVisible = !this.isPasswordVisible;
+  }
+
   login() {
     this.auth.login(this.email, this.password).subscribe({
       next: () => {
