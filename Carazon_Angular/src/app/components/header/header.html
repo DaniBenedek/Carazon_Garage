@@ -16,6 +16,12 @@
             Karrierunk
           </a>
         </li>
+
+        <li class="w-full">
+          <a href="/contact" (click)="closeMenu()" class="block text-gray-700 dark:text-white py-2">
+            Kontakt
+          </a>
+        </li>
         
         <!-- <li class="w-full">
           <a href="/project-gallery" (click)="closeMenu()" class="block text-gray-700 dark:text-white py-2">
@@ -89,7 +95,7 @@
                 class="text-gray-500 transition hover:text-amber-600 amber-
                        dark:text-white dark:hover:text-amber-600 white/75" 
                 href="/szerviz">
-                Szerviz
+                Szervíz
               </a>
             </li>
             <li>
@@ -121,7 +127,7 @@
                 class="text-gray-500 transition hover:hover:text-amber-600    
                        dark:text-white dark:hover:text-amber-600" 
                 href="/projects">
-                Projects
+                Projektjeink
               </a>
             </li>
           </ul>
@@ -217,25 +223,21 @@
               </div>
             </div>
 
-            <ng-container 
-              *ngIf="!auth.isLoggedIn()">
+            <ng-container *ngIf="!auth.isLoggedIn()">
               <a 
-                class="rounded-md bg-amber-600 px-5 py-2.5 
-                       text-sm font-medium text-white shadow-sm" 
+                class="hidden md:inline-block rounded-md bg-amber-600 px-5 py-2.5 text-sm font-medium text-white shadow-sm" 
                 href="/login">
                 Bejelentkezés
               </a>
-              <div 
-                class="hidden sm:flex">
+              
+              <div class="hidden md:flex">
                 <a 
-                  class="rounded-md bg-gray-100 px-5 py-2.5 
-                         text-sm font-medium dark:bg-gray-800 
-                         dark:text-white" 
+                  class="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium dark:bg-gray-800 dark:text-white" 
                   href="/register">
                   Regisztráció
                 </a>
               </div>
-            </ng-container>
+            </ng-container> 
 
           </div>
 
