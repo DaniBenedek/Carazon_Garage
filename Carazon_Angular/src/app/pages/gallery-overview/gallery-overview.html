@@ -1,0 +1,68 @@
+<section class="py-20 bg-gray-50">
+
+<div class="container mx-auto px-4">
+
+<div class="text-center mb-16">
+<h2 class="text-4xl font-bold mb-4">
+Referenciáink
+</h2>
+</div>
+
+<!-- CATEGORY FILTER -->
+
+<div class="flex flex-wrap justify-center gap-4 mb-10">
+
+<button
+(click)="filter('all')"
+class="px-6 py-2 rounded-lg bg-gray-200 hover:bg-gray-300">
+Összes
+</button>
+
+<button
+*ngFor="let cat of categories"
+(click)="filter(cat.slug)"
+class="px-6 py-2 rounded-lg bg-gray-200 hover:bg-gray-300">
+
+{{cat.name}}
+
+</button>
+
+</div>
+
+<!-- GALLERY GRID -->
+
+<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+<div
+*ngFor="let item of filteredItems"
+[routerLink]="['/project', item.categorySlug]"
+class="cursor-pointer group overflow-hidden rounded-xl shadow-lg">
+
+<img
+[src]="item.imageUrl"
+class="w-full h-64 object-cover group-hover:scale-110 transition duration-300"
+/>
+
+<div class="p-4 bg-white">
+
+<h3 class="font-bold">
+
+{{item.title}}
+
+</h3>
+
+<p class="text-sm text-gray-500">
+
+{{item.category}}
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>

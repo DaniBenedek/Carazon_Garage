@@ -4,16 +4,24 @@
 winexe
 C#
 .cs
-C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\obj\Debug\
+C:\xampp\htdocs\vizsgaremekek_13c\Carazon_Garage\Carazon_Wpf\obj\Debug\
 carazonGarage
 none
 false
 DEBUG;TRACE
+<<<<<<< HEAD
 C:\xampp\htdocs\Carazon_Garage\Carazon_Wpf\App.xaml
 9-405492547
 
 16-456138378
 36-972496816
+=======
+C:\xampp\htdocs\vizsgaremekek_13c\Carazon_Garage\Carazon_Wpf\App.xaml
+9-405492547
+
+141451601959
+36-74399296
+>>>>>>> 3ae9ff8e3e6aae9cd38a01283d4cd6e78b36f3d2
 Alkatreszek.xaml;Alkatreszek_KeszletFrissit.xaml;Alkatreszek_uj.xaml;Login.xaml;MainWindow.xaml;Munkalapok.xaml;MunkalapReszletek.xaml;ugyfelek.xaml;ugyfelek_uj.xaml;
 
 False

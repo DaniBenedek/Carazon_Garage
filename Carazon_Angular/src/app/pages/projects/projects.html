@@ -4,7 +4,7 @@
                   bg-gray-900 py-20 md:py-32">
     <div class="absolute inset-0 opacity-10">
       <img src="https://images.pexels.com/photos/1388278/pexels-photo-1388278.jpeg"
-           alt="Wood carving background" 
+           alt="Car mechanic background" 
            class="w-full h-full object-cover">
     </div>
 
@@ -44,7 +44,7 @@
           <p class="text-gray-600 text-lg">
             Mutatva
             <span class="font-bold text-gray-900">
-              {{ Szurtmunka.length }}
+              {{ Szurtmunka().length }}
             </span>
             {{ KivalasztottElem === 'All' ? 'projekt' : 
                KivalasztottElem.toLowerCase() + ' projekt' }}
@@ -54,7 +54,7 @@
         <!-- Maga a kartya grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 
                     lg:grid-cols-3 gap-6 md:gap-8">
-          <div *ngFor="let project of Szurtmunka; let i = index" 
+          <div *ngFor="let project of Szurtmunka(); let i = index" 
                class="project-card group relative overflow-hidden 
                       rounded-2xl bg-white shadow-lg 
                       transition-all duration-500 hover:shadow-2xl 
@@ -63,7 +63,7 @@
             [style.animation-delay.s]="i * 0.1">
 
             <!-- Munka kepek -->
-            <div class="project-image-wrapper relative overflow-hidden aspect-[4/3]">
+            <div class="project-image-wrapper relative overflow-hidden aspect-4/3">
               <img [src]="project.img" 
                    [alt]="project.title"
                    class="w-full h-full object-cover transform group-hover:scale-110 
@@ -71,7 +71,7 @@
 
               <!-- Ha rahuzod az egeret jelenjen meg -->
               <div class="project-overlay absolute 
-                          inset-0 bg-gradient-to-t 
+                          inset-0 bg-linear-to-t 
                           from-black/90 via-black/50 to-transparent 
                           opacity-0 group-hover:opacity-100 
                           transition-opacity duration-300">
@@ -102,7 +102,7 @@
                   class="inline-block px-3 py-1 bg-white/90 
                          backdrop-blur-sm text-gray-900 
                          text-sm font-medium rounded-full">
-                  {{ project.year }}
+                  {{ project.year | date:'yyyy-MM-dd'}}
                 </span>
               </div>
             </div>
@@ -176,7 +176,7 @@
         </div>
 
         <!-- Ha üres a stájsz akkor megjelenik a dosszié -->
-        <div *ngIf="Szurtmunka.length === 0" 
+        <div *ngIf="Szurtmunka().length === 0" 
              class="text-center py-20">
           <svg xmlns="http://www.w3.org/2000/svg" 
                width="64" 
@@ -221,19 +221,23 @@
           {{ OtletLeiras }}
         </p>
         <div class="flex flex-wrap justify-center gap-4">
-          <button class="px-8 py-4 bg-amber-600 hover:bg-amber-700 
-                         text-white text-lg font-medium 
-                         rounded-lg transition-all duration-300 
-                         transform hover:scale-105 active:scale-95 
-                         shadow-lg hover:shadow-xl">
-            {{ AlsoFoglalasGomb}}
-          </button>
-          <button class="px-8 py-4 border-2 border-white 
-                         text-white hover:bg-white/10 text-lg font-medium 
-                         rounded-lg transition-all duration-300 
-                         transform hover:scale-105 active:scale-95">
-            {{ Kontakt}}
-          </button>
+          <a href="/szerviz">
+            <button class="px-8 py-4 bg-amber-600 hover:bg-amber-700 
+                           text-white text-lg font-medium 
+                           rounded-lg transition-all duration-300 
+                           transform hover:scale-105 active:scale-95 
+                           shadow-lg hover:shadow-xl">
+              {{ AlsoFoglalasGomb}}
+            </button>
+          </a>
+          <a href="/contact">
+            <button class="px-8 py-4 border-2 border-white 
+                           text-white hover:bg-white/10 text-lg font-medium 
+                           rounded-lg transition-all duration-300 
+                           transform hover:scale-105 active:scale-95">
+              {{ Kontakt}}
+            </button>
+          </a>
         </div>
       </div>
     </div>

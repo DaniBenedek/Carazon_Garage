@@ -94,6 +94,12 @@ namespace carazonGarage
             this.Close();
             mainWindow.Show();
         }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Alkatreszek_uj ujalkatresz = new Alkatreszek_uj();
+            this.Close();
+            ujalkatresz.Show();
+        }
 
         private void DataGrid_Alkatreszek_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -114,6 +120,7 @@ namespace carazonGarage
 
         }
 
+<<<<<<< HEAD
         private void Button_NewPart(object sender, RoutedEventArgs e)
         {
             Alkatreszek_uj mainWindow = new Alkatreszek_uj();
@@ -127,5 +134,7 @@ namespace carazonGarage
             this.Close();
             mainWindow.Show();
         }
+=======
+>>>>>>> 3ae9ff8e3e6aae9cd38a01283d4cd6e78b36f3d2
     }
 }

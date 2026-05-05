@@ -1,10 +1,111 @@
-<div class="container mt-50">
-  <h1 class="text-center
-             text-3xl 
-             font-bold 
-             mb-20">
-    Karrierunk itt lesz
-  </h1>
+<div class="min-h-screen bg-white">
+  <div class="bg-gray-900 py-20 px-6 text-center">
+    <h1 class="text-4xl md:text-5xl font-bold text-white mb-4 italic uppercase tracking-tighter">
+      Carazon 
+      <span class="text-amber-600">
+        Garage
+      </span> 
+      Karrier
+    </h1>
+    <p class="text-gray-400 max-w-xl mx-auto">
+      Válassz egy pozíciót, és légy részese egy profi csapatnak!
+    </p>
+  </div>
 
-  <p class="text-lg mb-10">HellosziaCsao.</p>
+  <div class="container mx-auto px-4 py-12">
+    <div class="grid lg:grid-cols-2 gap-10">
+      
+      <div class="space-y-4">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">
+          Nyitott pozícióink
+        </h2>
+        
+        <div *ngFor="let job of jobs()" 
+             (click)="selectJob(job)" 
+             [class.border-amber-500]="selectedJob()?.id === job.id"
+             class="p-6 bg-gray-50 border-2 border-transparent 
+                    rounded-2xl cursor-pointer hover:shadow-md transition-all group">
+          
+          <div class="flex justify-between items-center">
+            <div>
+              <h3 class="text-xl font-bold text-gray-900">
+                {{ job.title }}
+              </h3>
+              <p class="text-amber-600 text-sm font-medium">
+                {{ job.location }}
+              </p>
+            </div>
+            <span class="text-gray-400 group-hover:text-amber-600 
+                          transition-colors">-></span>
+          </div>
+        </div>
+
+        <p *ngIf="jobs().length === 0" class="text-gray-500 italic">
+          Jelenleg nincs nyitott pozíciónk, de nézz vissza később!
+        </p>
+      </div>
+
+      <div class="relative">
+        <div *ngIf="selectedJob(); else noSelection" 
+             class="bg-white p-8 rounded-3xl shadow-2xl border 
+                    border-gray-100 sticky top-8 animate-fade-in">
+          
+          <h3 class="text-2xl font-bold text-gray-900">{{ selectedJob().title }}</h3>
+          <p class="text-gray-500 mt-2 leading-relaxed">Leírás : {{ selectedJob().description }}</p>
+          <p class="mt-4 font-bold text-amber-600"> Fizetés: {{ selectedJob().salary }}</p>
+
+          <hr class="my-8">
+
+          <form (ngSubmit)="submitApplication()" 
+                class="space-y-4">
+            <h4 class="text-lg font-bold">Jelentkezés</h4>
+            
+            <input [(ngModel)]="application.name" 
+                   name="name" 
+                   type="text" 
+                   placeholder="Neved" 
+                   required
+                   class="w-full p-4 bg-gray-50 border 
+                          rounded-xl outline-none focus:ring-2 
+                          focus:ring-amber-500">
+            
+            <input [(ngModel)]="application.email" 
+                   name="email" 
+                   type="email" 
+                   placeholder="Email címed" 
+                   required
+                   class="w-full p-4 bg-gray-50 border 
+                          rounded-xl outline-none focus:ring-2 
+                          focus:ring-amber-500">
+            
+            <textarea [(ngModel)]="application.message" 
+                      name="message" 
+                      placeholder="Üzenet / Tapasztalatod..." 
+                      class="w-full p-4 bg-gray-50 border 
+                            rounded-xl h-32 outline-none 
+                            focus:ring-2 focus:ring-amber-500">
+            </textarea>
+            
+            <button type="submit" 
+                    class="w-full bg-gray-900 
+                        text-white py-4 rounded-xl 
+                          font-bold hover:bg-amber-600 
+                          transition-colors">
+              Küldés
+            </button>
+          </form>
+        </div>
+
+        <ng-template #noSelection>
+          <div class="hidden lg:flex flex-col items-center 
+                      justify-center h-64 border-2 border-dashed 
+                      border-gray-200 rounded-3xl 
+                      text-gray-400">
+            <p>Válassz pozíciót a részletekért</p>
+          </div>
+        </ng-template>
+
+      </div>
+    </div>
+  </div>
 </div>

@@ -1,11 +1,17 @@
 ﻿<Window
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+<<<<<<< HEAD
              xmlns:av="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              mc:Ignorable="av" 
              x:Class="carazonGarage.Munkalapok"
              Background="#121417">
+=======
+             xmlns:av="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="av" x:Class="carazonGarage.Munkalapok"
+             Background="#121417"
+             WindowStyle="None">
+>>>>>>> 3ae9ff8e3e6aae9cd38a01283d4cd6e78b36f3d2
 
     <Grid Margin="16">
         <Grid.RowDefinitions>

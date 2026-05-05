@@ -2,10 +2,17 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
+<<<<<<< HEAD
 -- Host: 127.0.0.1
 -- Generation Time: Jan 04, 2026 at 06:58 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
+=======
+-- Gép: 127.0.0.1
+-- Létrehozás ideje: 2026. Már 13. 08:32
+-- Kiszolgáló verziója: 10.4.32-MariaDB
+-- PHP verzió: 8.2.12
+>>>>>>> 3ae9ff8e3e6aae9cd38a01283d4cd6e78b36f3d2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +31,26 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+<<<<<<< HEAD
 -- Table structure for table `appointments`
+=======
+-- Tábla szerkezet ehhez a táblához `applicants`
+--
+
+CREATE TABLE `applicants` (
+  `id` int(11) NOT NULL,
+  `job_id` int(11) DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `message` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `appointments`
+>>>>>>> 3ae9ff8e3e6aae9cd38a01283d4cd6e78b36f3d2
 --
 
 CREATE TABLE `appointments` (
@@ -56,6 +82,7 @@ INSERT INTO `appointments` (`id`, `user_id`, `vehicle_id`, `service_id`, `date`,
 -- --------------------------------------------------------
 
 --
+<<<<<<< HEAD
 -- Table structure for table `cart`
 --
 
@@ -110,6 +137,9 @@ INSERT INTO `cart_items` (`id`, `cart_id`, `product_id`, `quantity`) VALUES
 
 --
 -- Table structure for table `country`
+=======
+-- Tábla szerkezet ehhez a táblához `country`
+>>>>>>> 3ae9ff8e3e6aae9cd38a01283d4cd6e78b36f3d2
 --
 
 CREATE TABLE `country` (
@@ -154,7 +184,34 @@ INSERT INTO `hero_content` (`id`, `heroTitle`, `heroSubtitle`, `heroDescription`
 -- --------------------------------------------------------
 
 --
+<<<<<<< HEAD
 -- Table structure for table `language`
+=======
+-- Tábla szerkezet ehhez a táblához `jobs`
+--
+
+CREATE TABLE `jobs` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `salary` varchar(100) DEFAULT NULL,
+  `location` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- A tábla adatainak kiíratása `jobs`
+--
+
+INSERT INTO `jobs` (`id`, `title`, `description`, `salary`, `location`, `created_at`) VALUES
+(3, 'Főszerelő', 'Autók szerelése', '850.000-900.000', 'Makó', '2026-02-03 11:04:29'),
+(4, 'Marketing', 'Cég hirdetése ', '700.000-820.000', 'Makó', '2026-02-03 11:05:10');
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `language`
+>>>>>>> 3ae9ff8e3e6aae9cd38a01283d4cd6e78b36f3d2
 --
 
 CREATE TABLE `language` (
@@ -233,22 +290,51 @@ INSERT INTO `projects` (`id`, `title`, `category`, `year`, `img`, `description`,
 CREATE TABLE `service` (
   `id` int(5) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `time` datetime NOT NULL
+  `time` datetime NOT NULL,
+  `price` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `service`
 --
 
-INSERT INTO `service` (`id`, `name`, `time`) VALUES
-(1, 'Olajcsere', '0000-00-00 00:00:00'),
-(2, 'Fékbetét csere', '0000-00-00 00:00:00'),
-(3, 'Műszaki vizsga', '2000-01-20 00:00:00'),
-(4, 'Kerékcsere', '0000-00-00 00:00:00'),
-(5, 'Klíma tisztítás', '0000-00-00 00:00:00'),
-(6, 'Diagnosztika', '0000-00-00 00:00:00'),
-(7, 'Akkumulátor csere', '0000-00-00 00:00:00'),
-(8, 'Futómű beállítás', '0000-00-00 00:00:00');
+INSERT INTO `service` (`id`, `name`, `time`, `price`) VALUES
+(1, 'Olajcsere', '0000-00-00 00:00:00', 30000),
+(2, 'Fékbetét csere', '0000-00-00 00:00:00', 70000),
+(3, 'Műszaki vizsga', '2000-01-20 00:00:00', 60000),
+(4, 'Kerékcsere', '0000-00-00 00:00:00', 150000),
+(5, 'Klíma tisztítás', '0000-00-00 00:00:00', 25000),
+(6, 'Diagnosztika', '0000-00-00 00:00:00', 15000),
+(7, 'Akkumulátor csere', '0000-00-00 00:00:00', 60000),
+(8, 'Futómű beállítás', '0000-00-00 00:00:00', 15000);
+
+-- --------------------------------------------------------
+
+--
+-- Tábla szerkezet ehhez a táblához `service_status`
+--
+
+CREATE TABLE `service_status` (
+  `id` int(11) NOT NULL,
+  `license_plate` varchar(20) DEFAULT NULL,
+  `service_date` date DEFAULT NULL,
+  `oil_change` tinyint(1) DEFAULT NULL,
+  `brake_repair` tinyint(1) DEFAULT NULL,
+  `general_inspection` tinyint(1) DEFAULT NULL,
+  `diagnostic` tinyint(1) DEFAULT NULL,
+  `ac_fill` tinyint(1) DEFAULT NULL,
+  `clutch_change` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- A tábla adatainak kiíratása `service_status`
+--
+
+INSERT INTO `service_status` (`id`, `license_plate`, `service_date`, `oil_change`, `brake_repair`, `general_inspection`, `diagnostic`, `ac_fill`, `clutch_change`) VALUES
+(1, 'ABC-123', '2026-01-04', 1, 1, 1, 1, 1, 1),
+(2, 'XYZ-999', '2026-01-04', 0, 1, 1, 1, 0, 0),
+(3, 'MER-555', '2026-01-04', 1, 1, 1, 0, 0, 0),
+(4, 'DE-4567', '2026-01-04', 1, 1, 1, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -345,7 +431,18 @@ INSERT INTO `vehicle` (`id`, `vehicle_make`, `vehicle_model`, `user_id`, `licens
 --
 
 --
+<<<<<<< HEAD
 -- Indexes for table `appointments`
+=======
+-- A tábla indexei `applicants`
+--
+ALTER TABLE `applicants`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `job_id` (`job_id`);
+
+--
+-- A tábla indexei `appointments`
+>>>>>>> 3ae9ff8e3e6aae9cd38a01283d4cd6e78b36f3d2
 --
 ALTER TABLE `appointments`
   ADD PRIMARY KEY (`id`),
@@ -354,6 +451,7 @@ ALTER TABLE `appointments`
   ADD KEY `service_id` (`service_id`);
 
 --
+<<<<<<< HEAD
 -- Indexes for table `cart`
 --
 ALTER TABLE `cart`
@@ -370,6 +468,9 @@ ALTER TABLE `cart_items`
 
 --
 -- Indexes for table `country`
+=======
+-- A tábla indexei `country`
+>>>>>>> 3ae9ff8e3e6aae9cd38a01283d4cd6e78b36f3d2
 --
 ALTER TABLE `country`
   ADD PRIMARY KEY (`id`);
@@ -381,7 +482,17 @@ ALTER TABLE `hero_content`
   ADD PRIMARY KEY (`id`);
 
 --
+<<<<<<< HEAD
 -- Indexes for table `language`
+=======
+-- A tábla indexei `jobs`
+--
+ALTER TABLE `jobs`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- A tábla indexei `language`
+>>>>>>> 3ae9ff8e3e6aae9cd38a01283d4cd6e78b36f3d2
 --
 ALTER TABLE `language`
   ADD PRIMARY KEY (`id`);
@@ -405,13 +516,21 @@ ALTER TABLE `service`
   ADD PRIMARY KEY (`id`);
 
 --
+<<<<<<< HEAD
 -- Indexes for table `service_status`
+=======
+-- A tábla indexei `service_status`
+>>>>>>> 3ae9ff8e3e6aae9cd38a01283d4cd6e78b36f3d2
 --
 ALTER TABLE `service_status`
   ADD PRIMARY KEY (`id`);
 
 --
+<<<<<<< HEAD
 -- Indexes for table `user`
+=======
+-- A tábla indexei `user`
+>>>>>>> 3ae9ff8e3e6aae9cd38a01283d4cd6e78b36f3d2
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
@@ -431,12 +550,23 @@ ALTER TABLE `vehicle`
 --
 
 --
+<<<<<<< HEAD
 -- AUTO_INCREMENT for table `appointments`
+=======
+-- AUTO_INCREMENT a táblához `applicants`
+--
+ALTER TABLE `applicants`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT a táblához `appointments`
+>>>>>>> 3ae9ff8e3e6aae9cd38a01283d4cd6e78b36f3d2
 --
 ALTER TABLE `appointments`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+<<<<<<< HEAD
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
@@ -450,6 +580,9 @@ ALTER TABLE `cart_items`
 
 --
 -- AUTO_INCREMENT for table `country`
+=======
+-- AUTO_INCREMENT a táblához `country`
+>>>>>>> 3ae9ff8e3e6aae9cd38a01283d4cd6e78b36f3d2
 --
 ALTER TABLE `country`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
@@ -461,7 +594,17 @@ ALTER TABLE `hero_content`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+<<<<<<< HEAD
 -- AUTO_INCREMENT for table `products`
+=======
+-- AUTO_INCREMENT a táblához `jobs`
+--
+ALTER TABLE `jobs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT a táblához `products`
+>>>>>>> 3ae9ff8e3e6aae9cd38a01283d4cd6e78b36f3d2
 --
 ALTER TABLE `products`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
@@ -479,13 +622,21 @@ ALTER TABLE `service`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+<<<<<<< HEAD
 -- AUTO_INCREMENT for table `service_status`
+=======
+-- AUTO_INCREMENT a táblához `service_status`
+>>>>>>> 3ae9ff8e3e6aae9cd38a01283d4cd6e78b36f3d2
 --
 ALTER TABLE `service_status`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+<<<<<<< HEAD
 -- AUTO_INCREMENT for table `user`
+=======
+-- AUTO_INCREMENT a táblához `user`
+>>>>>>> 3ae9ff8e3e6aae9cd38a01283d4cd6e78b36f3d2
 --
 ALTER TABLE `user`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
@@ -501,7 +652,17 @@ ALTER TABLE `vehicle`
 --
 
 --
+<<<<<<< HEAD
 -- Constraints for table `appointments`
+=======
+-- Megkötések a táblához `applicants`
+--
+ALTER TABLE `applicants`
+  ADD CONSTRAINT `applicants_ibfk_1` FOREIGN KEY (`job_id`) REFERENCES `jobs` (`id`) ON DELETE CASCADE;
+
+--
+-- Megkötések a táblához `appointments`
+>>>>>>> 3ae9ff8e3e6aae9cd38a01283d4cd6e78b36f3d2
 --
 ALTER TABLE `appointments`
   ADD CONSTRAINT `appointments_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
@@ -509,6 +670,7 @@ ALTER TABLE `appointments`
   ADD CONSTRAINT `appointments_ibfk_3` FOREIGN KEY (`service_id`) REFERENCES `service` (`id`);
 
 --
+<<<<<<< HEAD
 -- Constraints for table `cart`
 --
 ALTER TABLE `cart`
@@ -523,6 +685,9 @@ ALTER TABLE `cart_items`
 
 --
 -- Constraints for table `vehicle`
+=======
+-- Megkötések a táblához `vehicle`
+>>>>>>> 3ae9ff8e3e6aae9cd38a01283d4cd6e78b36f3d2
 --
 ALTER TABLE `vehicle`
   ADD CONSTRAINT `vehicle_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),

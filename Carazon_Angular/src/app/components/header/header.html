@@ -1,215 +1,264 @@
-<!-- MOBILE MENU -->
-<div *ngIf="isMenuOpen"
-     class="md:hidden fixed inset-0 z-40">
+<div *ngIf="isMenuOpen" class="md:hidden fixed inset-0 z-40">
+  <div class="absolute inset-0 bg-black/40" (click)="closeMenu()"></div>
 
-  <!-- háttér -->
-  <div class="absolute inset-0 bg-black/40"
-       (click)="closeMenu()"></div>
-
-  <!-- menü -->
-  <div class="absolute top-16 left-0 w-full
-              bg-white dark:bg-gray-900
-              shadow-xl">
-
+  <div class="absolute top-16 left-0 w-full bg-white dark:bg-gray-900 shadow-xl">
     <nav class="px-6 py-6">
-      <ul class="flex flex-col gap-4 text-base">
-
-        <!-- NAV -->
-        <li>
-          <a href="/Szerviz"
-             (click)="closeMenu()"
-             class="block text-gray-700 dark:text-white">
+      <ul class="flex flex-col gap-4 text-base text-center items-center">
+        
+        <li class="w-full">
+          <a href="/szerviz" (click)="closeMenu()" class="block text-gray-700 dark:text-white py-2">
             Szerviz
           </a>
         </li>
-
-        <li>
-          <a href="/Career"
-             (click)="closeMenu()"
-             class="block text-gray-700 dark:text-white">
-            Careers
+        
+        <li class="w-full">
+          <a href="/career" (click)="closeMenu()" class="block text-gray-700 dark:text-white py-2">
+            Karrierunk
           </a>
         </li>
 
-        <li>
-          <a href="/History"
-             (click)="closeMenu()"
-             class="block text-gray-700 dark:text-white">
-            History
+        <li class="w-full">
+          <a href="/contact" (click)="closeMenu()" class="block text-gray-700 dark:text-white py-2">
+            Kontakt
+          </a>
+        </li>
+        
+        <!-- <li class="w-full">
+          <a href="/project-gallery" (click)="closeMenu()" class="block text-gray-700 dark:text-white py-2">
+            Galéria
+          </a>
+        </li> -->
+        
+        <li class="w-full">
+          <a href="/projects" (click)="closeMenu()" class="block text-gray-700 dark:text-white py-2">
+            Projektjeink
+          </a>
+        </li>
+        
+        <li class="w-full px-4">
+          <hr class="border-gray-200 dark:border-gray-700">
+        </li>
+
+        <li *ngIf="!auth.isLoggedIn()" class="w-full">
+          <a href="/login" (click)="closeMenu()" 
+             class="block w-full rounded-md bg-amber-600 px-4 py-2 text-center text-white">
+            Bejelentkezés
+          </a>
+        </li>
+        
+        <li *ngIf="!auth.isLoggedIn()" class="w-full">
+          <a href="/register" (click)="closeMenu()" 
+             class="block w-full rounded-md bg-gray-200 px-4 py-2 text-center dark:bg-gray-800 dark:text-white">
+            Regisztráció
           </a>
         </li>
 
-        <li>
-          <a href="/Projects"
-             (click)="closeMenu()"
-             class="block text-gray-700 dark:text-white">
-            Projects
-          </a>
-        </li>
-
-        <hr class="border-gray-200 dark:border-gray-700">
-
-        <!-- AUTH -->
-        <li *ngIf="!auth.isLoggedIn()">
-          <a href="/Login"
-             (click)="closeMenu()"
-             class="block w-full rounded-md
-                    bg-amber-600 px-4 py-2
-                    text-center text-white">
-            Login
-          </a>
-        </li>
-
-        <li *ngIf="!auth.isLoggedIn()">
-          <a href="/Register"
-             (click)="closeMenu()"
-             class="block w-full rounded-md
-                    bg-gray-200 px-4 py-2
-                    text-center
-                    dark:bg-gray-800 dark:text-white">
-            Register
-          </a>
-        </li>
-
-        <li *ngIf="auth.isLoggedIn()">
-          <button
-            (click)="logout(); closeMenu()"
-            class="w-full rounded-md
-                   bg-red-500 px-4 py-2
-                   text-white">
-            Kilépés
+        <li *ngIf="auth.isLoggedIn()" class="w-full">
+          <button (click)="logout(); closeMenu()" 
+                  class="w-full rounded-md bg-red-500 px-4 py-2 text-white text-center">
+            Kilépés 
           </button>
         </li>
-
       </ul>
     </nav>
   </div>
 </div>
-<header class="bg-white 
-               dark:bg-gray-900 fixed 
-               top-0 left-0 
-               right-0 z-50">
-  <div class="mx-auto max-w-8xl 
-              px-4 sm:px-6 lg:px-8">
-    <div class="flex h-16 
-                items-center justify-between">
-      <div class="md:items-center md:gap-6">
-        <a class="w-52 text-teal-600 dark:text-teal-300"
-                  href="/">
-          <img [src]="'assets/pictures/carazonGaragelogo0.2.png'" 
-               alt="Mukodik?" 
-               class="h-20 w-20 mt-2">
+
+<header 
+  class="bg-white dark:bg-gray-900 fixed top-0 left-0 right-0 z-50">
+  <div 
+    class="mx-auto max-w-8xl px-4 sm:px-6 lg:px-8">
+    <div 
+      class="flex h-16 items-center justify-between">
+      
+      <div 
+        class="md:items-center md:gap-6">
+        <a 
+          class="w-52 text-teal-600 dark:text-teal-300" 
+          href="/">
+          <img 
+            [src]="'assets/pictures/logo5.png'" 
+            alt="Logo" 
+            class="h-55 w-55 ">
         </a>
       </div>
 
-      <div class="md:flex 
-                  md:items-center 
-                  md:gap-12">
-        <nav aria-label="Global" 
-             class="hidden md:block">
-          <ul class="flex 
-                     items-center 
-                     gap-6 
-                     text-sm">
+      <div 
+        class="md:flex md:items-center md:gap-12">
+        <nav 
+          aria-label="Global" 
+          class="hidden md:block">
+          <ul 
+            class="flex items-center gap-6 text-sm">
             <li>
-              <a class="text-gray-500 
-                        transition 
-                        hover:text-gray-500/75 
-                        dark:text-white 
-                        dark:hover:text-white/75" 
-                  href="/Szerviz">
-                Szerviz
+              <a 
+                class="text-gray-500 transition hover:text-amber-600 amber-
+                       dark:text-white dark:hover:text-amber-600 white/75" 
+                href="/szerviz">
+                Szervíz
               </a>
             </li>
-
             <li>
-              <a class="text-gray-500 transition 
-                        hover:text-gray-500/75 dark:text-white 
-                        dark:hover:text-white/75" 
-                  href="/Career">
-                Careers
+              <a 
+                class="text-gray-500 transition hover:text-amber-600
+                       dark:text-white dark:hover:text-amber-600" 
+                href="/contact">
+                Kontakt
               </a>
             </li>
-
             <li>
-              <a class="text-gray-500 transition 
-                        hover:text-gray-500/75 
-                        dark:text-white 
-                        dark:hover:text-white/75" 
-                 href="/History">
-                History
+              <a 
+                class="text-gray-500 transition hover:text-amber-600
+                       dark:text-white dark:hover:text-amber-600" 
+                href="/career">
+                Karrierünk
               </a>
             </li>
-
-            <li>
-              <a class="text-gray-500 transition 
-                        hover:text-gray-500/75 dark:text-white 
-                        dark:hover:text-white/75" 
-                 href="/Szerviz">
-                Services
+            <!-- <li>
+              <a 
+                class="text-gray-500 transition hover:text-amber-600
+                       dark:text-white dark:hover:text-amber-600" 
+                href="/p">
+                Galéria
               </a>
-            </li>
-
+            </li> -->
             <li>
-              <a class="text-gray-500 transition 
-                        hover:text-gray-500/75 
-                        dark:text-white 
-                        dark:hover:text-white/75" 
-                 href="/Projects">
-                Projects
+              <a 
+                class="text-gray-500 transition hover:hover:text-amber-600    
+                       dark:text-white dark:hover:text-amber-600" 
+                href="/projects">
+                Projektjeink
               </a>
             </li>
           </ul>
         </nav>
 
-        <div class="flex items-center gap-4">
-          <div class="sm:flex sm:gap-4">
-            <a class="rounded-md bg-amber-600 px-5 
-                      py-2.5 text-sm font-medium 
-                      text-white shadow-sm " 
-               *ngIf="!auth.isLoggedIn()" 
-               href="/Login">
-              Login
-            </a>
-
-            <div *ngIf="auth.isLoggedIn()" 
-                  class="flex items-center gap-4">
-              <span class="text-white">{{ user?.name }}</span>
-              <button (click)="logout()" 
-                      class="bg-red-500 px-5 py-2.5 
-                             rounded-md text-sm 
-                             shadow-sm text-white">
-                Kilépés
+        <div 
+          class="flex items-center gap-4">
+          <div 
+            class="sm:flex sm:gap-4">
+            
+            <div 
+              class="relative hidden md:inline-block" 
+              *ngIf="auth.isLoggedIn()">
+              <button 
+                (click)="toggleUserDropdown()" 
+                type="button" 
+                class="flex items-center text-sm font-medium 
+                       text-gray-900 rounded-full hover:text-amber-600 amber-600 amber-600 
+                       dark:text-white focus:ring-4 focus:ring-gray-100 
+                       dark:focus:ring-gray-700 p-1">
+                <span 
+                  class="px-2">
+                  {{ user?.name }}
+                </span>
+                <svg 
+                  class="w-3 h-3 transition-transform" 
+                  [ngClass]="{'rotate-180': isUserDropdownOpen}" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24">
+                  <path 
+                    stroke-linecap="round" 
+                    stroke-linejoin="round" 
+                    stroke-width="2" 
+                    d="m19 9-7 7-7-7"/>
+                </svg>
               </button>
+
+              <div 
+                *ngIf="isUserDropdownOpen" 
+                class="absolute right-0 z-50 mt-2 w-48 
+                       bg-white divide-y divide-gray-100 
+                       rounded-lg shadow-xl dark:bg-gray-800 
+                       border dark:border-gray-700">
+                <div 
+                  class="px-4 py-3 text-xs text-gray-500 dark:text-gray-400">
+                  <p 
+                    class="font-bold text-gray-900 dark:text-white">
+                    {{ user?.name }}
+                  </p>
+                  <p 
+                    class="truncate">
+                    {{ user?.email }}
+                  </p>
+                </div>
+                <ul 
+                  class="py-2 text-sm text-gray-700 dark:text-gray-200">
+                  <li>
+                    <a 
+                      href="/Profile" 
+                      (click)="closeMenu()" 
+                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">
+                      Profilom
+                    </a>
+                  </li>
+                  <li>
+                    <a 
+                      href="/settings" 
+                      (click)="closeMenu()" 
+                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">
+                      Beállítások
+                    </a>
+                  </li>
+                  <li>
+                    <a 
+                      href="/hr" 
+                      (click)="closeMenu()" 
+                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">
+                      Hr
+                    </a>
+                  </li>
+                </ul>
+                <div 
+                  class="py-1">
+                  <button 
+                    (click)="logout()" 
+                    class="flex w-full px-4 py-2 text-sm 
+                           text-red-600 hover:bg-gray-100 
+                           dark:hover:bg-gray-700 font-medium">
+                    Kijelentkezés
+                  </button>
+                </div>
+              </div>
             </div>
 
-            <div class="hidden sm:flex">
-              <a class="rounded-md bg-gray-100 px-5 
-                        py-2.5 text-sm font-medium 
-                        dark:bg-gray-800 
-                        dark:text-white"
-                  *ngIf="!auth.isLoggedIn()" 
-                 href="/Register">
-                Register
+            <ng-container *ngIf="!auth.isLoggedIn()">
+              <a 
+                class="hidden md:inline-block rounded-md bg-amber-600 px-5 py-2.5 text-sm font-medium text-white shadow-sm" 
+                href="/login">
+                Bejelentkezés
               </a>
-            </div>
+              
+              <div class="hidden md:flex">
+                <a 
+                  class="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium dark:bg-gray-800 dark:text-white" 
+                  href="/register">
+                  Regisztráció
+                </a>
+              </div>
+            </ng-container> 
+
           </div>
-          <!-- Hamburger icon -->
-          <div class="block md:hidden">
-            <button
-              (click)="toggleMenu()"
-              class="rounded-md p-2
-                     bg-gray-100 dark:bg-gray-800
-                     text-gray-600 dark:text-white">
-              <svg xmlns="http://www.w3.org/2000/svg"
-                   class="h-6 w-6"
-                   fill="none"
-                   viewBox="0 0 24 24"
-                   stroke="currentColor"
-                   stroke-width="2">
-                <path stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M4 6h16M4 12h16M4 18h16"/>
+
+          <div 
+            class="block md:hidden">
+            <button 
+              (click)="toggleMenu()" 
+              class="rounded-md p-2 bg-gray-100 
+                     dark:bg-gray-800 text-gray-600 
+                     dark:text-white">
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                class="h-6 w-6" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor" 
+                stroke-width="2">
+                <path 
+                  stroke-linecap="round" 
+                  stroke-linejoin="round" 
+                  d="M4 6h16M4 12h16M4 18h16"/>
               </svg>
             </button>
           </div>
@@ -218,3 +267,9 @@
     </div>
   </div>
 </header>
+
+<div 
+  *ngIf="isUserDropdownOpen" 
+  (click)="closeMenu()" 
+  class="fixed inset-0 z-40">
+</div>
