@@ -102,6 +102,8 @@ export class Profile implements OnInit {
   }
 
   saveProfile() {
+    console.log('Küldendő adatok:', this.editUserData);
+
     const updatePayload: any = {
       id: this.user.id,
       name: this.editUserData.name,

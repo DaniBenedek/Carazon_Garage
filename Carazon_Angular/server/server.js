@@ -290,40 +290,47 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
+
+//Profil modosítás fül
 app.post('/api/user/update', async (req, res) => {
+    console.log("Beérkező adatok:", req.body);
     const { id, name, email, password } = req.body;
 
     try {
-        // 1. Keressük meg a felhasználót (példa MongoDB/Mongoose esetén)
-        let user = await User.findById(id);
-        if (!user) return res.status(404).json({ message: "Nem találtunk felhasználót" });
-
-        // 2. Adatok frissítése
-        user.name = name;
-        user.email = email;
-
-        // 3. Jelszó frissítése csak ha küldtek újat
-        if (password) {
-            const salt = await bcrypt.genSalt(10);
-            user.password = await bcrypt.hash(password, salt);
+        // 1. Megnézzük, létezik-e a felhasználó
+        const [rows] = await db.query("SELECT * FROM user WHERE id = ?", [id]);
+        if (rows.length === 0) {
+            return res.status(404).json({ message: "Felhasználó nem található" });
         }
 
-        await user.save();
+        let updateSql = "UPDATE user SET name = ?, email = ? WHERE id = ?";
+        let params = [name, email, id];
 
-        // 4. Küldjük vissza a frissített adatokat (jelszó nélkül!)
-        const updatedUser = {
-            id: user._id,
-            name: user.name,
-            email: user.email,
-            role: user.role,
-            img: user.img
-        };
+        // 2. Ha van új jelszó, azt is beleírjuk (Mivel a regisztrációdnál sem láttam bcryptet, 
+        // feltételezem sima szövegként tárolod, de ha titkosítod, ide kell a bcrypt.hash)
+        if (password && password.trim() !== "") {
+            updateSql = "UPDATE user SET name = ?, email = ?, password = ? WHERE id = ?";
+            params = [name, email, password, id];
+        }
 
-        res.json({ user: updatedUser });
+        // 3. Futtatjuk a módosítást
+        await db.query(updateSql, params);
+
+        // 4. Lekérjük a frissített adatokat, hogy visszaküldhessük a frontendnek
+        const [updatedRows] = await db.query("SELECT id, name, email, role, img FROM user WHERE id = ?", [id]);
+        
+        console.log("Sikeres módosítás!");
+        res.json({
+            success: true,
+            user: updatedRows[0]
+        });
+
     } catch (error) {
-        res.status(500).json({ message: "Szerver hiba a mentésnél" });
+        console.error("Hiba a mentés során:", error);
+        res.status(500).json({ message: "Szerver hiba", error: error.message });
     }
-  });
+});
+
 
 // Register - Extrás validációs verzió
 app.post("/api/register", async (req, res) => {
