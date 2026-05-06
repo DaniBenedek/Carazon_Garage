@@ -10,8 +10,9 @@ import { Profile } from './pages/profile/profile';
 import { Contact } from './pages/contact/contact';
 import { Hr } from './pages/hr/hr';
 
-import { GalleryOverview } from './pages/gallery-overview/gallery-overview';
 import { ProjectGallery } from './pages/project-gallery/project-gallery';
+
+import { GalleryOverviewComponent } from './pages/gallery-overview/gallery-overview';
 
 export const routes: Routes = [
 
@@ -29,7 +30,7 @@ export const routes: Routes = [
   { path: 'contact', component: Contact },
 
   // GALÉRIA OLDAL
-  { path: 'referenciak', component: GalleryOverview },
+  { path: 'referenciak', component: GalleryOverviewComponent },
 
   // PROJEKT OLDAL
   { path: 'project/:categorySlug', component: ProjectGallery },

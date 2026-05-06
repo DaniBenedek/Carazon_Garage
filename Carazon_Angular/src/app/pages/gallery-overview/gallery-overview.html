@@ -1,68 +1,55 @@
-<section class="py-20 bg-gray-50">
-
-<div class="container mx-auto px-4">
-
-<div class="text-center mb-16">
-<h2 class="text-4xl font-bold mb-4">
-Referenciáink
-</h2>
+<div class="gallery-page">
+  <div class="masonry">
+    @for (item of allItems; track item.id; let i = $index) {
+      <div 
+        class="masonry__item" 
+        [class.masonry__item--tall]="i % 5 === 0"
+        [class.masonry__item--short]="i % 4 === 3"
+        (click)="openModal(i)">
+        <img [src]="item.imageUrl" [alt]="item.title" loading="lazy" />
+        <div class="masonry__overlay">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="m21 21-4.35-4.35M11 8v6M8 11h6"/>
+          </svg>
+        </div>
+      </div>
+    }
+  </div>
 </div>
 
-<!-- CATEGORY FILTER -->
+<!-- LIGHTBOX -->
+@if (modalOpen) {
+  <div class="lightbox lightbox--open" (click)="closeModal()">
+    <div class="lightbox__box" (click)="$event.stopPropagation()">
+      
+      <button class="lightbox__close" (click)="closeModal()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M18 6 6 18M6 6l12 12"/>
+        </svg>
+      </button>
 
-<div class="flex flex-wrap justify-center gap-4 mb-10">
+      <div class="lightbox__img-wrap">
+        <img [src]="currentItem.imageUrl" [alt]="currentItem.title" class="lightbox__img" />
 
-<button
-(click)="filter('all')"
-class="px-6 py-2 rounded-lg bg-gray-200 hover:bg-gray-300">
-Összes
-</button>
+        <button class="lightbox__nav lightbox__nav--prev" (click)="prev()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
 
-<button
-*ngFor="let cat of categories"
-(click)="filter(cat.slug)"
-class="px-6 py-2 rounded-lg bg-gray-200 hover:bg-gray-300">
+        <button class="lightbox__nav lightbox__nav--next" (click)="next()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+      </div>
 
-{{cat.name}}
-
-</button>
-
-</div>
-
-<!-- GALLERY GRID -->
-
-<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-
-<div
-*ngFor="let item of filteredItems"
-[routerLink]="['/project', item.categorySlug]"
-class="cursor-pointer group overflow-hidden rounded-xl shadow-lg">
-
-<img
-[src]="item.imageUrl"
-class="w-full h-64 object-cover group-hover:scale-110 transition duration-300"
-/>
-
-<div class="p-4 bg-white">
-
-<h3 class="font-bold">
-
-{{item.title}}
-
-</h3>
-
-<p class="text-sm text-gray-500">
-
-{{item.category}}
-
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
+      <div class="lightbox__caption">
+        <span class="lightbox__category">{{ currentItem.category }}</span>
+        <span class="lightbox__title">{{ currentItem.title }}</span>
+        <span class="lightbox__counter">{{ modalIndex + 1 }} / {{ allItems.length }}</span>
+      </div>
+    </div>
+  </div>
+}
