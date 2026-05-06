@@ -3,7 +3,6 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2026. Máj 06. 16:53
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.0.30
 
@@ -142,6 +141,27 @@ INSERT INTO `country` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+<<<<<<< HEAD
+=======
+-- Tábla szerkezet ehhez a táblához `hero_content`
+--
+
+CREATE TABLE `hero_content` (
+  `id` int(11) NOT NULL,
+  `heroTitle` varchar(255) NOT NULL,
+  `heroSubtitle` varchar(255) NOT NULL,
+  `heroDescription` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- A tábla adatainak kiíratása `hero_content`
+--
+
+INSERT INTO `hero_content` (`id`, `heroTitle`, `heroSubtitle`, `heroDescription`) VALUES
+(1, 'Lo siento', 'Nemszoktunk adózni', 'Experience the fusion of traditional craftsmanship and contemporary artistry. Each piece tells a story carved with precision, passion, and decades of mastery.');
+
+-- --------------------------------------------------------
+
 -- Tábla szerkezet ehhez a táblához `jobs`
 --
 
@@ -461,6 +481,13 @@ ALTER TABLE `country`
   ADD PRIMARY KEY (`id`);
 
 --
+-- A tábla indexei `hero_content`
+--
+ALTER TABLE `hero_content`
+  ADD PRIMARY KEY (`id`);
+
+--
+
 -- A tábla indexei `jobs`
 --
 ALTER TABLE `jobs`
@@ -533,6 +560,12 @@ ALTER TABLE `appointments`
 --
 ALTER TABLE `country`
   MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT a táblához `hero_content`
+--
+ALTER TABLE `hero_content`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT a táblához `jobs`
