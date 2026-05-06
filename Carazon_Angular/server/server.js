@@ -290,6 +290,41 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
+app.post('/api/user/update', async (req, res) => {
+    const { id, name, email, password } = req.body;
+
+    try {
+        // 1. Keressük meg a felhasználót (példa MongoDB/Mongoose esetén)
+        let user = await User.findById(id);
+        if (!user) return res.status(404).json({ message: "Nem találtunk felhasználót" });
+
+        // 2. Adatok frissítése
+        user.name = name;
+        user.email = email;
+
+        // 3. Jelszó frissítése csak ha küldtek újat
+        if (password) {
+            const salt = await bcrypt.genSalt(10);
+            user.password = await bcrypt.hash(password, salt);
+        }
+
+        await user.save();
+
+        // 4. Küldjük vissza a frissített adatokat (jelszó nélkül!)
+        const updatedUser = {
+            id: user._id,
+            name: user.name,
+            email: user.email,
+            role: user.role,
+            img: user.img
+        };
+
+        res.json({ user: updatedUser });
+    } catch (error) {
+        res.status(500).json({ message: "Szerver hiba a mentésnél" });
+    }
+  });
+
 // Register - Extrás validációs verzió
 app.post("/api/register", async (req, res) => {
   try {

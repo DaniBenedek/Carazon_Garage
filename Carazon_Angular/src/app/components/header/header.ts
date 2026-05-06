@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -15,8 +16,11 @@ export class Header {
   isMenuOpen = false;         
   isUserDropdownOpen = false;   
 
-  constructor(public auth: AuthService) {}
-
+  constructor(
+    public auth: AuthService,
+    private router: Router
+  ) {}
+    
   get user() {
     return JSON.parse(localStorage.getItem('carazongarage_user') || 'null');
   }
@@ -50,6 +54,8 @@ export class Header {
   logout() {
     this.auth.logout();
     this.closeMenu(); 
-    location.reload();
+    this.router.navigate(['/']).then(() => {
+      window.location.reload(); 
+    });
   }
 }
