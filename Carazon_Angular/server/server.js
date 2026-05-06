@@ -290,6 +290,34 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
+//Felhasználó profilkép
+app.post('/api/user/update-profile-image', async (req, res) => {
+    const { userId, image } = req.body;
+
+    try {
+        // 1. Frissítjük az 'img' mezőt az adatbázisban a Base64 szöveggel
+        const sql = "UPDATE user SET img = ? WHERE id = ?";
+        await db.query(sql, [image, userId]);
+
+        // 2. Lekérjük a frissített felhasználót, hogy a frontend localstorage-a is naprakész legyen
+        const [rows] = await db.query("SELECT id, name, email, role, img FROM user WHERE id = ?", [userId]);
+        
+        if (rows.length === 0) {
+            return res.status(404).json({ message: "Felhasználó nem található" });
+        }
+
+        console.log("Profilkép sikeresen frissítve a DB-ben!");
+        res.json({
+            success: true,
+            user: rows[0]
+        });
+
+    } catch (err) {
+        console.error("Képmentési hiba:", err);
+        res.status(500).json({ error: "Hiba a kép mentése során", details: err.message });
+    }
+});
+
 
 //Profil modosítás fül
 app.post('/api/user/update', async (req, res) => {
