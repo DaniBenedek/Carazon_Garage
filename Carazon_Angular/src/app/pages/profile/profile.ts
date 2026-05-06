@@ -29,6 +29,13 @@ export class Profile implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    if (!this.user || !this.user.id) {
+      const savedUser = localStorage.getItem('carazongarage_user');
+      if (savedUser) {
+        this.user = JSON.parse(savedUser);
+      }
+    }
+
     if (this.user && this.user.id) {
       this.loadStats();
       this.loadAppointments();
