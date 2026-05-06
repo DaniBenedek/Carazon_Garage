@@ -21,6 +21,14 @@ export class Header {
     return JSON.parse(localStorage.getItem('carazongarage_user') || 'null');
   }
 
+
+  // Új getter az admin jogosultság ellenőrzéséhez
+  get isAdmin(): boolean {
+    const currentUser = this.user;
+    // Feltételezve, hogy az adatbázisodban/tokenedben 'role' vagy 'isAdmin' mező van
+    return currentUser && (currentUser.role === 'admin' || currentUser.isAdmin === true);
+  }
+  
   // Meglévő metódusok
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;

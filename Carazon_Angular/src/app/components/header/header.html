@@ -1,4 +1,4 @@
-<div *ngIf="isMenuOpen" class="md:hidden fixed inset-0 z-40">
+<div *ngIf="isMenuOpen" class="lg:hidden fixed inset-0 z-40">
   <div class="absolute inset-0 bg-black/40" (click)="closeMenu()"></div>
 
   <div class="absolute top-16 left-0 w-full bg-white dark:bg-gray-900 shadow-xl">
@@ -79,7 +79,7 @@
           <img 
             [src]="'assets/pictures/logo5.png'" 
             alt="Logo" 
-            class="h-55 w-55 ">
+            class="h-55 w-55 mb-2">
         </a>
       </div>
 
@@ -87,7 +87,7 @@
         class="md:flex md:items-center md:gap-12">
         <nav 
           aria-label="Global" 
-          class="hidden md:block">
+          class="hidden lg:block">
           <ul 
             class="flex items-center gap-6 text-sm">
             <li>
@@ -193,22 +193,15 @@
                       Profilom
                     </a>
                   </li>
-                  <li>
-                    <a 
-                      href="/settings" 
-                      (click)="closeMenu()" 
-                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">
-                      Beállítások
-                    </a>
-                  </li>
-                  <li>
-                    <a 
-                      href="/hr" 
-                      (click)="closeMenu()" 
-                      class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">
-                      Hr
-                    </a>
-                  </li>
+                    <li *ngIf="isAdmin">
+                        <a href="/hr" (
+                           click)="closeMenu()" 
+                           class="block px-4 py-2 hover:bg-gray-100  
+                                  dark:hover:bg-gray-700 
+                                  font-bold text-amber-600">
+                          Hr
+                        </a>
+                    </li>
                 </ul>
                 <div 
                   class="py-1">
@@ -225,12 +218,12 @@
 
             <ng-container *ngIf="!auth.isLoggedIn()">
               <a 
-                class="hidden md:inline-block rounded-md bg-amber-600 px-5 py-2.5 text-sm font-medium text-white shadow-sm" 
+                class="hidden lg:inline-block rounded-md bg-amber-600 px-5 py-2.5 text-sm font-medium text-white shadow-sm" 
                 href="/login">
                 Bejelentkezés
               </a>
               
-              <div class="hidden md:flex">
+              <div class="hidden lg:flex">
                 <a 
                   class="rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium dark:bg-gray-800 dark:text-white" 
                   href="/register">
@@ -242,7 +235,7 @@
           </div>
 
           <div 
-            class="block md:hidden">
+            class="block lg:hidden">
             <button 
               (click)="toggleMenu()" 
               class="rounded-md p-2 bg-gray-100 

@@ -268,7 +268,7 @@ app.post("/api/login", async (req, res) => {
   try {
     // Felhasználó keresése az adatbázisban
     let [rows] = await db.query(
-      "SELECT id, email, name FROM user WHERE email = ? AND password = ?",
+      "SELECT id, email, name, role FROM user WHERE email = ? AND password = ?",
       [email, password]
     );
 
