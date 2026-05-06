@@ -141,8 +141,6 @@ INSERT INTO `country` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
-<<<<<<< HEAD
-=======
 -- Tábla szerkezet ehhez a táblához `hero_content`
 --
 
