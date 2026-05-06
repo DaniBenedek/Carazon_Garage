@@ -70,23 +70,28 @@ export class Profile implements OnInit {
       const reader = new FileReader();
       reader.onload = () => {
         const base64String = reader.result as string;
-        this.user.img = base64String;
+
+        // --- EZ A TRÜKK: Azonnal frissítjük a nézetet ---
+        this.user.img = base64String; 
+        // -----------------------------------------------
 
         this.http.post('http://localhost:3000/api/user/update-profile-image', {
           userId: this.user.id,
           image: base64String
         }).subscribe({
           next: (res: any) => {
-            localStorage.setItem('carazongarage_user', JSON.stringify(res.user));
-            alert('Profilkép sikeresen frissítve!');
+            this.user = res.user;
+            localStorage.setItem('carazongarage_user', JSON.stringify(this.user));
+            console.log('Szerver visszaigazolta a mentést');
           },
-          error: (err) => console.error('Hiba a feltöltés során', err)
+          error: (err) => {
+            alert('Hiba a mentésnél, de az előnézet látszik.');
+          }
         });
       };
       reader.readAsDataURL(file);
     }
-  }
-
+  } 
   // --- Profil szerkesztés (Modal) ---
 
   openEditModal() {
