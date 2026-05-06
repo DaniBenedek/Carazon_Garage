@@ -11,6 +11,112 @@ app.use(cors());
 app.use(express.json());
 
 
+// Felhasználó autóinak száma és befejezett szervizek (statisztika)
+app.get("/api/user-stats/:userId", async (req, res) => {
+  try {
+    const [cars] = await db.query("SELECT COUNT(*) as count FROM vehicle WHERE user_id = ?", [req.params.userId]);
+    const [completed] = await db.query("SELECT COUNT(*) as count FROM appointments WHERE user_id = ? AND status = 'confirmed'", [req.params.userId]);
+    res.json({
+      carsCount: cars[0].count,
+      completedServices: completed[0].count
+    });
+  } catch (err) {
+    res.status(500).json({ error: "Hiba a statisztika lekérésekor" });
+  }
+});
+
+// Felhasználó aktív foglalásai (JOIN-olva a jármű és szerviz táblákkal)
+app.get("/api/my-appointments/:userId", async (req, res) => {
+  try {
+    const [rows] = await db.query(`
+      SELECT 
+        a.id, 
+        CONCAT(v.vehicle_make, ' ', v.vehicle_model) as carType, 
+        s.name as serviceType, 
+        DATE_FORMAT(a.date, '%Y. %M %d.') as date, 
+        a.status 
+      FROM appointments a
+      JOIN vehicle v ON a.vehicle_id = v.id
+      JOIN service s ON a.service_id = s.id
+      WHERE a.user_id = ?
+      ORDER BY a.date ASC
+    `, [req.params.userId]);
+    res.json(rows);
+  } catch (err) {
+    res.status(500).json({ error: "Hiba a foglalások lekérésekor" });
+  }
+});
+
+// Foglalás törlése (lemondás)
+app.delete("/api/appointments/:id", async (req, res) => {
+  try {
+    await db.query("DELETE FROM appointments WHERE id = ?", [req.params.id]);
+    res.json({ success: true, message: "Foglalás törölve" });
+  } catch (err) {
+    res.status(500).json({ error: "Hiba a törlés során" });
+  }
+});
+
+// A bejelentkezett felhasználó autóinak lekérése
+app.get("/api/my-vehicles/:userId", async (req, res) => {
+  try {
+    const [rows] = await db.query("SELECT id, vehicle_make, vehicle_model, license_plate FROM vehicle WHERE user_id = ?", [req.params.userId]);
+    res.json(rows);
+  } catch (err) {
+    res.status(500).json({ error: "Hiba az autók lekérésekor" });
+  }
+});
+
+app.post("/api/book-appointment", async (req, res) => {
+  const { user_id, service_id, date, status, note, vehicle_id, newVehicle } = req.body;
+  
+  try {
+    let finalVehicleId = vehicle_id;
+
+    // 1. Ha ÚJ autót küldtek
+    if (!finalVehicleId && newVehicle) {
+      // Megnézzük, létezik-e már ez a rendszám, hogy ne dobjon 'Duplicate entry' hibát
+      const [existing] = await db.query("SELECT id FROM vehicle WHERE license_plate = ?", [newVehicle.license_plate]);
+      
+      if (existing.length > 0) {
+        // Ha már létezik, simán csak megkapjuk az ID-ját és megyünk tovább
+        finalVehicleId = existing[0].id;
+      } else {
+        // Ha tényleg új, akkor beszúrjuk
+        const vehicleSql = `INSERT INTO vehicle (vehicle_make, vehicle_model, user_id, license_plate, country_id) VALUES (?, ?, ?, ?, ?)`;
+        const [vResult] = await db.query(vehicleSql, [
+          newVehicle.make, 
+          newVehicle.model, 
+          user_id, 
+          newVehicle.license_plate, 
+          1 
+        ]);
+        finalVehicleId = vResult.insertId;
+      }
+    }
+
+    // 2. Ellenőrizzük, hogy lett-e végül vehicle_id (biztonsági mentőöv)
+    if (!finalVehicleId) {
+       return res.status(400).json({ error: "Nincs érvényes gépjármű kiválasztva!" });
+    }
+
+    // 3. Foglalás mentése
+    const sql = "INSERT INTO appointments (user_id, vehicle_id, service_id, date, status, note) VALUES (?, ?, ?, ?, ?, ?)";
+    await db.query(sql, [user_id, finalVehicleId, service_id, date, status, note]);
+    
+    // 4. SIKER: Visszaküldünk egy egyértelmű választ
+    return res.json({ success: true, message: "Foglalás sikeres!" });
+
+  } catch (err) {
+    // 5. HIBA: Ha bármi elromlik, nem hagyjuk lógni a frontendet
+    console.error("Backend hiba:", err);
+    return res.status(500).json({ 
+      error: "Szerver hiba a mentéskor", 
+      details: err.message 
+    });
+  }
+});
+
 // api részek lekérés, get
 app.get("/api/cars", async (req, res) => {
   try {
