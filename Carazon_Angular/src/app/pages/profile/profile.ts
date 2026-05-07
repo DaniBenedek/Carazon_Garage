@@ -78,9 +78,7 @@ export class Profile implements OnInit {
       reader.onload = () => {
         const base64String = reader.result as string;
 
-        // --- EZ A TRÜKK: Azonnal frissítjük a nézetet ---
         this.user.img = base64String; 
-        // -----------------------------------------------
 
         this.http.post('http://localhost:3000/api/user/update-profile-image', {
           userId: this.user.id,
@@ -99,7 +97,6 @@ export class Profile implements OnInit {
       reader.readAsDataURL(file);
     }
   } 
-  // --- Profil szerkesztés (Modal) ---
 
   openEditModal() {
     // Feltöltjük az ideiglenes objektumot a jelenlegi adatokkal
