@@ -36,10 +36,8 @@
               <ng-container *ngFor="let day of daysInMonth">
                 <button *ngIf="day !== 0" 
                         (click)="selectDate(day)"
-                        [disabled]="isDayClosed(day)"
-                        [class]="selectedDate?.getDate() === day && selectedDate?.getMonth() === currentMonth.getMonth() ? 'bg-amber-600 text-white' : 
-                                 isDayClosed(day) ? 'bg-red-900/30 text-red-500 cursor-not-allowed opacity-50' : 
-                                 'bg-white/5 text-zinc-300 hover:bg-white/10'"
+                        [disabled]="getDayColor(day).includes('cursor-not-allowed')"
+                        [ngClass]="getDayColor(day)"
                         class="aspect-square rounded-xl transition-all flex items-center justify-center font-medium border border-white/5">
                   {{day}}
                 </button>
@@ -49,17 +47,30 @@
           </div>
 
           <!-- Idősávok -->
+
           <div>
             <label class="block text-zinc-400 text-sm mb-4 uppercase tracking-widest">Szabad időpontok</label>
             <div *ngIf="timeSlots.length > 0; else noSlots" class="grid grid-cols-3 gap-2 h-48 overflow-y-auto pr-2 custom-scrollbar">
-              <button *ngFor="let slot of timeSlots" 
-                      (click)="selectedSlot = slot"
-                      [class]="selectedSlot === slot ? 'border-amber-500 text-amber-500 bg-amber-500/10' : 'border-white/5 text-zinc-400 bg-white/5'"
-                      class="py-2 border rounded-lg hover:border-amber-500/50 transition-all text-sm font-medium">
-                {{slot}}
+              <button *ngIf="day !== 0" 
+                      (click)="selectDate(day)"
+                      [disabled]="getDayColor(day).includes('cursor-not-allowed')"
+                      [ngClass]="getDayColor(day)"
+                      class="aspect-square rounded-xl transition-all duration-300 flex items-center justify-center font-medium border text-sm">
+                {{day}}
               </button>
             </div>
             <ng-template #noSlots><div class="h-48 flex items-center justify-center border border-dashed border-white/10 rounded-lg text-zinc-600 italic text-xs">Válasszon szabad napot</div></ng-template>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-3 mt-4 mb-2 justify-center md:justify-start">
+          <div class="flex items-center gap-1.5 text-[10px] uppercase tracking-tighter text-zinc-400">
+            <span class="w-2 h-2 bg-red-500 rounded-full"></span> Foglalt/Múlt
+          </div>
+          <div class="flex items-center gap-1.5 text-[10px] uppercase tracking-tighter text-zinc-400">
+            <span class="w-2 h-2 bg-yellow-400 rounded-full"></span> Ma/Holnap
+          </div>
+          <div class="flex items-center gap-1.5 text-[10px] uppercase tracking-tighter text-zinc-400">
+            <span class="w-2 h-2 bg-green-500 rounded-full"></span> Szabad
           </div>
         </div>
         

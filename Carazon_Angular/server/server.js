@@ -67,6 +67,19 @@ app.get("/api/my-vehicles/:userId", async (req, res) => {
   }
 });
 
+//Már lefoglalt dátumok 
+app.get("/api/booked-dates", async (req, res) => {
+  try {
+
+    const [rows] = await db.query("SELECT date FROM appointments WHERE status != 'cancelled'");
+
+    res.json(rows);
+  } catch (err) {
+    res.status(500).json({ error: "Nem sikerült lekérni a foglalt adatokat" });
+  }
+});
+
+// Új foglalás intézése
 app.post("/api/book-appointment", async (req, res) => {
   const { user_id, service_id, date, status, note, vehicle_id, newVehicle } = req.body;
   
@@ -75,11 +88,10 @@ app.post("/api/book-appointment", async (req, res) => {
 
     // 1. Ha ÚJ autót küldtek
     if (!finalVehicleId && newVehicle) {
-      // Megnézzük, létezik-e már ez a rendszám, hogy ne dobjon 'Duplicate entry' hibát
       const [existing] = await db.query("SELECT id FROM vehicle WHERE license_plate = ?", [newVehicle.license_plate]);
       
       if (existing.length > 0) {
-        // Ha már létezik, simán csak megkapjuk az ID-ját és megyünk tovább
+
         finalVehicleId = existing[0].id;
       } else {
         // Ha tényleg új, akkor beszúrjuk
@@ -95,7 +107,7 @@ app.post("/api/book-appointment", async (req, res) => {
       }
     }
 
-    // 2. Ellenőrizzük, hogy lett-e végül vehicle_id (biztonsági mentőöv)
+    // 2. Ellenőrizzük, hogy lett-e végül vehicle_id
     if (!finalVehicleId) {
        return res.status(400).json({ error: "Nincs érvényes gépjármű kiválasztva!" });
     }
@@ -120,7 +132,7 @@ app.post("/api/book-appointment", async (req, res) => {
 // api részek lekérés, get
 app.get("/api/cars", async (req, res) => {
   try {
-    //sql lekerdezes futtatasa
+
     let [rows] = await db.query(`SELECT
                                         id,
                                         name,
@@ -132,17 +144,14 @@ app.get("/api/cars", async (req, res) => {
                                         membership_id
                                     FROM
                                         user`);
-    // Lekért adatok visszaadása json-ban
+
     res.json(rows);
-    
+
   } catch (err) {
-    //hiba kiírása konzolra
     console.error(err);
-    // 500-as http hibával visszatér
     res.status(500).json({ error: "Adatbázis Hiba" });
   }
 });
-// egy autó lekérése id alapján
 app.get("/api/car/:id", async (req, res) => {
   req.params.id
 })
@@ -257,33 +266,27 @@ app.post('/api/apply', (req, res) => {
 
 // login api
 app.post("/api/login", async (req, res) => {
-   // Email és jelszó kiolvasása a request body-ból
   let { email, password } = req.body;
 
-  // Ha nincs email vagy jelszó → hibás kérés
   if (!email || !password) {
     return res.status(400).json({ message: "Hiányzó adatok" });
   }
 
   try {
-    // Felhasználó keresése az adatbázisban
     let [rows] = await db.query(
       "SELECT id, email, name, role FROM user WHERE email = ? AND password = ?",
       [email, password]
     );
 
-     // Ha nincs találat → hibás bejelentkezés
     if (rows.length === 0) {
       return res.status(401).json({ message: "Hibás email vagy jelszó" });
     }
 
-    // Sikeres login válasz
     res.json({
       success: true,
       user: rows[0]
     });
 
-    // Szerver oldali hiba
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Szerver hiba" });
@@ -295,11 +298,9 @@ app.post('/api/user/update-profile-image', async (req, res) => {
     const { userId, image } = req.body;
 
     try {
-        // 1. Frissítjük az 'img' mezőt az adatbázisban a Base64 szöveggel
         const sql = "UPDATE user SET img = ? WHERE id = ?";
         await db.query(sql, [image, userId]);
 
-        // 2. Lekérjük a frissített felhasználót, hogy a frontend localstorage-a is naprakész legyen
         const [rows] = await db.query("SELECT id, name, email, role, img FROM user WHERE id = ?", [userId]);
         
         if (rows.length === 0) {
@@ -325,7 +326,6 @@ app.post('/api/user/update', async (req, res) => {
     const { id, name, email, password } = req.body;
 
     try {
-        // 1. Megnézzük, létezik-e a felhasználó
         const [rows] = await db.query("SELECT * FROM user WHERE id = ?", [id]);
         if (rows.length === 0) {
             return res.status(404).json({ message: "Felhasználó nem található" });
@@ -333,18 +333,13 @@ app.post('/api/user/update', async (req, res) => {
 
         let updateSql = "UPDATE user SET name = ?, email = ? WHERE id = ?";
         let params = [name, email, id];
-
-        // 2. Ha van új jelszó, azt is beleírjuk (Mivel a regisztrációdnál sem láttam bcryptet, 
-        // feltételezem sima szövegként tárolod, de ha titkosítod, ide kell a bcrypt.hash)
         if (password && password.trim() !== "") {
             updateSql = "UPDATE user SET name = ?, email = ?, password = ? WHERE id = ?";
             params = [name, email, password, id];
         }
 
-        // 3. Futtatjuk a módosítást
         await db.query(updateSql, params);
 
-        // 4. Lekérjük a frissített adatokat, hogy visszaküldhessük a frontendnek
         const [updatedRows] = await db.query("SELECT id, name, email, role, img FROM user WHERE id = ?", [id]);
         
         console.log("Sikeres módosítás!");
@@ -365,7 +360,6 @@ app.post("/api/register", async (req, res) => {
   try {
     const { name, password, email, phone_number } = req.body;
 
-    // Ellenőrizzük, hogy minden adat megjött-e
     if (!name || !password || !email) {
       return res.status(400).json({ message: "Hiányzó adatok! A név, email és jelszó megadása kötelező." });
     }
@@ -401,7 +395,7 @@ app.post("/api/register", async (req, res) => {
   } catch (error) {
     console.error("Adatbázis hiba:", error);
     
-    // MySQL duplicate entry hiba (email már létezik)
+    // (email már létezik)
     if (error.code === 'ER_DUP_ENTRY') {
       return res.status(400).json({ 
         success: false,
