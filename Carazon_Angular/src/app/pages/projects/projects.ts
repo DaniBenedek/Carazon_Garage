@@ -74,8 +74,22 @@ export class Projects implements OnInit {
     window.scrollTo({top: 0, behavior: 'smooth'});
   }
 
-  // Console teszt
-  Projektreszletek(project: Project):void {
-    console.log('asd',project)
+    // Változó a kiválasztott projekt tárolásához
+  selectedProject: any = null;
+  
+  // Modal megnyitása
+  Projektreszletek(project: any) {
+    this.selectedProject = project;
+    // Letiltjuk a görgetést a háttérben, amíg nyitva a modal
+    document.body.style.overflow = 'hidden';
   }
+  
+  // Modal bezárása
+  closeModal() {
+    this.selectedProject = null;
+    // Visszaállítjuk a görgetést
+    document.body.style.overflow = 'auto';
+}
+
+
 }
