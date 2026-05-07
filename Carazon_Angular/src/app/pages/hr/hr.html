@@ -1,9 +1,14 @@
-<div class="min-h-screen bg-gray-50 p-6 md:p-12 mt-10">
+<div class="min-h-screen 
+          bg-gray-50 
+            p-6 md:p-12 
+            mt-10">
   <div class="max-w-6xl mx-auto">
     <div class="grid lg:grid-cols-3 gap-8">
       
       <div class="lg:col-span-1">
-        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-200">
+        <div class="bg-white p-6 
+                      rounded-2xl shadow-sm 
+                      border border-gray-200">
           <h2 class="text-xl font-bold mb-6 text-amber-600">
             Új hirdetés
           </h2>
@@ -12,20 +17,27 @@
             <input [(ngModel)]="newJob.title" 
                    placeholder="Pozíció" 
                    class="w-full p-3 bg-gray-50 border 
-                          rounded-lg outline-none focus:ring-2 focus:ring-amber-500">
+                          rounded-lg outline-none 
+                          focus:ring-2 focus:ring-amber-500">
 
             <input [(ngModel)]="newJob.salary" 
                    placeholder="Fizetés" 
                    class="w-full p-3 bg-gray-50 border 
-                          rounded-lg outline-none focus:ring-2 focus:ring-amber-500">
+                          rounded-lg outline-none 
+                          focus:ring-2 focus:ring-amber-500">
 
             <textarea [(ngModel)]="newJob.description" 
                       placeholder="Leírás" 
-                      class="w-full p-3 bg-gray-50 border rounded-lg h-32 outline-none focus:ring-2 focus:ring-amber-500">
+                      class="w-full p-3 bg-gray-50 border 
+                             rounded-lg h-32 outline-none focus:ring-2 
+                             focus:ring-amber-500">
             </textarea>
 
             <button (click)="addJob()" 
-                    class="w-full bg-gray-900 text-white py-3 rounded-lg font-bold hover:bg-amber-600 transition-all">
+                    class="w-full bg-gray-900 
+                          text-white py-3 rounded-lg 
+                          font-bold hover:bg-amber-600 
+                          transition-all">
               Mentés
             </button>
           </div>
@@ -33,9 +45,12 @@
       </div>
 
       <div class="lg:col-span-2">
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
+        <div class="bg-white rounded-2xl 
+                      shadow-sm border border-gray-200 
+                      overflow-hidden">
           <table class="w-full text-left">
-            <thead class="bg-gray-900 text-white text-xs uppercase">
+            <thead class="bg-gray-900 
+                          text-white text-xs uppercase">
               <tr>
                 <th class="p-4">Pozíció</th>
                 <th class="p-4 text-center">Művelet</th>

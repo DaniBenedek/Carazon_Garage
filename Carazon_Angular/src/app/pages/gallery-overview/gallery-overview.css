@@ -1,9 +1,5 @@
-/* ════════════════════════════════════════
-   GALLERY OVERVIEW
-   ════════════════════════════════════════ */
-
 .gallery-page {
-  padding-top: 64px; /* navbar h-16 = 64px */
+  padding-top: 64px; /* navbar h-16 = 64px (le kell szamolni az oldal tetejetol 64px-et)*/
   min-height: 100vh;
   background: #f9f9f9;
 }
@@ -60,7 +56,6 @@
   opacity: 1;
 }
 
-/* ── LIGHTBOX ── */
 .lightbox {
   position: fixed;
   inset: 0;

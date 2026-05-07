@@ -89,7 +89,4 @@ export class Projects implements OnInit {
     this.selectedProject = null;
     // Visszaállítjuk a görgetést
     document.body.style.overflow = 'auto';
-}
-
-
-}
+}}

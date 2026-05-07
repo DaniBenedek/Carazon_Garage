@@ -1,12 +1,12 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms'; // Szükséges a szerkesztő formhoz
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, HttpClientModule, FormsModule], // FormsModule hozzáadva
+  imports: [CommonModule, HttpClientModule, FormsModule],
   templateUrl: './profile.html',
   styleUrl: './profile.css',
 })
@@ -15,7 +15,7 @@ export class Profile implements OnInit {
   appointments: any[] = [];
   stats = { carsCount: 0, completedServices: 0 };
 
-  // Modal állapot és ideiglenes adat tároló
+  // büszke kis konstruktorunk
   isEditModalOpen = false;
   editUserData = {
     name: '',
@@ -44,7 +44,6 @@ export class Profile implements OnInit {
     }
   }
 
-  // --- Adatbetöltés ---
 
   loadStats() {
     this.http.get<any>(`http://localhost:3000/api/user-stats/${this.user.id}`)
@@ -69,7 +68,7 @@ export class Profile implements OnInit {
     }
   }
 
-  // --- Képkezelés ---
+  // kép szisztéma
 
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
@@ -102,7 +101,7 @@ export class Profile implements OnInit {
     // Feltöltjük az ideiglenes objektumot a jelenlegi adatokkal
     this.editUserData.name = this.user.name;
     this.editUserData.email = this.user.email;
-    this.editUserData.password = ''; // A jelszó maradjon üres biztonsági okokból
+    this.editUserData.password = '';
     this.isEditModalOpen = true;
   }
 
@@ -127,11 +126,8 @@ export class Profile implements OnInit {
     this.http.post('http://localhost:3000/api/user/update', updatePayload)
       .subscribe({
         next: (res: any) => {
-          // 1. Frissítjük a helyi változót
           this.user = res.user;
-          // 2. Frissítjük a localStorage-t
           localStorage.setItem('carazongarage_user', JSON.stringify(res.user));
-          // 3. Bezárjuk a modalt
           this.closeEditModal();
           alert('Profil sikeresen frissítve!');
         },

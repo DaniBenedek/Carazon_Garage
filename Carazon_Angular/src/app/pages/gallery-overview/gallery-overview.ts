@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 export interface GalleryOverviewItem {
   id: number;
   title: string;
-  category?: string; // Hozzáadtam, mert a HTML-edben szerepel
+  category?: string;
   imageUrl: string;
 }
 
@@ -16,6 +16,7 @@ export interface GalleryOverviewItem {
   styleUrls: ['./gallery-overview.css']
 })
 export class GalleryOverviewComponent {
+
   // Az adatok közvetlenül itt vannak
   allItems: GalleryOverviewItem[] = [
     { id: 1, title: 'Dani Benedek', category: 'Portré', imageUrl: 'assets/pictures/osztaly/dani_benedek_1.jpg' },
@@ -30,7 +31,7 @@ export class GalleryOverviewComponent {
     { id: 10, title: 'Szántó Peti', category: 'Portré', imageUrl: 'assets/pictures/osztaly/szanto_peti.jpg' }
   ];
 
-  // Lightbox állapotkezelés
+  // Lightbox
   modalOpen = false;
   modalIndex = 0;
 
@@ -41,6 +42,7 @@ export class GalleryOverviewComponent {
   openModal(index: number): void {
     this.modalIndex = index;
     this.modalOpen = true;
+    
     // Megakadályozzuk a görgetést a háttérben, ha nyitva a modal
     document.body.style.overflow = 'hidden';
   }
