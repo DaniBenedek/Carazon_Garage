@@ -51,13 +51,15 @@
           <div>
             <label class="block text-zinc-400 text-sm mb-4 uppercase tracking-widest">Szabad időpontok</label>
             <div *ngIf="timeSlots.length > 0; else noSlots" class="grid grid-cols-3 gap-2 h-48 overflow-y-auto pr-2 custom-scrollbar">
-              <button *ngIf="day !== 0" 
-                      (click)="selectDate(day)"
-                      [disabled]="getDayColor(day).includes('cursor-not-allowed')"
-                      [ngClass]="getDayColor(day)"
-                      class="aspect-square rounded-xl transition-all duration-300 flex items-center justify-center font-medium border text-sm">
-                {{day}}
-              </button>
+              <ng-container *ngFor="let day of daysInMonth">
+                <button *ngIf="day !== 0" 
+                        (click)="selectDate(day)"
+                        [ngClass]="getDayColor(day)" 
+                        class="aspect-square rounded-xl transition-all border text-sm">
+                  {{day}}
+                </button>
+                <div *ngIf="day === 0" class="aspect-square"></div>
+              </ng-container>
             </div>
             <ng-template #noSlots><div class="h-48 flex items-center justify-center border border-dashed border-white/10 rounded-lg text-zinc-600 italic text-xs">Válasszon szabad napot</div></ng-template>
           </div>
